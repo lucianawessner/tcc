@@ -1,3 +1,5 @@
+<img src="assets/TalentTrail.png" alt="Talent Trial" style="height:140px; margin:-20px">
+
 <mat-card appearance="outlined" class="card">
   <mat-card-header class="col-6 justify-content-center mt-4 p-2">
     <mat-card-title>Entrar</mat-card-title>
@@ -26,15 +28,15 @@
           <button class="btn" id="Entrar">Entrar</button>
         </div>
 
-        <ng-container *ngIf="!isOpen">
+        <ng-container *ngIf="showButton">
           <button id="Login">Login</button>
         </ng-container>
       </div>
 
       <div class="col-md-6">
         <ng-container *ngIf="isOpen">
-          <button id="Cadastro" (click)="clickSouPrestador()">Sou prestador</button>
-          <button id="Cadastro" (click)="clickSouContratante()">Sou contratante</button>
+          <button id="Prestador" (click)="clickSouPrestador()">Sou prestador</button>
+          <button id="Contratante" (click)="clickSouContratante()">Sou contratante</button>
         </ng-container>
 
         <ng-container *ngIf="souPrestador">

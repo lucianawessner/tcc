@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -42,7 +42,7 @@ import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-c
       state('open', style({
         transform: 'translateX(0)',
         opacity: 1,
-        backgroundColor: '#b5d1cf',
+        backgroundColor: '#77ab59',
         borderRadius: '12px 0 0 12px'
       })),
       transition('open <=> closed', [
@@ -54,11 +54,22 @@ import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-c
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   isCadastroActive: boolean = false;
   isOpen: boolean = true;
   souPrestador: boolean = true;
+  showButton: boolean = false;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    if (!this.isOpen) {
+      setTimeout(() => {
+        this.showButton = true;
+      }, 2000);
+    }
+  }
 
   toggleCadastroPanel() {
     this.isCadastroActive = !this.isCadastroActive;
@@ -68,9 +79,12 @@ export class LoginComponent {
     this.isOpen = !this.isOpen;
 
     if (this.isOpen) {
-      this.isCadastroActive = false; // Fecha o painel de cadastro
+      this.isCadastroActive = false;
+      this.showButton = false; 
     } else {
-      this.isCadastroActive = true;  // Abre o painel de cadastro
+      setTimeout(() => {
+        this.showButton = true;
+      }, 1000);
     }
   }
 
