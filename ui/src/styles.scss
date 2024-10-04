@@ -1,11 +1,16 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
   padding: 30px;
   height: 100%;
-  background-color: red;
+  background-color: #DDF6BE;
 }
 
 html {
-  height: 100%;
+  height: auto;
 }
+
+html, body
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

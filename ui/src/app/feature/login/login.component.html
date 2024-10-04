@@ -1,0 +1,52 @@
+<mat-card appearance="outlined" class="card">
+  <mat-card-header class="col-6 justify-content-center mt-4 p-2">
+    <mat-card-title>Entrar</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mt-3">
+          <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-12">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="" />
+          </mat-form-field>
+        </div>
+
+        <div class="reset">
+          <span>Esqueceu sua senha?</span>
+        </div>
+
+        <div class="overlay__panel overlay--left">
+          <button class="btn" id="Entrar">Entrar</button>
+        </div>
+
+        <ng-container *ngIf="!isOpen">
+          <button id="Login">Login</button>
+        </ng-container>
+      </div>
+
+      <div class="col-md-6">
+        <ng-container *ngIf="isOpen">
+          <button id="Cadastro" (click)="clickSouPrestador()">Sou prestador</button>
+          <button id="Cadastro" (click)="clickSouContratante()">Sou contratante</button>
+        </ng-container>
+
+        <ng-container *ngIf="souPrestador">
+          <app-cadastro-prestador></app-cadastro-prestador>
+        </ng-container>
+
+        <ng-container *ngIf="!souPrestador">
+          <app-cadastro-contratante></app-cadastro-contratante>
+        </ng-container>
+
+      </div>
+    </div>
+    <div Class="Quadrado" [@openClose]="isOpen ? 'closed' : 'open'"></div>
+  </mat-card-content>
+</mat-card>

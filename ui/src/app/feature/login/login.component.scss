@@ -1,0 +1,93 @@
+
+.card{
+  left: 360px;
+  top: 114px;
+  height: 426px;
+  width: 755px;
+  border-radius: 12px;
+  border: 0.5px solid rgb(187, 233, 163);
+  box-shadow: 4px 4px 4px rgba(100, 99, 99, 0.2);
+  background-color: rgba(240, 240, 240, 0.936);
+}
+
+.form{
+  position: relative;
+  left: 10px;
+  top: 20px;
+  width: 330px;
+}
+
+.reset{
+  position: relative;
+  left: 88px;
+  top: 30px;
+}
+
+#Entrar{
+  position: relative;
+  top: 65px;
+  left: 75px;
+  padding: 0.9em 5em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+#Entrar:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Entrar:active {
+  transform: translateY(-1px);
+}
+
+#Cadastro{
+  z-index: 1;
+  position: relative;
+  top: 105px;
+  left: 95px;
+  padding: 1.0em 4em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+#Cadastro:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Cadastro:active {
+  transform: translateY(-1px);
+}
+
+.Quadrado {
+  position: absolute;
+  opacity: 20%;
+  top: 0px;
+  left: 0px;
+  height: 425.2px;
+  width: 376.5px;
+  background-color: rgba(240, 240, 240, 0.936);;
+}
