@@ -1,9 +1,14 @@
 <img src="assets/TalentTrail.png" alt="Talent Trial" style="height:140px; margin:-20px">
 
 <mat-card appearance="outlined" class="card">
-  <mat-card-header class="col-6 justify-content-center mt-4 p-2">
+  <!-- <mat-card-header class="col-6 justify-content-center mt-4 p-2">
     <mat-card-title>Entrar</mat-card-title>
-  </mat-card-header>
+  </mat-card-header> -->
+
+  <div class="row">
+      <h5 class="d-flex justify-content-center mt-5 col-6">Entrar</h5>
+      <h5 class="d-flex justify-content-center mt-5 col-6">Cadastro de {{ usuario }}</h5>
+  </div>
 
   <mat-card-content>
     <div class="row">
@@ -43,7 +48,7 @@
           <app-cadastro-prestador></app-cadastro-prestador>
         </ng-container>
 
-        <ng-container *ngIf="!souPrestador">
+        <ng-container *ngIf="souPrestador === false">
           <app-cadastro-contratante></app-cadastro-contratante>
         </ng-container>
 

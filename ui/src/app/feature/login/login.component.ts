@@ -58,8 +58,9 @@ export class LoginComponent implements OnInit {
 
   isCadastroActive: boolean = false;
   isOpen: boolean = true;
-  souPrestador: boolean = true;
+  souPrestador: boolean | null = null;
   showButton: boolean = false;
+  usuario: string = '';
 
   constructor() { }
 
@@ -80,7 +81,7 @@ export class LoginComponent implements OnInit {
 
     if (this.isOpen) {
       this.isCadastroActive = false;
-      this.showButton = false; 
+      this.showButton = false;
     } else {
       setTimeout(() => {
         this.showButton = true;
@@ -90,11 +91,13 @@ export class LoginComponent implements OnInit {
 
   clickSouPrestador() {
     this.souPrestador = true;
+    this.usuario = 'Prestador';
     this.toggle();
   }
 
   clickSouContratante() {
     this.souPrestador = false;
+    this.usuario = 'Contratante';
     this.toggle();
   }
 }
