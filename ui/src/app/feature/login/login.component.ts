@@ -49,6 +49,7 @@ import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-c
         animate('1s')
       ]),
     ]),
+
   ],
 
   templateUrl: './login.component.html',
@@ -66,9 +67,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.isOpen) {
-      setTimeout(() => {
-        this.showButton = true;
-      }, 2000);
+
     }
   }
 
@@ -82,6 +81,7 @@ export class LoginComponent implements OnInit {
     if (this.isOpen) {
       this.isCadastroActive = false;
       this.showButton = false;
+      this.souPrestador
     } else {
       setTimeout(() => {
         this.showButton = true;
@@ -99,5 +99,12 @@ export class LoginComponent implements OnInit {
     this.souPrestador = false;
     this.usuario = 'Contratante';
     this.toggle();
+  }
+
+  clickLogin() {
+    this.isOpen = true;
+    this.souPrestador = null;
+    this.showButton = false;
+    this.usuario = '';
   }
 }

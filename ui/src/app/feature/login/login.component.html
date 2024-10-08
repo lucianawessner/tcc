@@ -1,13 +1,12 @@
 <img src="assets/TalentTrail.png" alt="Talent Trial" style="height:140px; margin:-20px">
 
 <mat-card appearance="outlined" class="card">
-  <!-- <mat-card-header class="col-6 justify-content-center mt-4 p-2">
-    <mat-card-title>Entrar</mat-card-title>
-  </mat-card-header> -->
 
   <div class="row">
       <h5 class="d-flex justify-content-center mt-5 col-6">Entrar</h5>
+      <ng-container *ngIf="!isOpen">
       <h5 class="d-flex justify-content-center mt-5 col-6">Cadastro de {{ usuario }}</h5>
+    </ng-container>
   </div>
 
   <mat-card-content>
@@ -34,7 +33,7 @@
         </div>
 
         <ng-container *ngIf="showButton">
-          <button id="Login">Login</button>
+          <button id="Login" (click)="clickLogin()">Login</button>
         </ng-container>
       </div>
 
@@ -42,7 +41,7 @@
         <ng-container *ngIf="isOpen">
           <button id="Prestador" (click)="clickSouPrestador()">Sou prestador</button>
           <button id="Contratante" (click)="clickSouContratante()">Sou contratante</button>
-        </ng-container>
+          </ng-container>
 
         <ng-container *ngIf="souPrestador">
           <app-cadastro-prestador></app-cadastro-prestador>
