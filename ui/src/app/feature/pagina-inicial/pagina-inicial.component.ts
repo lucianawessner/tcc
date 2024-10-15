@@ -3,6 +3,8 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { FeedComponent } from '../feed/feed.component';
+import { SugestaoVagaComponent } from '../sugestao-vaga/sugestao-vaga.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -12,7 +14,9 @@ import { FeedComponent } from '../feed/feed.component';
     MatButtonModule,
     MatMenuModule,
     MatIconButton,
-    FeedComponent
+    FeedComponent,
+    SugestaoVagaComponent,
+    SidebarComponent
   ],
   templateUrl: './pagina-inicial.component.html',
   styleUrl: './pagina-inicial.component.scss'
