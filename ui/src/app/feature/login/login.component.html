@@ -1,11 +1,16 @@
-<img src="assets/TalentTrail.png" alt="Talent Trial" style="height:140px; margin:-20px">
+<img
+  src="assets/TalentTrail.png"
+  alt="Talent Trial"
+  style="height: 140px; margin: 0px"
+/>
 
 <mat-card appearance="outlined" class="card">
-
   <div class="row">
-      <h5 class="d-flex justify-content-center mt-5 col-6">Entrar</h5>
-      <ng-container *ngIf="!isOpen">
-      <h5 class="d-flex justify-content-center mt-5 col-6">Cadastro de {{ usuario }}</h5>
+    <h5 class="d-flex justify-content-center mt-5 col-6">Entrar</h5>
+    <ng-container *ngIf="!isOpen">
+      <h5 class="d-flex justify-content-center mt-5 col-6">
+        Cadastro de {{ usuario }}
+      </h5>
     </ng-container>
   </div>
 
@@ -28,29 +33,32 @@
           <span>Esqueceu sua senha?</span>
         </div>
 
-        <div class="overlay__panel overlay--left">
-          <button class="btn" id="Entrar">Entrar</button>
+        <div>
+          <button class="btn" id="Entrar" (click)="entrar()">Entrar</button>
         </div>
 
-        <ng-container *ngIf="showButton">
+        <ng-container *ngIf="showBtnLogin">
           <button id="Login" (click)="clickLogin()">Login</button>
         </ng-container>
       </div>
 
       <div class="col-md-6">
-        <ng-container *ngIf="isOpen">
-          <button id="Prestador" (click)="clickSouPrestador()">Sou prestador</button>
-          <button id="Contratante" (click)="clickSouContratante()">Sou contratante</button>
-          </ng-container>
-
-        <ng-container *ngIf="souPrestador">
-          <app-cadastro-prestador></app-cadastro-prestador>
+        <ng-container *ngIf="showBtnPrestador">
+          <button id="Prestador" (click)="clickSouPrestador()">
+            Sou prestador
+          </button>
+          <button id="Contratante" (click)="clickSouContratante()">
+            Sou contratante
+          </button>
         </ng-container>
 
-        <ng-container *ngIf="souPrestador === false">
+        <ng-container *ngIf="showComponentPrestador">
+          <app-cadastro-prestador [habilitarBotaoCadastrar]="true"></app-cadastro-prestador>
+        </ng-container>
+
+        <ng-container *ngIf="showComponentPrestador === false">
           <app-cadastro-contratante></app-cadastro-contratante>
         </ng-container>
-
       </div>
     </div>
     <div Class="Quadrado" [@openClose]="isOpen ? 'closed' : 'open'"></div>

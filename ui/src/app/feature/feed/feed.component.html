@@ -1,0 +1,36 @@
+<mat-card appearance="outlined">
+  <mat-card-title>
+    <button mat-button (click)="adicionarPublicacao()">
+      Adicionar
+    </button>
+  </mat-card-title>
+
+  <mat-card-content>
+    @for(publicacao of publicacoes; track publicacao) {
+      <mat-card class="mt-1">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(' + publicacao.imagemPerfil + ')'}"></div>
+          <mat-card-title>
+            {{publicacao.usuario}}
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="row">
+            <p>{{publicacao.texto}}</p>
+          </div>
+
+          <!-- <div class="d-flex justify-content-center"> -->
+            @if(publicacao.arquivo !== ''){
+              <img [src]="publicacao.arquivo" height="30%" width="100%" />
+            }
+          <!-- </div> -->
+        </mat-card-content>
+
+        <mat-card-footer>
+          Curtidas: {{publicacao.quantidadeCurtida}}
+        </mat-card-footer>
+      </mat-card>
+    }
+  </mat-card-content>
+</mat-card>

@@ -24,7 +24,6 @@ export class CadastroPrestadorComponent implements OnInit {
   @Input() habilitarBotaoCadastrar: boolean = false;
 
   ngOnInit(): void {
-    this.habilitarBotaoCadastrar = true;
   }
 
 

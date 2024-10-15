@@ -4,8 +4,10 @@ import { Prestador } from "../usuario-prestador/usuario-prestador.models";
 
 export class Publicacao extends BaseEntity{
   texto: string = "";
+  quantidadeCurtida: number = 0;
   idArquivo: number | null = null;
-  quantidadeCurtida: number = "";
-  idUsuario: number  = "";
+  idUsuario: number = 0;
+  arquivo: Arquivos | null = null;
+  prestador: Prestador = new Prestador();
 }
 

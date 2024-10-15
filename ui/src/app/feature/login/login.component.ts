@@ -1,4 +1,4 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , inject, OnInit } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +17,7 @@ import {
 } from '@angular/animations';
 import { CadastroPrestadorComponent } from '../cadastro-prestador/cadastro-prestador.component';
 import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-contratante.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -55,56 +56,56 @@ import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-c
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  isCadastroActive: boolean = false;
+  showBtnLogin: boolean = false;
+  showBtnPrestador: boolean = true;
   isOpen: boolean = true;
-  souPrestador: boolean | null = null;
-  showButton: boolean = false;
+  showComponentPrestador: boolean | null = null;
   usuario: string = '';
 
-  constructor() { }
+  private router: Router = inject(Router);
 
-  ngOnInit(): void {
-    if (!this.isOpen) {
-
-    }
-  }
-
-  toggleCadastroPanel() {
-    this.isCadastroActive = !this.isCadastroActive;
-  }
-
-  toggle() {
+  fazerAnimacao() {
     this.isOpen = !this.isOpen;
+  }
 
-    if (this.isOpen) {
-      this.isCadastroActive = false;
-      this.showButton = false;
-      this.souPrestador
-    } else {
-      setTimeout(() => {
-        this.showButton = true;
-      }, 1000);
-    }
+  fazerDelayBtnLogin() {
+    setTimeout(() => {
+      this.showBtnLogin = !this.showBtnLogin;
+    }, 1000);
+  }
+
+  fazerDelayBtnPrestador() {
+    setTimeout(() => {
+      this.showBtnPrestador = !this.showBtnPrestador;
+    }, 1000);
   }
 
   clickSouPrestador() {
-    this.souPrestador = true;
+    this.showComponentPrestador = true;
+    this.showBtnPrestador = false;
     this.usuario = 'Prestador';
-    this.toggle();
+    this.fazerAnimacao();
+    this.fazerDelayBtnLogin();
   }
 
   clickSouContratante() {
-    this.souPrestador = false;
+    this.showComponentPrestador = false;
+    this.showBtnPrestador = false;
     this.usuario = 'Contratante';
-    this.toggle();
+    this.fazerAnimacao();
+    this.fazerDelayBtnLogin();
   }
 
   clickLogin() {
-    this.isOpen = true;
-    this.souPrestador = null;
-    this.showButton = false;
-    this.usuario = '';
+    this.showComponentPrestador = null;
+    this.showBtnLogin = false;
+    this.fazerAnimacao();
+    this.fazerDelayBtnPrestador();
+  }
+
+  entrar(){
+    this.router.navigate(['/pagina-inicial'])
   }
 }
