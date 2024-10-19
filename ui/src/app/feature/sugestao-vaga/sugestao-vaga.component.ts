@@ -14,5 +14,5 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './sugestao-vaga.component.scss'
 })
 export class SugestaoVagaComponent {
-
+  
 }

@@ -29,5 +29,7 @@ export class PaginaInicialComponent {
   public mainSidebarHeight(height: any) {
     this.renderer.setStyle(this.contentWrapper.nativeElement, 'min-height', height - 114 + 'px');
   }
+
+  
 }
 
