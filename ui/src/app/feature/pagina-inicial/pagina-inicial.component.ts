@@ -3,7 +3,6 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { FeedComponent } from '../feed/feed.component';
-import { SugestaoVagaComponent } from '../sugestao-vaga/sugestao-vaga.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
@@ -15,7 +14,6 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     MatMenuModule,
     MatIconButton,
     FeedComponent,
-    SugestaoVagaComponent,
     SidebarComponent
   ],
   templateUrl: './pagina-inicial.component.html',
@@ -30,6 +28,6 @@ export class PaginaInicialComponent {
     this.renderer.setStyle(this.contentWrapper.nativeElement, 'min-height', height - 114 + 'px');
   }
 
-  
+
 }
 

@@ -1,13 +1,13 @@
+import { Documento } from './../documento/documento.models';
 import { BaseEntity } from "../base-entity.models";
-import { Arquivos } from "../arquivos/arquivos.models";
 import { Prestador } from "../usuario-prestador/usuario-prestador.models";
 
-export class Publicacao extends BaseEntity{
+export class Feed extends BaseEntity{
   texto: string = "";
+  idDocumento: number | null = null;
   quantidadeCurtida: number = 0;
-  idArquivo: number | null = null;
-  idUsuario: number = 0;
-  arquivo: Arquivos | null = null;
+  idUsuarioPrestador: number = 0;
+  Documento: Documento | null = null;
   prestador: Prestador = new Prestador();
 }
 

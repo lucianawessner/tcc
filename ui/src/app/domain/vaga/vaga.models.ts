@@ -1,7 +1,7 @@
 import { BaseEntity } from "../base-entity.models";
 import { Contratante } from "../usuario-contratante/usuario-contratante.models";
 
-export class Servico extends BaseEntity {
+export class Vaga extends BaseEntity {
   cargo: string = "";
   localizacao: string = "";
   remuneracao: number = 0;
@@ -10,6 +10,6 @@ export class Servico extends BaseEntity {
   prazo: Date = new Date();
   criacao: Date = new Date();
   fechamento: Date | null = null;
-  idUsuario: number  = 0;
+  idUsuarioContratante: number  = 0;
   contratante: Contratante = new Contratante();
 }
