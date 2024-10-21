@@ -91,6 +91,7 @@
   box-shadow: 0 0 0 16px #77ab59; // navbar-dark-primary
   overflow-x: hidden;
   transition: width 0.2s;
+  overflow: hidden;
 
   .nav-button {
     position: relative;
@@ -114,7 +115,7 @@
 
   hr {
     position: relative;
-    top: 65%;
+    top: 55%;
     margin: 0;
     border: none;
     border-top: solid 1px black; // navbar-dark-secondary
@@ -154,6 +155,12 @@ input#nav-toggle:checked ~ #nav-content .iconProgresso {
   transform: translateX(190%); // Ajusta o ícone para o centro
 }
 
+input#nav-toggle:checked ~ #nav-content .iconrelatorio{
+  left: 22%; // Centraliza horizontalmente
+  transform: translateX(150%); // Ajusta o ícone para o centro
+}
+
+
 .iconVagas{
   position: relative;
   top: 40%;
@@ -179,7 +186,7 @@ input#nav-toggle:checked ~ #nav-content .iconProgresso {
 .nav-buttonSecundario{
   position: relative;
   left: -19%;
-  top: 67%;
+  top: 56%;
   height: 20%;
   margin: 0px; // Margem para espaçamento
   color: black; // navbar-light-secondary
@@ -212,7 +219,7 @@ input#nav-toggle:checked ~ #nav-content .iconProgresso {
 
 .rating {
   position: relative;
-  top: 53%;
+  top: 43%;
   direction: rtl;
   display: flex;
   gap: 0.2rem;
@@ -302,4 +309,15 @@ input#nav-toggle:checked ~ #nav-content .iconProgresso {
   position: relative;
   top: 10%;
   font-size: 110%;
+}
+
+.iconrelatorio{
+  position: relative;
+  top: 40%;
+  left: 95%;
+  height: 20px;
+  display: flex;
+  color: #8392a5; // navbar-light-secondary
+  cursor: pointer;
+  transition: color 0.2s;
 }

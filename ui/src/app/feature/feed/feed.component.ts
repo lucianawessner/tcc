@@ -77,4 +77,5 @@ export class FeedComponent {
 
     this.publicacoes.push(publicacaoParaAdicionar)
   }
+  
 }

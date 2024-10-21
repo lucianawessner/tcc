@@ -1,5 +1,5 @@
 .header{
-  height: 4vh;
+  height:4vh;
 }
 
 .content-wrapper {
@@ -12,3 +12,134 @@
   }
 }
 
+.publicar{
+  width: 95%;
+  max-height: 580px;
+  overflow-y: auto;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.Perfil{
+  position: absolute;
+  top: 15%;
+  left: 7%;
+  width: 90%;
+  height: 80%;
+}
+
+.inputGroup {
+  font-family: "Segoe UI", sans-serif;
+  max-width: 80vh;
+  position: relative;
+  left: 9vh;
+}
+
+.inputGroup input {
+  font-size: 100%;
+  padding: 0.4em;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0.4em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: #fff;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: #000000;
+}
+
+.mdc-card__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 39px;
+  padding: 8px;
+}
+
+.arquivo {
+  border: none;
+  position: relative;
+  left: 13%;
+  display: flex;
+  color: #000000;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  -webkit-user-select: none;
+  user-select: none;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px -1px #c9df8a, 0 2px 4px -1px #c9df8a;
+  transition: all 0.6s ease;
+}
+
+.arquivo:hover {
+  box-shadow:
+    0 10px 15px -3px #77ab59,
+    0 4px 6px -2px #77ab59;
+}
+
+.arquivo:focus,
+.arquivo:active {
+  opacity: 0.85;
+  box-shadow: none;
+}
+
+.arquivo svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+#Entrar{
+  position: relative;
+  vertical-align: middle;
+  left: 31vh;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #eeefeb;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0 4px 6px -1px #c9df8a, 0 2px 4px -1px #c9df8a;
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+
+#Entrar:hover {
+  background-color: #77ab59;
+  box-shadow: 0px 15px 20px rgb(201, 223, 138, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Entrar:active {
+  transform: translateY(-1px);
+}

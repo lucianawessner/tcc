@@ -4,6 +4,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { FeedComponent } from '../feed/feed.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input' ;
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -13,6 +16,9 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     MatButtonModule,
     MatMenuModule,
     MatIconButton,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     FeedComponent,
     SidebarComponent
   ],
@@ -27,7 +33,6 @@ export class PaginaInicialComponent {
   public mainSidebarHeight(height: any) {
     this.renderer.setStyle(this.contentWrapper.nativeElement, 'min-height', height - 114 + 'px');
   }
-
 
 }
 
