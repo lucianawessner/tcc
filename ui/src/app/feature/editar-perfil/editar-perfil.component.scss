@@ -1,0 +1,13 @@
+.header{
+  height:4vh;
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 100vh);
+  height: 100%;
+  overflow-x: hidden;
+  .content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

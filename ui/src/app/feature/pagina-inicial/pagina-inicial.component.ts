@@ -7,6 +7,7 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input' ;
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -20,13 +21,15 @@ import {MatInputModule} from '@angular/material/input' ;
     MatFormFieldModule,
     MatInputModule,
     FeedComponent,
-    SidebarComponent
+    SidebarComponent,
+    RouterOutlet
   ],
   templateUrl: './pagina-inicial.component.html',
   styleUrl: './pagina-inicial.component.scss'
 })
 export class PaginaInicialComponent {
   public readonly renderer = inject(Renderer2);
+  public readonly router = inject(Router);
 
   @ViewChild('contentWrapper', { static: false }) contentWrapper: any;
 
@@ -34,5 +37,8 @@ export class PaginaInicialComponent {
     this.renderer.setStyle(this.contentWrapper.nativeElement, 'min-height', height - 114 + 'px');
   }
 
+  entrar(){
+    this.router.navigate(['home/editar-perfil'])
+  }
 }
 

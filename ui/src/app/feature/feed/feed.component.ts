@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { PublicacaoComponent } from '../publicacao/publicacao.component';
 
 @Component({
   selector: 'app-feed',
@@ -9,7 +10,9 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     MatCardModule,
     CommonModule,
-    MatButton],
+    MatButton,
+    PublicacaoComponent
+  ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
@@ -77,5 +80,5 @@ export class FeedComponent {
 
     this.publicacoes.push(publicacaoParaAdicionar)
   }
-  
+
 }

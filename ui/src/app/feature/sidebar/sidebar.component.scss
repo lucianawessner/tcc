@@ -3,7 +3,7 @@
   position: absolute;
   left: 0vw;
   top: 1%;
-  height: calc(102% - 2vw);
+  height: calc(102.5% - 2vw);
   background: #77ab59; // navbar-dark-primary
   border-radius: 0px 20px 20px 0;
   display: flex;
@@ -96,38 +96,38 @@
   .nav-button {
     position: relative;
     left: -19%;
-    margin: 0px; // Margem para espaçamento
+    margin: 0px; 
     height: 54px;
-    color: black; // navbar-light-secondary
+    color: black;
     cursor: pointer;
     transition: color 0.2s;
 
     .nav-text {
-      margin-left: 50px; // Adiciona espaçamento entre ícone e texto
-      opacity: 1; // Para garantir que o texto comece visível
-      transition: opacity 0.2s; // Transição para suavizar a ocultação
+      margin-left: 50px;
+      opacity: 1;
+      transition: opacity 0.2s;
     }
 
     &:hover {
-      color: white; // navbar-dark-primary
+      color: white;
     }
   }
 
   hr {
     position: relative;
-    top: 55%;
+    top: 45%;
     margin: 0;
     border: none;
-    border-top: solid 1px black; // navbar-dark-secondary
+    border-top: solid 1px black;
   }
 
   #nav-content-highlight {
     position: absolute;
     left: 13px;
-    top: -70px; // Ajuste conforme necessário
+    top: -70px;
     width: calc(100% - 16px);
     height: 54px;
-    background: #9c88ff; // background
+    background: #9c88ff;
     border-radius: 16px 0 0 16px;
     transition: top 0.2s;
   }
@@ -135,31 +135,45 @@
 
 }
 
-// Lógica para alternar estado do nav-toggle
 input#nav-toggle:checked ~ #nav-header {
-  width: calc(80px - 16px); // navbar-width-min
+  width: calc(80px - 16px);
 }
 
 input#nav-toggle:checked ~ #nav-content {
-  width: 80px; // navbar-width-min
+  width: 80px;
 
   .nav-text {
-    opacity: 0; // Oculta o texto ao fechar o menu
+    opacity: 0;
   }
 
 }
 
 input#nav-toggle:checked ~ #nav-content .iconVagas,
 input#nav-toggle:checked ~ #nav-content .iconProgresso {
-  left: 0; // Centraliza horizontalmente
-  transform: translateX(190%); // Ajusta o ícone para o centro
+  left: 0;
+  transform: translateX(190%);
 }
 
-input#nav-toggle:checked ~ #nav-content .iconrelatorio{
-  left: 22%; // Centraliza horizontalmente
-  transform: translateX(150%); // Ajusta o ícone para o centro
+input#nav-toggle:checked ~ #nav-content .iconrelatorio {
+  left: 22%;
+  transform: translateX(150%);
 }
 
+input#nav-toggle:checked ~ #nav-content .iconFeed {
+  left: 22%;
+  transform: translateX(120%);
+}
+
+.iconFeed{
+  position: relative;
+  top: 40%;
+  left: 95%;
+  height: 20px;
+  display: flex;
+  color: #8392a5;
+  cursor: pointer;
+  transition: color 0.2s;
+}
 
 .iconVagas{
   position: relative;
@@ -186,7 +200,7 @@ input#nav-toggle:checked ~ #nav-content .iconrelatorio{
 .nav-buttonSecundario{
   position: relative;
   left: -19%;
-  top: 56%;
+  top: 47%;
   height: 20%;
   margin: 0px; // Margem para espaçamento
   color: black; // navbar-light-secondary
@@ -219,7 +233,7 @@ input#nav-toggle:checked ~ #nav-content .iconrelatorio{
 
 .rating {
   position: relative;
-  top: 43%;
+  top: 33%;
   direction: rtl;
   display: flex;
   gap: 0.2rem;

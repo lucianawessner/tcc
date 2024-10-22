@@ -106,6 +106,6 @@ export class LoginComponent {
   }
 
   entrar(){
-    this.router.navigate(['/pagina-inicial'])
+    this.router.navigate([''])
   }
 }
