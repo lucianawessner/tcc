@@ -1,4 +1,54 @@
-<mat-card style="height: 92.5vh; border-radius: 40px 40px 40px 40px">
+<mat-card-content>
+  <div class=" grid"></div>
+  <div id="main" class="d-flex justify-content-end" >
+    <input placeholder="Paravra-chave..." type="text" name="text" class="input" />
+    <select class="location-select">
+      <option value="" disabled selected>Localização</option>
+      <option value="cidade1">Curitiba</option>
+      <option value="cidade2">Porto Alegre</option>
+      <option value="cidade3">Brasília</option>
+      <option value="cidade4">São Paulo </option>
+    </select>
+
+    <div id="filter-icon"></div>
+    <div id="search-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        height="24"
+        fill="none"
+        class="feather feather-search"
+      >
+        <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
+        <line
+          stroke="url(#searchl)"
+          y2="16.65"
+          y1="22"
+          x2="16.65"
+          x1="22"
+        ></line>
+        <defs>
+          <linearGradient gradientTransform="rotate(50)" id="search">
+            <stop stop-color="#f8e7f8" offset="0%"></stop>
+            <stop stop-color="#b6a9b7" offset="50%"></stop>
+          </linearGradient>
+          <linearGradient id="searchl">
+            <stop stop-color="#b6a9b7" offset="0%"></stop>
+            <stop stop-color="#837484" offset="50%"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</mat-card-content>
+
+<br />
+
+<mat-card style="height: 81vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
     @for(publicacao of publicacoes; track publicacao) {
     <div class="row job-card">
@@ -15,9 +65,11 @@
         <p class="job-close">Remuneração: R$ 5.000,00</p>
       </div>
       <div class="col-6">
-        <button id="Entrar" (click)="abrirInformacoes(publicacao)">Mais Informações</button>
+        <button id="Entrar" (click)="abrirInformacoes(publicacao)">
+          Mais Informações
+        </button>
       </div>
     </div>
     }
   </mat-card-content>
-
+</mat-card>

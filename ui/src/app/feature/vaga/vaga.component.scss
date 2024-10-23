@@ -54,7 +54,7 @@
   letter-spacing: 1.0px;
   font-weight: 500;
   color: #000;
-  background-color: #e4e2e2;
+  background-color: #ffffff;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -71,4 +71,46 @@
 
 #Entrar:active {
   transform: translateY(-1px);
+}
+
+.grid {
+  z-index: 2;
+}
+
+.input {
+  background-color: rgba(255, 255, 255, 0.936);
+  border: none;
+  /* padding:7px; */
+  width: 240px;
+  height: 42px;
+  border-radius: 9px 0px 0px 9px;
+  color: rgb(121, 118, 118);
+  padding-inline: 59px;
+  font-size: 18px;
+}
+
+#main {
+  position: relative;
+}
+#search-icon {
+  position: absolute;
+  left: 320px;
+  top: 8px;
+}
+
+.location-select {
+  background-color: rgba(255, 255, 255, 0.936);
+  border: none;
+  width: 180px; /* Ajuste conforme necessário */
+  height: 42px; /* Mesma altura do input */
+  border-radius: 0px 9px 9px 0px;
+  color: rgb(121, 118, 118);
+  padding: 0 10px; /* Ajuste o padding conforme necessário */
+  margin-left: 0px; /* Espaçamento entre o input e o select */
+  font-size: 18px;
+  border-left: solid #b3b3b3 1px;
+}
+
+.location-select:focus {
+  outline: none;
 }
