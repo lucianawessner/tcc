@@ -1,13 +1,74 @@
+
 .header{
   height:4vh;
 }
 
 .content-wrapper {
-  min-height: calc(100vh - 100vh);
+  min-height: calc(100vh - 100px);
   height: 100%;
   overflow-x: hidden;
   .content {
     padding-left: 8px;
     padding-right: 8px;
   }
+}
+
+.Feed{
+  position: relative;
+  top: 6%;
+  margin-left: 6%;
+  width: 90%;
+  max-height: 88%;
+  overflow-y: auto;
+}
+
+.job-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.job-deadline{
+  font-size: 0.9em;;
+}
+
+.job-close{
+  position: relative;
+  top: 40%;
+}
+
+#Entrar{
+  position: absolute;
+  left: 72%;
+  padding: 0.9em 2em;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.0px;
+  font-weight: 500;
+  color: #000;
+  background-color: #e4e2e2;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+#Entrar:hover {
+  background-color: #77ab59;
+  box-shadow: 0px 15px 20px rgb(201, 223, 138, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Entrar:active {
+  transform: translateY(-1px);
 }

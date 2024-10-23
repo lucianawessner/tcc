@@ -3,7 +3,7 @@
 }
 
 .content-wrapper {
-  min-height: calc(100vh - 100vh);
+  min-height: calc(100vh - 100px);
   height: 100%;
   overflow-x: hidden;
   .content {
@@ -11,3 +11,4 @@
     padding-right: 8px;
   }
 }
+

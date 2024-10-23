@@ -3,7 +3,7 @@
 }
 
 .content-wrapper {
-  min-height: calc(100vh - 100vh);
+  min-height: calc(100vh - 100px);
   height: 100%;
   overflow-x: hidden;
   .content {
@@ -11,3 +11,15 @@
     padding-right: 8px;
   }
 }
+
+.Feed{
+  position: relative;
+  top: 6%;
+  margin-left: 6%;
+  width: 90%;
+  max-height: 88%;
+  overflow-y: auto;
+}
+
+
+

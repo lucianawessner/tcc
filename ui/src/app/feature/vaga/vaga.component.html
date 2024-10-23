@@ -1,1 +1,23 @@
-<h1>Vagas</h1>
+<mat-card style="height: 92.5vh; border-radius: 40px 40px 40px 40px">
+  <mat-card-content class="Feed">
+    @for(publicacao of publicacoes; track publicacao) {
+    <div class="row job-card">
+      <div class="col-9">
+        <h2 class="job-title">Cargo: Desenvolvedor Frontend</h2>
+      </div>
+      <div class="col-3">
+        <p class="job-deadline">Prazo: 30/10/2024</p>
+      </div>
+      <div class="col-12">
+        <p class="job-location">Localização: São Paulo, SP</p>
+      </div>
+      <div class="col-6">
+        <p class="job-close">Remuneração: R$ 5.000,00</p>
+      </div>
+      <div class="col-6">
+        <button id="Entrar" (click)="abrirInformacoes(publicacao)">Mais Informações</button>
+      </div>
+    </div>
+    }
+  </mat-card-content>
+
