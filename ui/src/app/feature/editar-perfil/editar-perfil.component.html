@@ -1,6 +1,152 @@
-<mat-card style="height: 92.5vh;border-radius: 40px 40px 40px 40px;">
-  <mat-card-header>Header</mat-card-header>
+<mat-card style="height: 92.5vh; border-radius: 40px 40px 40px 40px">
+  <mat-card-header class="d-flex justify-content-center Titulo">
+    <svg class="iconEditar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#000000" d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></svg>
+    <h5><strong>Editar Perfil</strong></h5>
+  </mat-card-header>
 
-  <mat-card-content>Conteudo</mat-card-content>
+  <mat-card-content>
+    <mat-card class="mt-24"style="height: 79vh;border-radius: 6px;margin-left:5%; width: 90%;overflow: auto;margin-top: 3%; overflow-x: hidden;">
+
+      <div class="row">
+
+        <div class="col-md-6" >
+
+          <div id="nav-header" style="margin-top: 1vh; margin-bottom: 1vh;">
+            <img class="Perfil" src="assets/pitoco.png" />
+            <label for="nav-toggle">
+              <span id="nav-toggle-burger"></span>
+            </label>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+
+          <div class="row">
+
+            <div class="col-md-12 d-flex justify-content-center" style="margin-top:8vh;">
+
+              <mat-form-field style="width: 77%;" >
+                <mat-label >Nome Completo:</mat-label>
+                <input matInput />
+              </mat-form-field>
+
+            </div>
+
+            <div class="col-md-12 d-flex justify-content-center" style="margin-top:0vh;">
+              <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide() ? 'password' : 'text'" />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="clickEvent($event)"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide()"
+                  style="
+
+                    border: transparent;
+                    border-radius: 5px;
+                  "
+                >
+                  <mat-icon>{{
+                    hide() ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6 d-flex justify-content-center" style="margin-top:2vh;">
+
+          <div>
+            <mat-form-field style="width: 140%; margin-left:-5vh">
+              <mat-label>Localidade</mat-label>
+              <mat-select>
+                <mat-option value="option">Option</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="col-md-6 d-flex justify-content-center" style="margin-top:2vh;">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12 d-flex justify-content-center" style="margin-top:2vh;">
+            <mat-form-field style="width: 90.5%;">
+              <mat-label>Entre com o Email</mat-label>
+              <input
+                matInput
+                placeholder="pat@example.com"
+                [formControl]="email"
+                (blur)="updateErrorMessage()"
+                required
+              />
+              @if (email.invalid) {
+              <mat-error>{{ errorMessage() }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-5 d-flex justify-content-center" style="max-height: 12vh; margin-top:2vh;">
+            <mat-form-field style="width: 75%;margin-top:2vh; height: 11vh ">
+              <mat-label >Cargo</mat-label>
+              <input matInput />
+            </mat-form-field>
+            </div>
+
+            <div class="col-md-7 d-flex justify-content-center" style="margin-top:2vh; ">
+
+              <mat-form-field style="width: 82%;">
+                <mat-label>Fale sobre você</mat-label>
+                <textarea matInput style="max-height: 20vh;"></textarea>
+              </mat-form-field>
+
+              </div>
+         </div>
+
+         <div class="row">
+          <div class="col-md-12 d-flex justify-content-center" style="margin-top:2vh; ">
+
+            <mat-form-field style="width: 90%;">
+              <mat-label  >Descrição</mat-label>
+              <textarea matInput style="max-height: 20vh;" ></textarea>
+            </mat-form-field>
+
+            </div>
+
+            <div class="col-md-12" >
+
+
+            <button id="Entrar">
+              Salvar
+            </button>
+          </div>
+
+          <br>
+          <br>
+          <br>
+
+         </div>
+
 
 </mat-card>
