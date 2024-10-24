@@ -13,7 +13,7 @@ import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
-  selector: 'app-editar-perfil',
+  selector: 'app-preencher-cadastro',
   standalone: true,
   imports: [
     MatCardModule,
@@ -27,13 +27,13 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
     ReactiveFormsModule,
     MatDatepickerModule
   ],
-  templateUrl: './editar-perfil.component.html',
-  styleUrl: './editar-perfil.component.scss',
+  templateUrl: './preencher-cadastro.component.html',
+  styleUrl: './preencher-cadastro.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [provideNativeDateAdapter()],
 })
-export class EditarPerfilComponent {
+export class PreencherCadastroComponent {
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');
@@ -71,5 +71,4 @@ export class EditarPerfilComponent {
 
     return '';
   };
-
 }

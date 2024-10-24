@@ -1,0 +1,65 @@
+.header{
+  height:4vh;
+}
+
+.content-wrapper {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  overflow-x: hidden;
+  .content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+button.example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
+}
+
+.Perfil{
+  position: relative;
+  margin-top: 0;
+  left: 7%;
+  width: 80%;
+}
+
+.Titulo{
+  margin-top: 1vh;
+}
+
+#Entrar{
+  position: relative;
+  top: 9px;
+  left: 500px;
+  padding: 0.7em 2em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+#Entrar:hover {
+  background-color: #c9df8a;
+  box-shadow: 0px 15px 20px rgb(201, 223, 138, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Entrar:active {
+  transform: translateY(-1px);
+}
+
+.iconEditar{
+  position: absolute;
+  width: 2.3%;
+  left: 35%;
+  top: 4%;
+}

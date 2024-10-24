@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { SidebarComponent } from "../sidebar/sidebar.component";
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { InformacaoDialogComponent } from './components/informacao-dialog/informacao-dialog.component';
 
 @Component({
