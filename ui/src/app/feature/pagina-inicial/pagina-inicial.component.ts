@@ -41,4 +41,3 @@ export class PaginaInicialComponent {
     this.router.navigate(['home/editar-perfil'])
   }
 }
-

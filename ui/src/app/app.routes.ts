@@ -6,6 +6,7 @@ import { ProgressoComponent } from './feature/progresso/progresso.component';
 import { RelatorioComponent } from './feature/relatorio/relatorio.component';
 import { FeedComponent } from './feature/feed/feed.component';
 import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.component';
+import { FormularioPrestadorComponent } from './feature/formulario-prestador/formulario-prestador.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home/feed', pathMatch: 'full' },
@@ -19,7 +20,8 @@ export const routes: Routes = [
       { path: 'editar-perfil', component: EditarPerfilComponent },
       { path: 'vagas', component: VagaComponent },
       { path: 'progresso', component: ProgressoComponent },
-      { path: 'relatorio', component: RelatorioComponent }
+      { path: 'relatorio', component: RelatorioComponent },
+      { path: 'formulario-prestador', component: FormularioPrestadorComponent }
     ]
   },
 ];

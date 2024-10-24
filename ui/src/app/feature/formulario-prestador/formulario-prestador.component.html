@@ -1,1 +1,61 @@
-<p>formulario-prestador works!</p>
+
+  <mat-card-header>
+    <button id="Entrar" (click)="voltarPaginaAnterior()">
+      Voltar a pagina anterior
+    </button>
+  </mat-card-header>
+
+  <br>
+
+  <mat-card-content>
+    <mat-card class="d-flex justify-content-center mt-1" style="width: 70vh; border-radius: 40px 40px 40px 40px;top: 30vh; left: 20vh; top:0vh;background-color:#DDF6BE">
+      <div class="form-card1">
+        <div class="form-card2">
+          <form class="form">
+            <p class="form-heading">Formulário de Inscrição para Vaga </p>
+
+            <div class="form-field">
+              <input required="" placeholder="Nome Completo" class="input-field" type="text" />
+            </div>
+
+            <div class="form-field">
+              <input
+                required=""
+                placeholder="Email"
+                class="input-field"
+                type="email"
+              />
+            </div>
+
+            <div class="form-field">
+              <input
+                required
+                placeholder="Telefone"
+                class="input-field"
+                type="tel"
+                [value]="telefone"
+                (input)="formatarTelefone($event)"
+                (keypress)="onKeyPress($event)"
+                maxlength="15"
+                title="Formato: (99) 99999-9999 ou (99) 9999-9999"
+              />
+            </div>
+
+            <div class="form-field">
+              <textarea
+                required=""
+                placeholder="Por que você está interessado nesta vaga?"
+                cols="30"
+                rows="3"
+                class="input-field"
+              ></textarea>
+            </div>
+
+            <button class="sendMessage-btn">Mandar</button>
+          </form>
+        </div>
+      </div>
+    </mat-card>
+  </mat-card-content>
+
+
