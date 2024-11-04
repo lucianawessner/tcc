@@ -8,6 +8,7 @@ import { FeedComponent } from './feature/feed/feed.component';
 import { PaginaInicialComponent } from './feature/pagina-inicial/pagina-inicial.component';
 import { FormularioPrestadorComponent } from './feature/formulario-prestador/formulario-prestador.component';
 import { PreencherCadastroComponent } from './feature/cadastro-prestador/components/preencher-cadastro/preencher-cadastro.component';
+import { PreencherCadastroContratanteComponent } from './feature/cadastro-contratante/components/preencher-cadastro-contratante/preencher-cadastro-contratante.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home/feed', pathMatch: 'full' },
@@ -23,8 +24,8 @@ export const routes: Routes = [
       { path: 'progresso', component: ProgressoComponent },
       { path: 'relatorio', component: RelatorioComponent },
       { path: 'formulario-prestador', component: FormularioPrestadorComponent },
-      { path: 'cadastroPrestador', component: PreencherCadastroComponent }
-
+      { path: 'cadastroPrestador', component: PreencherCadastroComponent },
+      { path: 'cadastro-contratante', component: PreencherCadastroContratanteComponent },
     ]
   },
 ];

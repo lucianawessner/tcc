@@ -14,7 +14,7 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-preencher-cadastro',
+  selector: 'app-preencher-cadastro-contratante',
   standalone: true,
   imports: [
     MatCardModule,
@@ -28,13 +28,13 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     MatDatepickerModule
   ],
-  templateUrl: './preencher-cadastro.component.html',
-  styleUrl: './preencher-cadastro.component.scss',
+  templateUrl: './preencher-cadastro-contratante.component.html',
+  styleUrl: './preencher-cadastro-contratante.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [provideNativeDateAdapter()],
 })
-export class PreencherCadastroComponent {
+export class PreencherCadastroContratanteComponent {
   readonly email = new FormControl('', [Validators.required, Validators.email]);
   private router: Router = inject(Router);
 
