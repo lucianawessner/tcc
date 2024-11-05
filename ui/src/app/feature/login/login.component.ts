@@ -1,4 +1,4 @@
-import { Component , inject, OnInit } from '@angular/core';
+import { Component , inject, OnInit, signal } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +18,7 @@ import {
 import { CadastroPrestadorComponent } from '../cadastro-prestador/cadastro-prestador.component';
 import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-contratante.component';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatButtonModule,
     CadastroPrestadorComponent,
-    CadastroContratanteComponent
+    CadastroContratanteComponent,
+    MatIconModule
   ],
   animations: [
     trigger('openClose', [
@@ -63,6 +65,7 @@ export class LoginComponent {
   isOpen: boolean = true;
   showComponentPrestador: boolean | null = null;
   usuario: string = '';
+  errorMessage = signal('');
 
   private router: Router = inject(Router);
 
@@ -108,4 +111,11 @@ export class LoginComponent {
   entrar(){
     this.router.navigate([''])
   }
+
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
 }

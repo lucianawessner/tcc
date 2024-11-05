@@ -20,7 +20,7 @@ button.example-custom-date-class {
 .Perfil{
   position: relative;
   margin-top: 0;
-  left: 7%;
+  left: 15%;
   width: 80%;
 }
 
@@ -62,4 +62,31 @@ button.example-custom-date-class {
   width: 2.3%;
   left: 39%;
   top: 4%;
+}
+
+.estrela {
+  display: inline-block;
+}
+
+.estrela input {
+  display: none;
+}
+
+.estrela label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.estrela label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.estrela input:checked ~ label,
+.estrela label:hover,
+.estrela label:hover ~ label {
+  color: #6f00ff;
+  transition: color 0.3s;
 }

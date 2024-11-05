@@ -9,9 +9,8 @@
 
       <div class="row">
 
-        <div class="col-md-6" style="background-color: blue;">
-
-          <div id="nav-header" style="margin-top: 1vh; margin-bottom: 1vh;">
+        <div class="col-md-6">
+          <div id="nav-header" style="margin-top: 3vh; margin-bottom: 1vh;">
             <img class="Perfil" src="assets/pitoco.png" />
             <label for="nav-toggle">
               <span id="nav-toggle-burger"></span>
@@ -19,11 +18,24 @@
           </div>
 
         </div>
-        <div class="col-md-6" style="background-color: rgb(58, 202, 73);">
+        <div class="col-md-6">
 
-          <div class="row" style="background-color: rgb(255, 162, 0);">
+          <div class="row">
+            <div class="estrela">
+              <input value="5" name="estrela" id="star5" type="radio">
+              <label for="star5"></label>
+              <input value="4" name="estrela" id="star4" type="radio">
+              <label for="star4"></label>
+              <input value="3" name="estrela" id="star3" type="radio">
+              <label for="star3"></label>
+              <input value="2" name="estrela" id="star2" type="radio">
+              <label for="star2"></label>
+              <input value="1" name="estrela" id="star1" type="radio">
+              <label for="star1"></label>
+            </div>
 
-            <div class="col-md-12 d-flex justify-content-center" style="margin-top:8vh;">
+
+            <div class="col-md-12 d-flex justify-content-center" style="margin-top:3vh;">
 
               <mat-form-field style="width: 77%;" >
                 <mat-label >Nome Completo:</mat-label>
@@ -32,7 +44,7 @@
 
             </div>
 
-            <div class="col-md-12 d-flex justify-content-center" style="margin-top:0vh;background-color: rgb(153, 0, 255);">
+            <div class="col-md-12 d-flex justify-content-center" style="margin-top:0vh;">
               <mat-form-field>
                 <mat-label>Senha</mat-label>
                 <input matInput [type]="hide() ? 'password' : 'text'" />
@@ -60,10 +72,7 @@
         </div>
       </div>
 
-      <div class="row" style="background-color: rgb(0, 225, 255);">
-
-        <div class="col-md-12" style="background-color: blue;">
-          </div>
+      <div class="row">
 
         <div class="col-md-6 d-flex justify-content-center" style="margin-top:2vh;">
 

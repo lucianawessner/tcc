@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { PreencherCadastroComponent } from './components/preencher-cadastro/preencher-cadastro.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cadastro-prestador',
@@ -18,7 +19,8 @@ import { PreencherCadastroComponent } from './components/preencher-cadastro/pree
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   templateUrl: './cadastro-prestador.component.html',
   styleUrl: './cadastro-prestador.component.scss'
@@ -26,6 +28,7 @@ import { PreencherCadastroComponent } from './components/preencher-cadastro/pree
 export class CadastroPrestadorComponent implements OnInit {
   @Input() habilitarBotaoCadastrar: boolean = false;
   readonly dialog = inject(MatDialog);
+  errorMessage = signal('');
 
   ngOnInit(): void {
   }
@@ -39,5 +42,11 @@ export class CadastroPrestadorComponent implements OnInit {
       console.log('The dialog was closed');
     });
 
+}
+
+hide = signal(true);
+clickEvent(event: MouseEvent) {
+  this.hide.set(!this.hide());
+  event.stopPropagation();
 }
 }
