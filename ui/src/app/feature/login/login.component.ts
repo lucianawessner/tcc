@@ -19,6 +19,7 @@ import { CadastroPrestadorComponent } from '../cadastro-prestador/cadastro-prest
 import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-contratante.component';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usuario-contrante.endpoint';
 
 @Component({
   selector: 'app-login',
@@ -68,6 +69,7 @@ export class LoginComponent {
   errorMessage = signal('');
 
   private router: Router = inject(Router);
+  private usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
 
   fazerAnimacao() {
     this.isOpen = !this.isOpen;
@@ -109,7 +111,11 @@ export class LoginComponent {
   }
 
   entrar(){
-    this.router.navigate([''])
+    this.usuarioContratanteEndpoint.pegarTodosUsuariosContratantes()
+    .subscribe(dados => {
+      console.log(dados)
+    });
+    // this.router.navigate(['']);
   }
 
   hide = signal(true);

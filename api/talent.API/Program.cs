@@ -15,20 +15,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IVagaRepository, VagaRepository>();
-
 builder.Services.AddScoped<IVagaService, VagaService>(); builder.Services.AddScoped<IDocumentoRepository, DocumentoRepository>();
-
 builder.Services.AddScoped<IDocumentoService, DocumentoService>(); builder.Services.AddScoped<IFeedRepository, FeedRepository>();
-
 builder.Services.AddScoped<IFeedService, FeedService>(); builder.Services.AddScoped<IFormularioPrestadorRepository, FormularioPrestadorRepository>();
-
 builder.Services.AddScoped<IFormularioPrestadorService, FormularioPrestadorService>(); builder.Services.AddScoped<IProgressoRepository, ProgressoRepository>();
-
 builder.Services.AddScoped<IProgressoService, ProgressoService>(); builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
-
 builder.Services.AddScoped<IAvaliacaoService, AvaliacaoService>(); builder.Services.AddScoped<IUsuarioPrestadorRepository, UsuarioPrestadorRepository>();
-
 builder.Services.AddScoped<IUsuarioPrestadorService, UsuarioPrestadorService>(); builder.Services.AddScoped<IUsuarioContratanteRepository, UsuarioContratanteRepository>();
+builder.Services.AddScoped<ILoginService, LoginService>(); builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 
 builder.Services.AddScoped<IUsuarioContratanteService, UsuarioContratanteService>();
 builder.Services.AddDbContext<TalentTrialDbContext>(options => {
