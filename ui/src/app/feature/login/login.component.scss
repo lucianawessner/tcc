@@ -1,6 +1,6 @@
 
 .card{
-  left: 360px;
+  left: 25%;
   top: 10px;
   height: 426px;
   width: 755px;
@@ -9,6 +9,7 @@
   box-shadow: 4px 4px 4px rgba(100, 99, 99, 0.2);
   background-color: rgba(240, 240, 240, 0.936);
 }
+
 
 .form{
   position: relative;
@@ -42,6 +43,7 @@
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   outline: none;
+
 }
 
 #Entrar:hover {
@@ -72,6 +74,7 @@
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   outline: none;
+
 }
 
 #Login:hover{
@@ -102,6 +105,8 @@
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   outline: none;
+
+
 }
 
 #Prestador:hover {
@@ -154,6 +159,3 @@
   width: 376.5px;
   background-color: rgba(240, 240, 240, 0.936);;
 }
-
-
-
