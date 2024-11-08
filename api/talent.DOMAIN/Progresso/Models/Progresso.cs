@@ -13,7 +13,7 @@ namespace talent.DOMAIN.Models
       public bool Visualizado { get; set; }
       public bool Aceito { get; set; }
       public bool Contato { get; set; }
-      public int IdFormulario { get; set; }
-      public Formulario Formulario { get; set; }
+      public int IdFormularioPrestador { get; set; }
+      public FormularioPrestador FormularioPrestador { get; set; }
     }
 }

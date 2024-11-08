@@ -16,11 +16,12 @@ namespace talent.DOMAIN.Models
       public string? Cargo { get; set; }
       public string? Qualificacao { get; set; }
       public string? Localizacao { get; set; }
-      public int? IdArquivo { get; set; }
+      public int? IdDocumento { get; set; }
       public string Email { get; set; }
-      public Arquivos Arquivos { get; set; }
-      public IList<Publicacao> Publicacao { get; set; }
+      public int? DataNascimento { get; set; }
+      public Documento Documento { get; set; }
+      public IList<FormularioPrestador> FormularioPrestador { get; set; }
+      public IList<Feed> Feed { get; set; }
       public IList<Avaliacao> Avaliacao { get; set; }
-      public IList<Formulario> Formulario { get; set; }
     }
 }

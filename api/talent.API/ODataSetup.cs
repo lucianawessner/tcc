@@ -1,15 +1,12 @@
-using talent.DOMAIN.Models;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.ModelBuilder;
+using talent.DOMAIN.Models;
 
-namespace talent.API
-{
-    public static class ODataSetup
-    {
+namespace talent.API {
+    public static class ODataSetup {
         private static ODataModelBuilder objBuilder;
 
-        public static IServiceCollection ConfigureServicesOData(this IServiceCollection services)
-        {
+        public static IServiceCollection ConfigureServicesOData(this IServiceCollection services) {
             objBuilder = new ODataConventionModelBuilder();
             ConfigureEntitySets(objBuilder);
 
@@ -20,16 +17,15 @@ namespace talent.API
             return services;
         }
 
-        private static void ConfigureEntitySets(ODataModelBuilder builder)
-        {
-          builder.EntitySet<Arquivos>("Arquivos").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<UsuarioPrestador>("UsuarioPrestador").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<UsuarioContratante>("UsuarioContratante").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<Servico>("Servico").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<Publicacao>("Publicacao").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<Avaliacao>("Avaliacao").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<Formulario>("Formulario").EntityType.HasKey(t => t.Id);
-          builder.EntitySet<Progresso>("Progresso").EntityType.HasKey(t => t.Id);
+        private static void ConfigureEntitySets(ODataModelBuilder builder) {
+            builder.EntitySet<Vaga>("Vaga").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<Documento>("Documento").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<Feed>("Feed").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<FormularioPrestador>("FormularioPrestador").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<Progresso>("Progresso").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<Avaliacao>("Avaliacao").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<UsuarioPrestador>("UsuarioPrestador").EntityType.HasKey(t => t.Id);
+            builder.EntitySet<UsuarioContratante>("UsuarioContratante").EntityType.HasKey(t => t.Id);
         }
     }
 }

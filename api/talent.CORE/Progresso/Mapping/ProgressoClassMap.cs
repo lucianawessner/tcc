@@ -29,14 +29,14 @@ namespace talent.CORE.Mapping
                .HasColumnName("Contato")
                .IsRequired();
 
-            builder.Property(x => x.IdFormulario)
-               .HasColumnName("IdFormulario")
+            builder.Property(x => x.IdFormularioPrestador)
+               .HasColumnName("IdFormularioPrestador")
                .IsRequired();
 
 
-          builder.HasOne(x => x.Formulario)
+          builder.HasOne(x => x.FormularioPrestador)
               .WithMany(x => x.Progresso)
-              .HasForeignKey(x => x.IdFormulario);
+              .HasForeignKey(x => x.IdFormularioPrestador);
 
 
         }

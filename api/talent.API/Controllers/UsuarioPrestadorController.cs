@@ -15,5 +15,6 @@ namespace talent.API.Controllers
         public UsuarioPrestadorController(IUsuarioPrestadorService service) : base(service)
         {
         }
+
     }
 }

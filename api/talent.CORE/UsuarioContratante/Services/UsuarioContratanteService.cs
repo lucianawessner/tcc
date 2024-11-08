@@ -1,7 +1,12 @@
+using talent.INFRA.Base.Core.Services;
 using talent.DOMAIN.Models;
 using talent.DOMAIN.Repositories;
 using talent.DOMAIN.Services;
-using talent.INFRA.Base.Core.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace talent.CORE.Services
 {
@@ -10,22 +15,5 @@ namespace talent.CORE.Services
         public UsuarioContratanteService(IUsuarioContratanteRepository repository) : base(repository)
         {
         }
-        public UsuarioDto Login(string username, string password)
-        {
-            var contratante = GetAllNoTracking()
-                .Where(x => x.Senha == password)
-                .Where(x => x.Usuario == username)
-                .FirstOrDefault() ?? throw new Exception("Usuario não existente");
-
-            var usuarioDto = new UsuarioDto
-            {
-                Id = contratante.Id,
-                Usuario = contratante.Usuario,
-                Tipo = "Contratante"
-            };
-
-            return usuarioDto;
-        }
-
     }
 }

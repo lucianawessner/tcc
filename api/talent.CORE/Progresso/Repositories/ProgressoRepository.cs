@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace talent.CORE.Repositories
 {
-    public class ProgressoRepository : BaseRepository<Progresso, talentDbContext>, IProgressoRepository
+    public class ProgressoRepository : BaseRepository<Progresso, TalentTrialDbContext>, IProgressoRepository
     {
-        public ProgressoRepository(talentDbContext context) 
+        public ProgressoRepository(TalentTrialDbContext context) 
             : base(context)
         {
         }

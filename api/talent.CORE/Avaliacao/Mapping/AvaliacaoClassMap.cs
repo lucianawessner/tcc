@@ -35,6 +35,8 @@ namespace talent.CORE.Mapping
           builder.HasOne(x => x.UsuarioContratante)
               .WithMany(x => x.Avaliacao)
               .HasForeignKey(x => x.IdContratante);
+
+
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace talent.CORE.Repositories
 {
-    public class UsuarioPrestadorRepository : BaseRepository<UsuarioPrestador, talentDbContext>, IUsuarioPrestadorRepository
+    public class UsuarioPrestadorRepository : BaseRepository<UsuarioPrestador, TalentTrialDbContext>, IUsuarioPrestadorRepository
     {
-        public UsuarioPrestadorRepository(talentDbContext context) 
+        public UsuarioPrestadorRepository(TalentTrialDbContext context) 
             : base(context)
         {
         }

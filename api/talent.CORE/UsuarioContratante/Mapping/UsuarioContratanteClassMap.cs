@@ -31,28 +31,32 @@ namespace talent.CORE.Mapping
             builder.Property(x => x.Localizacao)
                .HasColumnName("Localizacao");
 
-            builder.Property(x => x.Area)
-               .HasColumnName("Area");
+            builder.Property(x => x.Cargo)
+               .HasColumnName("Cargo");
 
-            builder.Property(x => x.IdArquivo)
-               .HasColumnName("IdArquivo");
+            builder.Property(x => x.IdDocumento)
+               .HasColumnName("IdDocumento");
 
             builder.Property(x => x.Email)
-               .HasColumnName("Email");
+               .HasColumnName("Email")
+               .IsRequired();
+
+            builder.Property(x => x.DataNascimento)
+               .HasColumnName("DataNascimento");
 
 
-          builder.HasOne(x => x.Arquivos)
+          builder.HasOne(x => x.Documento)
               .WithMany(x => x.UsuarioContratante)
-              .HasForeignKey(x => x.IdArquivo);
+              .HasForeignKey(x => x.IdDocumento);
 
 
-          builder.HasMany(x => x.Servico)
-              .WithOne(x => x.UsuarioContratante)
-              .HasForeignKey(x => x.IdUsuario);
-
-                          builder.HasMany(x => x.Avaliacao)
+          builder.HasMany(x => x.Avaliacao)
               .WithOne(x => x.UsuarioContratante)
               .HasForeignKey(x => x.IdContratante);
+
+                          builder.HasMany(x => x.Vaga)
+              .WithOne(x => x.UsuarioContratante)
+              .HasForeignKey(x => x.IdUsuarioContratante);
 
                         }
     }
