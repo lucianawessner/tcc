@@ -7,7 +7,9 @@ export class Contratante extends BaseEntity {
     email: string = "";
     descricao: string | null = null;
     localizacao: string | null = null;
-    area: string | null = null;
+    cargo: string | null = null;
+    dataNascimento: Date | null = null;
+    experiencia: string | null = null;
     idDocumento: number | null = null;
     Documento: Documento | null = null;
 }

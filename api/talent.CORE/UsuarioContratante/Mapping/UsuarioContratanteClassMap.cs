@@ -33,6 +33,9 @@ namespace talent.CORE.Mapping
 
             builder.Property(x => x.Cargo)
                .HasColumnName("Cargo");
+            
+            builder.Property(x => x.Experiencia)
+               .HasColumnName("Experiencia");
 
             builder.Property(x => x.IdDocumento)
                .HasColumnName("IdDocumento");

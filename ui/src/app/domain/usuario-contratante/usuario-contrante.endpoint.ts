@@ -16,4 +16,8 @@ export class UsuarioContratanteEndpoint {
   pegarTodosUsuariosContratantes(): Observable<Contratante[]>{
     return this.http.get<Contratante[]>(`${environment.apiUrl}${this.baseUrl}`)
   }
+
+  cadastrarContratante(contratante: Contratante): Observable<Contratante>{
+    return this.http.post<Contratante>(`${environment.apiUrl}${this.baseUrl}`, contratante);
+  }
 }
