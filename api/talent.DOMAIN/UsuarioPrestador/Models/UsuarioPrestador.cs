@@ -18,7 +18,7 @@ namespace talent.DOMAIN.Models
       public string? Localizacao { get; set; }
       public int? IdDocumento { get; set; }
       public string Email { get; set; }
-      public int? DataNascimento { get; set; }
+      public DateTime? DataNascimento { get; set; }
       public Documento Documento { get; set; }
       public IList<FormularioPrestador> FormularioPrestador { get; set; }
       public IList<Feed> Feed { get; set; }

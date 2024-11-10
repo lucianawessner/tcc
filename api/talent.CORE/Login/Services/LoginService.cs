@@ -21,7 +21,7 @@ namespace talent.CORE.Services
             _usuarioPrestadorService = usuarioPrestadorService;
         }
 
-        public async Task<UsuarioDto> Login(LoginDto dto) 
+        public async Task<Response<UsuarioDto>> Login(LoginDto dto) 
         {
             var contratante = await _usuarioContratanteService.GetAllNoTracking()
                 .Where(dados => dados.Usuario == dto.Usuario)
@@ -35,7 +35,7 @@ namespace talent.CORE.Services
 
             if (contratante is null && prestador is null) 
             {
-                throw new InvalidOperationException("Usuário ou senha incorretos.");
+                return new Response<UsuarioDto>(null, 500, "Usuário ou senha incorretos");
             }
 
             var usuarioDto = new UsuarioDto();
@@ -50,7 +50,7 @@ namespace talent.CORE.Services
                 usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Email, ETipoUsuario.Prestador);
             }
 
-            return usuarioDto;           
+            return new Response<UsuarioDto>(usuarioDto, 201, "Login realizado com sucesso");           
         }
 
         private UsuarioDto PreencherDadosUsuario(int id, string usuario, string email, ETipoUsuario tipoUsuario)

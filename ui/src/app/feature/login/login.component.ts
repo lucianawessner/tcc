@@ -20,6 +20,12 @@ import { CadastroContratanteComponent } from '../cadastro-contratante/cadastro-c
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usuario-contrante.endpoint';
+import { LoginEndpoint } from '../../domain/login/login.endpoint';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginDto } from '../../domain/login/login.dto';
+import Swal from 'sweetalert2';
+import { Subject, takeUntil } from 'rxjs';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +39,9 @@ import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usu
     MatButtonModule,
     CadastroPrestadorComponent,
     CadastroContratanteComponent,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   animations: [
     trigger('openClose', [
@@ -59,7 +67,7 @@ import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usu
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   showBtnLogin: boolean = false;
   showBtnPrestador: boolean = true;
@@ -68,8 +76,16 @@ export class LoginComponent {
   usuario: string = '';
   errorMessage = signal('');
 
-  private router: Router = inject(Router);
-  private usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
+  private readonly destroy$: Subject<any> = new Subject();
+  public mainForm: FormGroup = new FormGroup({});
+
+  private readonly router: Router = inject(Router);
+  private loginEndpoint: LoginEndpoint = inject(LoginEndpoint);
+  private loginService: LoginService = inject(LoginService);
+
+  ngOnInit(): void {
+    this.criarFormulario();
+  }
 
   fazerAnimacao() {
     this.isOpen = !this.isOpen;
@@ -111,11 +127,22 @@ export class LoginComponent {
   }
 
   entrar(){
-    this.usuarioContratanteEndpoint.pegarTodosUsuariosContratantes()
-    .subscribe(dados => {
-      console.log(dados)
+    this.loginEndpoint.login(this.bodyBuilder())
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(resposta => {
+      if (resposta.Data === null) {
+        Swal.fire({
+          title: 'Atenção!',
+          text: resposta.Message,
+          icon: 'error',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      } else {
+        this.loginService.armazenaUsuario(resposta.Data!);
+        this.router.navigate(['']);
+      }
     });
-    // this.router.navigate(['']);
   }
 
   hide = signal(true);
@@ -124,4 +151,12 @@ export class LoginComponent {
     event.stopPropagation();
   }
 
+  bodyBuilder(): LoginDto {
+    return {...this.mainForm.value}
+  }
+
+  public criarFormulario() {
+    this.mainForm.addControl("usuario", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("senha", new FormControl('', [Validators.required]));
+  }
 }

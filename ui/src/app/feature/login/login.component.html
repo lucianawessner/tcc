@@ -17,15 +17,20 @@
   <mat-card-content>
     <div class="row">
       <div class="col-md-6">
-        <div class="mt-3">
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-label>Usuario</mat-label>
-            <input matInput placeholder="" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="col-12">
-            <mat-label>Senha</mat-label>
-            <input matInput [type]="hide() ? 'password' : 'text'" />
+        <div [formGroup]="mainForm">
+          <div class="mt-3">
+            <mat-form-field appearance="outline" class="col-12">
+              <mat-label>Usuario</mat-label>
+              <input matInput formControlName="usuario" />
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="col-12">
+              <mat-label>Senha</mat-label>
+              <input 
+                matInput 
+                [type]="hide() ? 'password' : 'text'"
+                formControlName="senha" 
+              />
                 <button
                   mat-icon-button
                   matSuffix
@@ -42,7 +47,8 @@
                     hide() ? "visibility_off" : "visibility"
                   }}</mat-icon>
                 </button>
-          </mat-form-field>
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="reset">

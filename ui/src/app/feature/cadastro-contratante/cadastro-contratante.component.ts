@@ -9,6 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cadastro-contratante',
@@ -52,17 +53,22 @@ export class CadastroContratanteComponent {
 
 
   public cadastroContratante() {
-    const dialogRef = this.dialog.open(
-      PreencherCadastroContratanteComponent,
-      {}
-    );
+    const dialogRef = this.dialog.open(PreencherCadastroContratanteComponent);
 
     dialogRef.componentInstance.email = this.email;
     dialogRef.componentInstance.usuario = this.usuario;
     dialogRef.componentInstance.senha = this.senha;
 
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Cadastro realizado com sucesso',
+          icon: 'success',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      }
     });
   }
 }

@@ -87,10 +87,8 @@
           >
             <div>
               <mat-form-field style="width: 140%; margin-left: -3vh">
-                <mat-label>Localidade</mat-label>
-                <mat-select>
-                  <mat-option value="option">Option</mat-option>
-                </mat-select>
+                <mat-label>Localização</mat-label>
+                <input matInput formControlName="localizao" />
               </mat-form-field>
             </div>
           </div>
@@ -177,7 +175,9 @@
               ></textarea>
             </mat-form-field>
           </div>
+        </div>
 
+        <div class="row">
           <div class="col-md-12">
             <button id="Entrar" (click)="salvar()">Salvar</button>
           </div>
@@ -186,8 +186,6 @@
         <br />
         <br />
         <br />
-
-        <pre>{{mainForm.value | json}}</pre>
       </div>
     </mat-card>
 

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { PublicacaoComponent } from '../publicacao/publicacao.component';
+import { UsuarioDto } from '../../domain/login/usuario.dto';
+import { LoginService } from '../login/service/login.service';
 
 @Component({
   selector: 'app-feed',
@@ -16,7 +18,8 @@ import { PublicacaoComponent } from '../publicacao/publicacao.component';
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
-export class FeedComponent {
+export class FeedComponent implements OnInit {
+
   publicacoes = [
     {
         texto: "Adorei o pôr do sol hoje! 🌅",
@@ -68,6 +71,14 @@ export class FeedComponent {
         imagemPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
     }
 ];
+
+  private loginService: LoginService = inject(LoginService);
+
+  public usuario: UsuarioDto = new UsuarioDto();
+
+  ngOnInit(): void {
+    this.usuario = this.loginService.retornaUsuario();
+  }
 
   adicionarPublicacao() {
     const publicacaoParaAdicionar = {

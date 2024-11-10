@@ -18,7 +18,7 @@ namespace talent.API.Controllers
 
         [HttpPost]
         [Route("Entrar")]
-        public virtual async Task<ActionResult<UsuarioDto>> Post([FromBody] LoginDto dto) 
+        public virtual async Task<ActionResult<Response<UsuarioDto>>> Post([FromBody] LoginDto dto) 
         {
             var result = await _loginService.Login(dto);
             return Ok(result);

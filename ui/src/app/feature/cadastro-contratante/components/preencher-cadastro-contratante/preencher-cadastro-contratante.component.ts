@@ -3,7 +3,7 @@ import {ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, ViewE
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +15,7 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { Contratante } from '../../../../domain/usuario-contratante/usuario-contratante.models';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-preencher-cadastro-contratante',
@@ -40,17 +41,16 @@ import { Contratante } from '../../../../domain/usuario-contratante/usuario-cont
 })
 export class PreencherCadastroContratanteComponent implements OnInit {
 
-  private readonly destroy$ : Subject<any> = new Subject();
-
   @Input('email') email: string = '';
   @Input('usuario') usuario: string = '';
   @Input('senha') senha: string = '';
 
+  private readonly destroy$ : Subject<any> = new Subject();
   public mainForm: FormGroup = new FormGroup({});
 
-  // readonly email = new FormControl('', [Validators.required, Validators.email]);
-  private router: Router = inject(Router);
-  private usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
+  public readonly dialogRef = inject(MatDialogRef<PreencherCadastroContratanteComponent>);
+  private readonly router: Router = inject(Router);
+  private readonly usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
   
   errorMessage = signal('');
 
@@ -69,7 +69,7 @@ export class PreencherCadastroContratanteComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
     .subscribe(resposta => {
       if (resposta){
-
+        this.dialogRef.close(true);
       }
     })
   }
@@ -87,7 +87,6 @@ export class PreencherCadastroContratanteComponent implements OnInit {
     this.mainForm.addControl("dataNascimento", new FormControl(null, []));
     this.mainForm.addControl("descricao", new FormControl(null, []));
     this.mainForm.addControl("experiencia", new FormControl(null, []));
-
   }
 
   updateErrorMessage() {
