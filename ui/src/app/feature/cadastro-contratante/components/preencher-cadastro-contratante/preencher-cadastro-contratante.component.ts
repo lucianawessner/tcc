@@ -31,7 +31,6 @@ import Swal from 'sweetalert2';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    JsonPipe
   ],
   templateUrl: './preencher-cadastro-contratante.component.html',
   styleUrl: './preencher-cadastro-contratante.component.scss',
@@ -49,7 +48,6 @@ export class PreencherCadastroContratanteComponent implements OnInit {
   public mainForm: FormGroup = new FormGroup({});
 
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroContratanteComponent>);
-  private readonly router: Router = inject(Router);
   private readonly usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
   
   errorMessage = signal('');
@@ -116,9 +114,4 @@ export class PreencherCadastroContratanteComponent implements OnInit {
 
     return '';
   };
-
-  entrar(){
-    this.router.navigate([''])
-  }
-
 }
