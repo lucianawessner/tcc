@@ -47,7 +47,6 @@ export class PreencherCadastroComponent implements OnInit {
   private readonly destroy$: Subject<any> = new Subject();
   public mainForm: FormGroup = new FormGroup({});
 
-  private router: Router = inject(Router);
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroComponent>);
   private readonly usuarioPrestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
 

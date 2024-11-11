@@ -2,13 +2,13 @@ import { Documento } from './../documento/documento.models';
 import { BaseEntity } from "../base-entity.models";
 
 export class Prestador extends BaseEntity {
-    usuario: string = '';
-    senha: string = '';
-    email: string = '';
-    descricao: string | null = null;
-    localizacao: string | null = null;
-    cargo: string | null = null;
-    qualificacao: string | null = null;
-    idDocumento: number | null = null;
+    Usuario: string = '';
+    Senha: string = '';
+    Email: string = '';
+    Descricao: string | null = null;
+    Localizacao: string | null = null;
+    Cargo: string | null = null;
+    Qualificacao: string | null = null;
+    IdDocumento: number | null = null;
     Documento: Documento | null = null;
 }

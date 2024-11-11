@@ -1,10 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+using talent.API.Controllers.Base;
 using talent.DOMAIN.Models;
 using talent.DOMAIN.Services;
-using talent.API.Controllers.Base;
-using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Routing;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace talent.API.Controllers
 {
@@ -12,9 +9,18 @@ namespace talent.API.Controllers
     [ApiController]
     public class FeedController : BaseController<Feed, IFeedService>
     {
+        private readonly IFeedService _feedService;
+
         public FeedController(IFeedService service) : base(service)
         {
+            this._feedService = service;
         }
 
+        [HttpPost]
+        [Route("Publicar")]
+        public virtual async Task<Response<Feed>> Publicar([FromForm] FeedDto dto)
+        {
+            return await _feedService.Publicar(dto);
+        }
     }
 }
