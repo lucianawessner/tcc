@@ -12,20 +12,5 @@ namespace talent.CORE.Services
         {
             this.repository = repository;
         }
-
-        public async Task<Response<Documento>> SalvarDocumento(DocumentoDto dto)
-        {
-            var documento = new Documento
-            {
-                Nome = dto.Nome,
-                Tipo = dto.Tipo,
-                Caminho = dto.Caminho
-            };
-
-            repository.Add(documento);
-            await repository.Context.SaveChangesAsync();
-
-            return new Response<Documento>(documento, 201, "Documento salvo com sucesso");
-        }
     }
 }

@@ -29,7 +29,13 @@ builder.Services.AddDbContext<TalentTrialDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TalentTrial"));
 });
 
-builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true).AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null); ;
+builder.Services.AddControllers(options =>
+    options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+    .AddJsonOptions(opts =>
+    {
+        opts.JsonSerializerOptions.PropertyNamingPolicy = null;
+        opts.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(policy => {

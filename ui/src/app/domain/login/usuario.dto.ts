@@ -1,6 +1,6 @@
 export class UsuarioDto {
-    id: number = 0;
-    usuario: string = '';
-    email: string = '';
-    tipoUsuario: number = 0;
+    Id: number = 0;
+    Usuario: string = '';
+    Email: string = '';
+    TipoUsuario: number = 0;
 }
