@@ -26,6 +26,7 @@ import { LoginDto } from '../../domain/login/login.dto';
 import Swal from 'sweetalert2';
 import { Subject, takeUntil } from 'rxjs';
 import { LoginService } from './service/login.service';
+import { CredentialsService } from './service/credentials.service';
 
 @Component({
   selector: 'app-login',
@@ -81,7 +82,7 @@ export class LoginComponent implements OnInit{
 
   private readonly router: Router = inject(Router);
   private loginEndpoint: LoginEndpoint = inject(LoginEndpoint);
-  private loginService: LoginService = inject(LoginService);
+  private credentialsService: CredentialsService = inject(CredentialsService);
 
   ngOnInit(): void {
     this.criarFormulario();
@@ -139,7 +140,7 @@ export class LoginComponent implements OnInit{
           allowEscapeKey: false,
         });
       } else {
-        this.loginService.armazenaUsuario(resposta.Data!);
+        this.credentialsService.setCredentials(resposta.Data);        
         this.router.navigate(['']);
       }
     });

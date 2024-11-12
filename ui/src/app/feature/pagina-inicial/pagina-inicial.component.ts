@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input' ;
 import { Router, RouterOutlet } from '@angular/router';
+import { LoginService } from '../login/service/login.service';
+import { CredentialsService } from '../login/service/credentials.service';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -28,8 +30,11 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './pagina-inicial.component.scss'
 })
 export class PaginaInicialComponent {
+
   public readonly renderer = inject(Renderer2);
   public readonly router = inject(Router);
+  private loginService: LoginService = inject(LoginService);
+  private credentialsService: CredentialsService = inject(CredentialsService);
 
   @ViewChild('contentWrapper', { static: false }) contentWrapper: any;
 
@@ -39,5 +44,10 @@ export class PaginaInicialComponent {
 
   entrar(){
     this.router.navigate(['home/editar-perfil'])
+  }
+
+  desconectar(){
+    this.credentialsService.setCredentials();
+    this.loginService.logout();
   }
 }

@@ -8,6 +8,7 @@ import { LoginService } from '../login/service/login.service';
 import { FeedEndpoint } from '../../domain/feed/feed.endpoint';
 import { Subject, takeUntil } from 'rxjs';
 import { Feed } from '../../domain/feed/feed.models';
+import { CredentialsService } from '../login/service/credentials.service';
 
 @Component({
   selector: 'app-feed',
@@ -22,16 +23,17 @@ import { Feed } from '../../domain/feed/feed.models';
   styleUrl: './feed.component.scss'
 })
 export class FeedComponent implements OnInit {
+  
   private readonly destroy$: Subject<any> = new Subject();
 
-  private loginService: LoginService = inject(LoginService);
   private feedEndpoint: FeedEndpoint = inject(FeedEndpoint);
+  private credentialsService: CredentialsService = inject(CredentialsService);
 
   public usuario: UsuarioDto = new UsuarioDto(); 
   public publicacoes: Feed[] = []; 
 
   ngOnInit(): void {
-    this.usuario = this.loginService.retornaUsuario();
+    this.usuario = this.credentialsService.credentials!;
     this.pegarTodos();
   }
 

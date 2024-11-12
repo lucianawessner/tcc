@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { UsuarioDto } from '../../../domain/login/usuario.dto';
+import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +9,17 @@ import { UsuarioDto } from '../../../domain/login/usuario.dto';
 export class LoginService {
 
   usuarioDto: UsuarioDto | null = null;
+  public readonly router = inject(Router);
+
 
   constructor() { }
 
-  armazenaUsuario(usuario: UsuarioDto){
-    this.usuarioDto = usuario;
-  }
-
   retornaUsuario(): UsuarioDto {
     return this.usuarioDto!;
+  }
+
+  logout(): Observable<boolean> {
+    this.router.navigate(['login'])
+    return of(true);
   }
 }
