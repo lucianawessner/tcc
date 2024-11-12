@@ -16,7 +16,7 @@ export class FeedEndpoint {
   constructor(private http: HttpClient) { }
 
   pegarTodos(): Observable<Feed[]>{
-    return this.http.get<Feed[]>(`${environment.apiUrl}${this.baseUrl}?$expand=UsuarioPrestador($expand=Documento), Documento`)
+    return this.http.get<Feed[]>(`${environment.apiUrl}${this.baseUrl}?$expand=UsuarioPrestador($expand=Documento), Documento&$orderby=DataCriacao desc`)
   }
 
   publicar(dto: FeedDto): Observable<Response<Feed>>{
