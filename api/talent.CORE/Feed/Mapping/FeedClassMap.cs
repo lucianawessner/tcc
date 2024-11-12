@@ -28,10 +28,13 @@ namespace talent.CORE.Mapping
                .HasColumnName("QuantidadeCurtida")
                .IsRequired();
 
-            builder.Property(x => x.IdUsuarioPrestador)
-               .HasColumnName("IdUsuarioPrestador")
+            builder.Property(x => x.DataCriacao)
+               .HasColumnName("DataCriacao")
                .IsRequired();
 
+            builder.Property(x => x.IdUsuarioPrestador)
+               .HasColumnName("IdUsuarioPrestador")
+               .IsRequired();           
 
           builder.HasOne(x => x.Documento)
               .WithMany(x => x.Feed)

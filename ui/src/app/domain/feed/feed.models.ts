@@ -6,6 +6,7 @@ export class Feed extends BaseEntity{
   Texto: string = "";
   IdDocumento: number | null = null;
   QuantidadeCurtida: number = 0;
+  DataCriacao: Date = new Date();
   IdUsuarioPrestador: number = 0;
   Documento: Documento | null = null;
   UsuarioPrestador: Prestador = new Prestador();

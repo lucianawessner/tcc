@@ -40,7 +40,10 @@ export class PublicacaoComponent {
     this.feedEndpoint.publicar(this.bodyBuilder())
     .pipe(takeUntil(this.destroy$))
     .subscribe(resposta => {
-      this.publicou.emit(true);
+      if(resposta){
+        this.mainForm.reset();
+        this.publicou.emit(true);
+      }
     });
   }
 

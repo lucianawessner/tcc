@@ -12,7 +12,8 @@ namespace talent.DOMAIN.Models
       public int Id { get; set; }
       public string Texto { get; set; }
       public int? IdDocumento { get; set; }
-      public int QuantidadeCurtida { get; set; }
+      public int QuantidadeCurtida { get; set; }        
+      public DateTime DataCriacao { get; set; }
       public int IdUsuarioPrestador { get; set; }
       public Documento Documento { get; set; }
       public UsuarioPrestador UsuarioPrestador { get; set; }
