@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Progresso } from './../../domain/progresso/progresso.models';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { BarraProgressoComponent } from "../barra-progresso/barra-progresso.component";
+import { AvaliacaoContratanteComponent } from './avaliacao-contratante/avaliacao-contratante.component';
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-progresso',
   standalone: true,
   imports: [MatCardModule,
-    MatMenuModule, SidebarComponent, BarraProgressoComponent],
+    MatMenuModule,
+    SidebarComponent,
+    BarraProgressoComponent,
+    MatDialogModule
+  ],
   templateUrl: './progresso.component.html',
   styleUrl: './progresso.component.scss'
 })
 export class ProgressoComponent {
+  readonly dialog = inject(MatDialog);
   router: any;
   entrar(){
     this.router.navigate(['/editar-perfil'])
@@ -82,4 +90,13 @@ export class ProgressoComponent {
     this.publicacoes.push(publicacaoParaAdicionar)
   }
 
+  abrirInformacoes(Progresso: any){
+    console.log(Progresso)
+    const dialogRef = this.dialog.open(AvaliacaoContratanteComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
 }

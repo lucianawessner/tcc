@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Location } from '@angular/common';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ChangeDetectionStrategy, signal} from '@angular/core';
-import {merge} from 'rxjs';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { merge } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-formulario-prestador',

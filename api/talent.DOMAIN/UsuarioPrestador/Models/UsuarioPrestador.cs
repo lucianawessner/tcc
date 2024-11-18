@@ -14,7 +14,7 @@ namespace talent.DOMAIN.Models
       public string Senha { get; set; }
       public string? Descricao { get; set; }
       public string? Cargo { get; set; }
-      public string? Qualificacao { get; set; }
+      public string? Experiencia { get; set; }
       public string? Localizacao { get; set; }
       public int? IdDocumento { get; set; }
       public string Email { get; set; }
