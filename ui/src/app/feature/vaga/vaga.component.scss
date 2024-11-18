@@ -98,19 +98,16 @@
   top: 8px;
 }
 
-.location-select {
+.localizacao {
   background-color: rgba(255, 255, 255, 0.936);
   border: none;
-  width: 180px; /* Ajuste conforme necessário */
-  height: 42px; /* Mesma altura do input */
+  width: 180px;
+  height: 42px;
   border-radius: 0px 9px 9px 0px;
   color: rgb(121, 118, 118);
-  padding: 0 10px; /* Ajuste o padding conforme necessário */
-  margin-left: 0px; /* Espaçamento entre o input e o select */
+  padding: 0 10px;
+  margin-left: 0px; 
   font-size: 18px;
   border-left: solid #b3b3b3 1px;
 }
 
-.location-select:focus {
-  outline: none;
-}

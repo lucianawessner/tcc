@@ -8,7 +8,7 @@ export class Prestador extends BaseEntity {
     Descricao: string | null = null;
     Localizacao: string | null = null;
     Cargo: string | null = null;
-    Qualificacao: string | null = null;
+    Experiencia: string | null = null;
     IdDocumento: number | null = null;
     Documento: Documento | null = null;
 }

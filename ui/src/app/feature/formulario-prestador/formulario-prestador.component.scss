@@ -48,87 +48,33 @@
   transform: translateY(-1px);
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  font-family: inherit;
-  gap: 10px;
-  padding-inline: 2em;
-  padding-bottom: 0.4em;
-  background-color: #faf8f8;
-  //background-color: #0a192f;
-  border-radius: 20px;
-}
-
-.form-heading {
-  text-align: center;
-  margin: 2em;
-  color: #000000;
-  font-size: 1.2em;
-  background-color: transparent;
-  align-self: center;
-}
-
-.form-field {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  border-radius: 10px;
-  padding: 0.6em;
+#Enviar{
+  left: 72%;
+  padding: 0.9em 2em;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.0px;
+  font-weight: 500;
+  color: #fcf4f4;
+  background-color: #000000;
   border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
   outline: none;
-  color: white;
-  background-color: white;
-  box-shadow: inset 2px 5px 10px rgb(255, 255, 255);
 }
 
-.input-field {
-  background: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  color: #000000;
-  padding-inline: 1em;
-  max-height: 20vh;
+#Enviar:hover {
+  background-color: #77ab59;
+  box-shadow: 0px 15px 20px rgb(201, 223, 138, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 
-.sendMessage-btn {
-  cursor: pointer;
-  margin-bottom: 3em;
-  padding: 1em;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: #030303;
-  font-weight: bold;
-  outline: 1px solid #050505;
-  transition: all ease-in-out 0.3s;
+#Enviar:active {
+  transform: translateY(-1px);
 }
 
-.sendMessage-btn:hover {
-  transition: all ease-in-out 0.3s;
-  background-color: #eae9e9;
-  color: #000;
-  cursor: pointer;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-}
-
-.form-card1 {
-  background-image: linear-gradient(163deg, #ddf6be 0%, #ddf6be 100%);
-  border-radius: 22px;
-  transition: all 0.3s;
-}
-
-
-.form-card2 {
-  border-radius: 0;
-  transition: all 0.2s;
-}
-
-.form-card2:hover {
-  transform: scale(0.98);
-  border-radius: 20px;
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
 }
