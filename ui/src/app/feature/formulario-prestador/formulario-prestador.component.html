@@ -9,45 +9,47 @@
 
   <mat-card-content>
     <mat-card style="width: 70vh; border-radius: 20px 20px 20px 20px;top: 30vh; left: 20vh; top:2vh; background-color:#e9eae8">
-      <div class="row">
-          <div class="col-12 d-flex justify-content-center" style="margin-top: 4vh;">
-            <h4>Formulário de Inscrição para Vaga</h4>
-          </div>
-
-          <div class="col-12  d-flex justify-content-center" style="margin-top: 4vh;">
-            <mat-form-field style="width: 60vh;">
-              <mat-label>Nome Completo:</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </div>
-
-          <div class="col-12 d-flex justify-content-center" style="margin-top: 1vh;">
-            <div class="example-container">
+      <div [formGroup]="mainForm">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center" style="margin-top: 4vh;">
+              <h4>Formulário de Inscrição para Vaga</h4>
+            </div>
+  
+            <div class="col-12  d-flex justify-content-center" style="margin-top: 4vh;">
               <mat-form-field style="width: 60vh;">
-                <mat-label>Insira seu email</mat-label>
-                <input
-                  matInput
-                  placeholder="pat@example.com"
-                  [formControl]="email"
-                  (blur)="updateErrorMessage()"
-                  required
-                />
-                @if (email.invalid) {
-                  <mat-error>{{errorMessage()}}</mat-error>
-                }
+                <mat-label>Nome Completo</mat-label>
+                <input matInput formControlName="nome">
               </mat-form-field>
             </div>
+  
+            <div class="col-12 d-flex justify-content-center" style="margin-top: 1vh;">
+              <div class="example-container">
+                <mat-form-field style="width: 60vh;">
+                  <mat-label>Insira seu email</mat-label>
+                  <input
+                    matInput
+                    placeholder="pat@example.com"
+                    formControlName="email"
+                    (blur)="updateErrorMessage()"
+                    required
+                  />
+                  @if (mainForm.get('email')?.invalid) {
+                  <mat-error>{{ errorMessage() }}</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+  
+            <div class="col-12 d-flex justify-content-center" style="margin-top: 1vh;">
+              <mat-form-field style="width: 60vh;">
+              <mat-label>Por que você está interessado nesta vaga?</mat-label>
+              <textarea matInput formControlName="descricao" style=" min-height:20vh; max-height: 25vh;"></textarea>
+              </mat-form-field>
+            </div>
+  
+          <div class="col-11  d-flex justify-content-end" style="margin-block-end: 3vh;">
+            <button id="Enviar" (click)="candidatar()">Enviar</button>
           </div>
-
-          <div class="col-12 d-flex justify-content-center" style="margin-top: 1vh;">
-            <mat-form-field style="width: 60vh;">
-            <mat-label>Por que você está interessado nesta vaga?</mat-label>
-            <textarea matInput style=" min-height:20vh; max-height: 25vh;"></textarea>
-            </mat-form-field>
-          </div>
-
-        <div class="col-11  d-flex justify-content-end" style="margin-block-end: 3vh;">
-          <button id="Enviar">Enviar</button>
         </div>
       </div>
     </mat-card>

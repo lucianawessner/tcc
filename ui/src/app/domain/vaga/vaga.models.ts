@@ -1,4 +1,5 @@
 import { BaseEntity } from "../base-entity.models";
+import { FormularioPrestador } from "../formularioPrestador/formularioPrestador.models";
 import { Contratante } from "../usuario-contratante/usuario-contratante.models";
 
 export class Vaga extends BaseEntity {
@@ -12,4 +13,5 @@ export class Vaga extends BaseEntity {
   Fechamento: Date | null = null;
   IdUsuarioContratante: number  = 0;
   Contratante: Contratante = new Contratante();
+  FormularioPrestador: FormularioPrestador[] = [];
 }

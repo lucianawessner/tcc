@@ -51,22 +51,22 @@
 
 <mat-card style="height: 81vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
-    @for(publicacao of publicacoes; track publicacao) {
+    @for(vaga of vagas; track vaga) {
     <div class="row job-card">
       <div class="col-9">
-        <h2 class="job-title">Cargo: Desenvolvedor Frontend</h2>
+        <h2 class="job-title">Cargo: {{vaga.Cargo}}</h2>
       </div>
       <div class="col-3">
-        <p class="job-deadline">Prazo: 30/10/2024</p>
+        <p class="job-deadline">Prazo de inscrição: {{vaga.Prazo | date: 'dd/MM/yyyy'}}</p>
       </div>
       <div class="col-12">
-        <p class="job-location">Localização: São Paulo, SP</p>
+        <p class="job-location">Localização: {{vaga.Localizacao}}</p>
       </div>
       <div class="col-6">
-        <p class="job-close">Remuneração: R$ 5.000,00</p>
+        <p class="job-close">Remuneração: R$ {{vaga.Remuneracao}}</p>
       </div>
       <div class="col-6">
-        <button id="Entrar" (click)="abrirInformacoes(publicacao)">
+        <button id="Entrar" (click)="abrirInformacoes(vaga)">
           Mais Informações
         </button>
       </div>

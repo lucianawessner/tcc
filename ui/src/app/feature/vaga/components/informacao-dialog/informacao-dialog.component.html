@@ -1,11 +1,11 @@
 <mat-dialog-content class="modal-content">
   <div class="modal-header">
     <div class="row">
-    <h2 class="col-8 d-flex justify-content-start titulo" >{{ jobTitle }}</h2>
+    <h2 class="col-8 d-flex justify-content-start titulo" >{{ vaga.Cargo }}</h2>
     <div class="col-4">
-        <strong>Prazo:</strong> {{ jobDeadline }}
+        <strong>Prazo:</strong> {{ vaga.Prazo | date: 'dd/MM/yyy' }}
     </div>
-    <h4 class="col-12 d-flex justify-content-start localizacao"> {{ jobLocation }} </h4>
+    <h4 class="col-12 d-flex justify-content-start localizacao"> {{ vaga.Localizacao }} </h4>
     </div>
   </div>
   <div class="modal-body">
@@ -20,24 +20,24 @@
       </div>
       <mat-card-content>
         <div class="info-item">
-          <strong>Descrição:</strong> {{ jobDescription }}
+          <strong>Descrição:</strong> {{ vaga.Descricao }}
         </div>
         <div class="info-item">
-          <strong>Requisitos:</strong> {{ jobRequirements }}
+          <strong>Requisitos:</strong> {{ vaga.Requisitos }}
         </div>
         <div class="info-item">
-          <strong>Remuneração:</strong> {{ jobSalary }}
+          <strong>Remuneração:</strong> {{ vaga.Remuneracao }}
         </div>
 
         <div class="info-item">
-          <strong>Data de Criação:</strong> {{ jobCreationDate }}
+          <strong>Data de Criação:</strong> {{ vaga.Criacao | date: 'dd/MM/yyy' }}
         </div>
-        <div class="info-item">
-          <strong>Data de Fechamento:</strong> {{ jobClosingDate }}
+        <div class="info-item" *ngIf="vaga.Fechamento">
+          <strong>Data de Fechamento:</strong> {{ vaga.Fechamento | date: 'dd/MM/yyy' }}
         </div>
         <br>
         <div>
-          <button id="Entrar" (click)="formulario()">
+          <button id="Entrar" (click)="formulario()" [disabled]="bloquear">
             Candidatar
           </button>
         </div>
@@ -46,6 +46,6 @@
   </div>
   <br>
   <div class="modal-footer">
-    <button mat-button mat-dialog-close id="Entrar" >Fechar</button>
+    <button mat-button mat-dialog-close id="Entrar">Fechar</button>
   </div>
 </mat-dialog-content>

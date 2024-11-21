@@ -23,7 +23,7 @@ export const routes: Routes = [
       { path: 'vagas', component: VagaComponent },
       { path: 'progresso', component: ProgressoComponent },
       { path: 'relatorio', component: RelatorioComponent },
-      { path: 'formulario-prestador', component: FormularioPrestadorComponent },
+      { path: 'formulario-prestador/:id', component: FormularioPrestadorComponent },
       { path: 'cadastroPrestador', component: PreencherCadastroComponent },
       { path: 'cadastro-contratante', component: PreencherCadastroContratanteComponent },
     ]
