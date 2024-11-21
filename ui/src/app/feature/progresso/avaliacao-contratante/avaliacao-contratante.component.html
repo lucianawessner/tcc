@@ -1,19 +1,19 @@
-<mat-card-content>
+<mat-card-content style="width: 100vh;">
   <mat-card>
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <h4>Avalie o Contratante</h4>
+        <h4>Avalie o {{ usuario }}</h4>
       </div>
 
-      <div class="col-12 d-flex justify-content-center">
+      <div class="col-12 d-flex justify-content-center" style="margin-top: 2vh;">
 
-        <h6><p>Olá!</p>
+        <h6><p id="Descricao">
 
-        <p>Avalie [Nome da Pessoa].</p>
+        <p id="Descricao">De 1 a 5 estrelas <strong>(5 para muito bom e 1 para ruim).</strong></p>
 
-        <p>Sua opinião é importante para ajudar as próximas pessoas a terem uma experiência ainda melhor.</p>
+        <p id="Descricao">Sua opinião é importante para ajudar as próximas pessoas a terem uma experiência ainda melhor.</p>
 
-        Obrigada!</h6>
+        <p id="Descricao">Obrigada!</p></h6>
       </div>
 
       <div class="col-12 d-flex justify-content-center">
@@ -91,17 +91,13 @@
         </div>
       </div>
 
-      <div class="Col-12" style="background-color: aquamarine;">
-        <mat-form-field style="width: 60vh;">
-          <mat-label>Por que você está interessado nesta vaga?</mat-label>
-          <textarea matInput style=" min-height:20vh; max-height: 25vh;"></textarea>
-          </mat-form-field>
+
+          <div class="col-12  d-flex justify-content-center" style="margin-top: 1vh;margin-block-end: 3vh;left: 2vh;">
+            <button id="Enviar">Enviar</button>
+            </div>
+
+
       </div>
 
-      <div class="col-12" style="background-color: brown;">
-        <button>oi</button>
-      </div>
-
-    </div>
   </mat-card>
 </mat-card-content>

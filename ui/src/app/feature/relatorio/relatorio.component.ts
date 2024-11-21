@@ -23,10 +23,18 @@ export class RelatorioComponent {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         datasets: [
           {
-            label: 'Quantidade de cadastros',
+            label: 'Quantidade cadastros de Contratante',
             data: [90, 20, 3, 5, 2, 3],
             borderWidth: 1,
             backgroundColor: 'rgb(201, 223, 138, 0.4)',
+            borderColor: '#77ab59' ,
+          },
+
+          {
+            label: 'Quantidade cadastros Prestador',
+            data: [90, 20, 3, 5, 2, 3],
+            borderWidth: 1,
+            backgroundColor: 'rgb(201, 223, 150)',
             borderColor: '#77ab59' ,
           },
         ],

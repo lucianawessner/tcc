@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, signal, ViewEncapsulation} from '@angular/core';
+import  {ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -6,7 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { merge} from 'rxjs';
+import { merge } from 'rxjs';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { provideNativeDateAdapter} from '@angular/material/core';

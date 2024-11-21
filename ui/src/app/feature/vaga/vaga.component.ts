@@ -8,6 +8,7 @@ import { VagaEndpoint } from '../../domain/vaga/vaga.endpoint';
 import { Subject, takeUntil } from 'rxjs';
 import { Vaga } from '../../domain/vaga/vaga.models';
 import { DatePipe } from '@angular/common';
+import { FormularioVagaComponent } from './components/formulario-vaga/formulario-vaga.component';
 
 @Component({
   selector: 'app-vaga',
@@ -51,6 +52,16 @@ export class VagaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.pegarTodos();
+    });
+  }
+
+  FormularioVaga(FormularioVaga: any){
+    console.log(FormularioVaga)
+    const dialogRef = this.dialog.open(FormularioVagaComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
     });
   }
 }
