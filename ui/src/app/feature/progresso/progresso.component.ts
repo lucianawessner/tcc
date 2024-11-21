@@ -1,9 +1,8 @@
-import { Progresso } from './../../domain/progresso/progresso.models';
+import { Progresso } from '../../domain/progresso/progresso.models';
 import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { SidebarComponent } from "../sidebar/sidebar.component";
-import { BarraProgressoComponent } from "../barra-progresso/barra-progresso.component";
 import { AvaliacaoContratanteComponent } from './avaliacao-contratante/avaliacao-contratante.component';
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 
@@ -13,7 +12,6 @@ import { MatDialog, MatDialogModule} from '@angular/material/dialog';
   imports: [MatCardModule,
     MatMenuModule,
     SidebarComponent,
-    BarraProgressoComponent,
     MatDialogModule
   ],
   templateUrl: './progresso.component.html',

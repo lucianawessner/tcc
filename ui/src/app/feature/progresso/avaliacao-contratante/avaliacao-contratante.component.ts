@@ -18,4 +18,5 @@ import { Router } from '@angular/router';
 export class AvaliacaoContratanteComponent {
   public readonly router = inject(Router);
   private dialogRef = inject(MatDialogRef<AvaliacaoContratanteComponent>);
+usuario: any;
 }
