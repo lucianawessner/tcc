@@ -1,15 +1,11 @@
 <mat-card-content>
   <div class=" grid"></div>
   <div id="main" class="d-flex justify-content-end" >
+    <div class="col-5">
+      <button id="Criarvaga" (click)="FormularioVaga(FormularioVagaComponent)">Criar vaga</button>
+     </div>
     <input placeholder="Paravra-chave..." type="text" name="text" class="input" />
     <input placeholder="Localização" type="text" name="text" class="localizacao" />
-    <!-- <select class="location-select">
-      <option value="" disabled selected>Localização</option>
-      <option value="cidade1">Curitiba</option>
-      <option value="cidade2">Porto Alegre</option>
-      <option value="cidade3">Brasília</option>
-      <option value="cidade4">São Paulo </option>
-    </select> -->
 
     <div id="filter-icon"></div>
     <div id="search-icon">
@@ -44,7 +40,7 @@
         </defs>
       </svg>
     </div>
-  </div>
+ </div>
 </mat-card-content>
 
 <br />

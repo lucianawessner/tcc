@@ -4,6 +4,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { InformacaoDialogComponent } from './components/informacao-dialog/informacao-dialog.component';
+import { FormularioVagaComponent } from './components/formulario-vaga/formulario-vaga.component';
 
 @Component({
   selector: 'app-vaga',
@@ -12,7 +13,8 @@ import { InformacaoDialogComponent } from './components/informacao-dialog/inform
     MatCardModule,
     MatMenuModule,
     MatDialogModule,
-    SidebarComponent],
+    SidebarComponent
+  ],
   templateUrl: './vaga.component.html',
   styleUrl: './vaga.component.scss'
 })
@@ -70,6 +72,7 @@ export class VagaComponent {
         imagemPerfil: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
     }
 ];
+FormularioVagaComponent: any;
 
   adicionarPublicacao() {
     const publicacaoParaAdicionar = {
@@ -86,6 +89,16 @@ export class VagaComponent {
   abrirInformacoes(vaga: any){
     console.log(vaga)
     const dialogRef = this.dialog.open(InformacaoDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  FormularioVaga(FormularioVaga: any){
+    console.log(FormularioVaga)
+    const dialogRef = this.dialog.open(FormularioVagaComponent, {
     });
 
     dialogRef.afterClosed().subscribe(() => {
