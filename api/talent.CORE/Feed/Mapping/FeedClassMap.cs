@@ -25,7 +25,7 @@ namespace talent.CORE.Mapping
 
             builder.Property(x => x.DataCriacao)
                .HasColumnName("DataCriacao")
-               .IsRequired();
+               .IsRequired(false);
 
             builder.Property(x => x.IdUsuarioPrestador)
                .HasColumnName("IdUsuarioPrestador")

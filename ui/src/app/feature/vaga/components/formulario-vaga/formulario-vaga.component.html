@@ -1,73 +1,107 @@
-<mat-card-content style="height: 88vh;border-radius: 6px;width: 102vh;overflow: auto;overflow-x: hidden;">
-  <div class="col-12" >
-    <div class="row">
-      <mat-card-title class="d-flex justify-content-center" style="margin-block-end: 2vh;">Formulario para preencher a vaga</mat-card-title>
+<mat-card-content
+  style="
+    height: 60vh;
+    border-radius: 6px;
+    width: 102vh;
+    overflow: auto;
+    overflow-x: hidden;
+  "
+>
+  <div class="row">
+    <div class="col-12">
+      <mat-card-title
+        class="d-flex justify-content-center"
+        style="margin-block-end: 2vh"
+        >Formulario para preencher a vaga</mat-card-title
+      >
     </div>
   </div>
 
-    <mat-card class="info-card">
-      <div class="row">
-        <div class="col-12 d-flex justify-content-init" >
-            <mat-form-field style="margin-top: 4vh; margin-left: 6vh; width: 84.5vh;" class="example-full-width">
-              <mat-label>Cargo</mat-label>
-              <input matInput placeholder="Insira o cargo">
-            </mat-form-field>
-        </div>
-
-
-        <div class="col-6 d-flex justify-content-Init">
-          <mat-form-field style="margin-left: 6vh; margin-top: 2vh; width: 40vh;" class="example-full-width">
-            <mat-label>Localização</mat-label>
-            <input matInput placeholder="Insira a localização">
+  <mat-card class="info-card">
+    <mat-card-content>
+      <div [formGroup]="mainForm">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-label>Cargo</mat-label>
+            <input
+              matInput
+              placeholder="Insira o cargo"
+              formControlName="cargo"
+            />
           </mat-form-field>
         </div>
 
-        <div class="col-6 d-flex justify-content-init">
-          <mat-form-field floatLabel="always" style="margin-top: 2vh; height: 12vh; width: 40vh;">
+        <div class="row">
+          <mat-form-field class="col-6">
+            <mat-label>Localização</mat-label>
+            <input
+              matInput
+              placeholder="Insira a localização"
+              formControlName="localizacao"
+            />
+          </mat-form-field>
+
+          <mat-form-field floatLabel="always" class="col-6">
             <mat-label>Remuneração</mat-label>
-            <input matInput type="number" class="example-right-align" placeholder="0" />
-            <span matTextPrefix>$&nbsp;</span>
+            <input
+              matInput
+              type="number"
+              class="example-right-align"
+              placeholder="0"
+              formControlName="remuneracao"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
             <span matTextSuffix>.00</span>
           </mat-form-field>
         </div>
 
-        <div class="col-6 d-flex justify-content-center" >
-          <mat-form-field style="margin-left: 6vh; margin-top: 2vh; width: 40vh;">
+        <div class="row">
+          <mat-form-field class="col-6">
             <mat-label>Requisitos</mat-label>
-            <textarea matInput placeholder="Descreva quais são os requisitos da vaga" style="max-height: 25vh; min-height: 12vh;"></textarea>
+            <textarea
+              matInput
+              style="max-height: 25vh"
+              placeholder="Descreva quais são os requisitos da vaga"
+              formControlName="requisitos"
+              rows="1"
+            ></textarea>
           </mat-form-field>
-        </div>
 
-        <div class="col-6 d-flex justify-content-init">
-          <mat-form-field style="margin-top: 5vh; height: 12vh; width: 40vh;">
+          <mat-form-field class="col-6">
             <mat-label>Prazo</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="prazo"
+              placeholder="DD/MM/AAAA"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
           </mat-form-field>
         </div>
 
-
-
-        <div class="col-12 d-flex justify-content-center">
-          <mat-form-field style="margin-top: 2vh; width: 85vh;" >
+        <div class="row">
+          <mat-form-field class="col-12">
             <mat-label>Descrição</mat-label>
-            <textarea matInput placeholder="Descreva a vaga" style="max-height: 25vh; min-height: 12vh;"></textarea>
+            <textarea
+              matInput
+              style="max-height: 15vh"
+              placeholder="Descreva a vaga"
+              formControlName="descricao"
+            ></textarea>
           </mat-form-field>
         </div>
-
-
       </div>
+    </mat-card-content>
 
-      <mat-card-content>
-        <br>
-        <div class="d-flex justify-content-end">
-          <button id="Entrar">
-            Enviar
-          </button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
+    <div
+      class="col-12 d-flex justify-content-end"
+      style="margin-block-end: 3vh; margin-left: -1vh"
+    >
+      <button id="Entrar" (click)="salvar()">Enviar</button>
+    </div>
+  </mat-card>
 </mat-card-content>

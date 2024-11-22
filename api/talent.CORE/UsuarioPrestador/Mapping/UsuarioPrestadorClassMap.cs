@@ -45,26 +45,23 @@ namespace talent.CORE.Mapping
                .IsRequired();
 
             builder.Property(x => x.DataNascimento)
-               .HasColumnName("DataNascimento");
+                .HasColumnName("DataNascimento");
 
+            builder.HasOne(x => x.Documento)
+                .WithMany(x => x.UsuarioPrestador)
+                .HasForeignKey(x => x.IdDocumento);
 
-          builder.HasOne(x => x.Documento)
-              .WithMany(x => x.UsuarioPrestador)
-              .HasForeignKey(x => x.IdDocumento);
+            builder.HasMany(x => x.FormularioPrestador)
+                .WithOne(x => x.UsuarioPrestador)
+                .HasForeignKey(x => x.IdUsuarioPrestador);
 
+            builder.HasMany(x => x.Feed)
+                .WithOne(x => x.UsuarioPrestador)
+                .HasForeignKey(x => x.IdUsuarioPrestador);
 
-          builder.HasMany(x => x.FormularioPrestador)
-              .WithOne(x => x.UsuarioPrestador)
-              .HasForeignKey(x => x.IdUsuarioPrestador);
-
-                          builder.HasMany(x => x.Feed)
-              .WithOne(x => x.UsuarioPrestador)
-              .HasForeignKey(x => x.IdUsuarioPrestador);
-
-                          builder.HasMany(x => x.Avaliacao)
-              .WithOne(x => x.UsuarioPrestador)
-              .HasForeignKey(x => x.IdPrestador);
-
-                        }
+            builder.HasMany(x => x.Avaliacao)
+                .WithOne(x => x.UsuarioPrestador)
+                .HasForeignKey(x => x.IdPrestador);
+        }
     }
 }

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Vaga } from './vaga.models';
-import { FormularioPrestador } from '../formularioPrestador/formularioPrestador.models';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +15,9 @@ export class VagaEndpoint {
 
   pegarTodos(): Observable<Vaga[]>{
     return this.http.get<Vaga[]>(`${environment.apiUrl}${this.baseUrl}?$expand=FormularioPrestador&$orderby=Criacao desc`)
+  }
+
+  cadastrarVaga(vaga: Vaga): Observable<Vaga>{
+    return this.http.post<Vaga>(`${environment.apiUrl}${this.baseUrl}`, vaga);
   }
 }

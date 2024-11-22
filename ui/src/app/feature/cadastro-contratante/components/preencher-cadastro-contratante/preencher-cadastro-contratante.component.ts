@@ -69,7 +69,7 @@ export class PreencherCadastroContratanteComponent implements OnInit {
       if (resposta){
         this.dialogRef.close(true);
       }
-    })
+    });
   }
 
   bodyBuilder(): Contratante {

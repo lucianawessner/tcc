@@ -55,13 +55,12 @@ export class VagaComponent implements OnInit {
     });
   }
 
-  FormularioVaga(FormularioVaga: any){
-    console.log(FormularioVaga)
+  abrirVaga(){
     const dialogRef = this.dialog.open(FormularioVagaComponent, {
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((resposta) => {
+      this.pegarTodos();
     });
   }
 }

@@ -9,6 +9,11 @@ namespace talent.DOMAIN.Models
 {
     public class Vaga
     {
+      public Vaga() 
+      { 
+         Criacao = DateTime.Now;
+      }
+
       public int Id { get; set; }
       public string Cargo { get; set; }
       public string Localizacao { get; set; }
