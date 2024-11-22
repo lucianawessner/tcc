@@ -17,6 +17,10 @@ export class VagaEndpoint {
     return this.http.get<Vaga[]>(`${environment.apiUrl}${this.baseUrl}?$expand=FormularioPrestador&$orderby=Criacao desc`)
   }
 
+  pegarPorContratante(idUsuarioContratante: number): Observable<Vaga[]>{
+    return this.http.get<Vaga[]>(`${environment.apiUrl}${this.baseUrl}?$filter=IdUsuarioContratante eq ${idUsuarioContratante}&$expand=FormularioPrestador&$orderby=Criacao desc`)
+  }
+
   cadastrarVaga(vaga: Vaga): Observable<Vaga>{
     return this.http.post<Vaga>(`${environment.apiUrl}${this.baseUrl}`, vaga);
   }

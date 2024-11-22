@@ -9,6 +9,9 @@ import { Subject, takeUntil } from 'rxjs';
 import { Vaga } from '../../domain/vaga/vaga.models';
 import { DatePipe } from '@angular/common';
 import { FormularioVagaComponent } from './components/formulario-vaga/formulario-vaga.component';
+import { UsuarioDto } from '../../domain/login/usuario.dto';
+import { CredentialsService } from '../login/service/credentials.service';
+import { CandidatosDialogComponent } from './components/candidatos-dialog/candidatos-dialog.component';
 
 @Component({
   selector: 'app-vaga',
@@ -29,15 +32,31 @@ export class VagaComponent implements OnInit {
 
   public readonly dialog = inject(MatDialog);
   private vagaEndpoint: VagaEndpoint = inject(VagaEndpoint);
+  private credentialsService: CredentialsService = inject(CredentialsService);
 
+  public usuario: UsuarioDto = new UsuarioDto(); 
   public vagas: Vaga[] = [];
 
   public ngOnInit(): void {
-    this.pegarTodos();
+    this.usuario = this.credentialsService.credentials!;
+
+    if(this.usuario.TipoUsuario === 1) {
+      this.pegarTodos();
+    } else {
+      this.pegarPorContratante();
+    }
   }
 
   pegarTodos() {
     this.vagaEndpoint.pegarTodos()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((dados) => {
+        this.vagas = dados;
+      });
+  }
+
+  pegarPorContratante() {
+    this.vagaEndpoint.pegarPorContratante(this.usuario.Id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((dados) => {
         this.vagas = dados;
@@ -59,8 +78,16 @@ export class VagaComponent implements OnInit {
     const dialogRef = this.dialog.open(FormularioVagaComponent, {
     });
 
-    dialogRef.afterClosed().subscribe((resposta) => {
-      this.pegarTodos();
+    dialogRef.afterClosed().subscribe(() => {
+      this.pegarPorContratante();
+    });
+  }
+
+  abrirCandidatos(){
+    const dialogRef = this.dialog.open(CandidatosDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
     });
   }
 }

@@ -1,45 +1,53 @@
 <mat-card-content>
-  <div class=" grid"></div>
-  <div id="main" class="d-flex justify-content-end" >
-    <div class="col-5">
-      <button id="Criarvaga" (click)="abrirVaga()">Criar vaga</button>
-     </div>
-    <input placeholder="Paravra-chave..." type="text" name="text" class="input" />
-    <input placeholder="Localização" type="text" name="text" class="localizacao" />
+  <div id="main" class="d-flex justify-content-end">
 
-    <div id="filter-icon"></div>
-    <div id="search-icon">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke-linejoin="round"
-        stroke-linecap="round"
-        height="24"
-        fill="none"
-        class="feather feather-search"
-      >
-        <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
-        <line
-          stroke="url(#searchl)"
-          y2="16.65"
-          y1="22"
-          x2="16.65"
-          x1="22"
-        ></line>
-        <defs>
-          <linearGradient gradientTransform="rotate(50)" id="search">
-            <stop stop-color="#f8e7f8" offset="0%"></stop>
-            <stop stop-color="#b6a9b7" offset="50%"></stop>
-          </linearGradient>
-          <linearGradient id="searchl">
-            <stop stop-color="#b6a9b7" offset="0%"></stop>
-            <stop stop-color="#837484" offset="50%"></stop>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
+    <!-- Se usuario for contratante -->
+    @if(usuario.TipoUsuario === 2) {
+      <div class="col-5">
+        <button id="Criarvaga" (click)="abrirVaga()">Criar vaga</button>
+      </div>
+    }
+    
+    <!-- Se usuario for prestador -->
+    @if(usuario.TipoUsuario === 1) {
+      <input placeholder="Paravra-chave..." type="text" name="text" class="input" />
+      <input placeholder="Localização" type="text" name="text" class="localizacao" />
+  
+      <div id="filter-icon"></div>
+      <div id="search-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          height="24"
+          fill="none"
+          class="feather feather-search"
+        >
+          <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
+          <line
+            stroke="url(#searchl)"
+            y2="16.65"
+            y1="22"
+            x2="16.65"
+            x1="22"
+          ></line>
+          <defs>
+            <linearGradient gradientTransform="rotate(50)" id="search">
+              <stop stop-color="#f8e7f8" offset="0%"></stop>
+              <stop stop-color="#b6a9b7" offset="50%"></stop>
+            </linearGradient>
+            <linearGradient id="searchl">
+              <stop stop-color="#b6a9b7" offset="0%"></stop>
+              <stop stop-color="#837484" offset="50%"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    }
+    
  </div>
 </mat-card-content>
 
@@ -48,25 +56,33 @@
 <mat-card style="height: 81vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
     @for(vaga of vagas; track vaga) {
-    <div class="row job-card">
-      <div class="col-9">
-        <h2 class="job-title">Cargo: {{vaga.Cargo}}</h2>
+      <div class="row job-card">
+        <div class="col-9">
+          <h2 class="job-title">Cargo: {{vaga.Cargo}}</h2>
+        </div>
+        <div class="col-3">
+          <p class="job-deadline">Prazo de inscrição: {{vaga.Prazo | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="col-12">
+          <p class="job-location">Localização: {{vaga.Localizacao}}</p>
+        </div>
+        <div class="col-6">
+          <p class="job-close">Remuneração: R$ {{vaga.Remuneracao}}</p>
+        </div>
+          @if(usuario.TipoUsuario === 1) {
+            <div class="col-6">
+              <button id="Entrar" (click)="abrirInformacoes(vaga)">
+                Mais Informações
+              </button>
+            </div>
+          } @else {
+            <div class="col-6">
+              <button id="Entrar" (click)="abrirCandidatos()">
+                Ver candidatos
+              </button>
+            </div>
+          }
       </div>
-      <div class="col-3">
-        <p class="job-deadline">Prazo de inscrição: {{vaga.Prazo | date: 'dd/MM/yyyy'}}</p>
-      </div>
-      <div class="col-12">
-        <p class="job-location">Localização: {{vaga.Localizacao}}</p>
-      </div>
-      <div class="col-6">
-        <p class="job-close">Remuneração: R$ {{vaga.Remuneracao}}</p>
-      </div>
-      <div class="col-6">
-        <button id="Entrar" (click)="abrirInformacoes(vaga)">
-          Mais Informações
-        </button>
-      </div>
-    </div>
     }
   </mat-card-content>
 </mat-card>
