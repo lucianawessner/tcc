@@ -7,6 +7,12 @@
   ">
 
   <div class="row">
+    @if(candidatos.length === 0) {
+      <div class="d-flex justify-content-center">
+        <span>Nenhum candidato encontrado, aguarde até as pessoas começarem a se candidatar.</span>
+      </div>
+    }
+
     <mat-accordion class="example-headers-align" multi>
     @for(candidato of candidatos; track candidato) { 
         <mat-expansion-panel (opened)="visualizarVaga(candidato)">

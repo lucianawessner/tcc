@@ -20,4 +20,8 @@ export class FormularioPrestadorEndpoint {
   pegarUsuarioPorVaga(idUsuarioPrestador: number, idVaga: number): Observable<FormularioPrestador[]>{
     return this.http.get<FormularioPrestador[]>(`${environment.apiUrl}${this.baseUrl}?$filter=IdUsuarioPrestador eq ${idUsuarioPrestador} and IdVaga eq ${idVaga}`)
   }
+
+  pegarMinhasVagas(idUsuarioPrestador: number): Observable<any>{
+    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=IdUsuarioPrestador eq ${idUsuarioPrestador}&$expand=Vaga, Progresso`)
+  }
 }

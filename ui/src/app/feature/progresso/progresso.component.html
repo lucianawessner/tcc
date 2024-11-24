@@ -1,58 +1,64 @@
-<mat-card style="height: 92.5vh;border-radius: 40px 40px 40px 40px;">
+<mat-card style="height: 92.5vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
-    @for(publicacao of publicacoes; track publicacao) {
-      <mat-card class="mt-1">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>
-            {{publicacao.usuario}}
-          </mat-card-title>
+    @for(vaga of vagas; track vaga) {
+    <mat-card class="mt-1">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          {{ vaga.Cargo }}
+        </mat-card-title>
 
-          <div mat-cad class="col-7" tyle="background-color: antiquewhite;">
-            <button id="Entrar" (click)="abrirInformacoes(publicacao)">
-              Avaliação
-            </button>
+        <div mat-cad class="col-7" tyle="background-color: antiquewhite;">
+          <button id="Entrar" (click)="abrirInformacoes()">Avaliação</button>
+        </div>
+      </mat-card-header>
 
-          </div>
-        </mat-card-header>
-
-        <mat-card-content>
-
-          <div class="d-flex justify-content-center">
-            <div class="mdl-card mdl-shadow--2dp">
-
-              <div class="mdl-card__supporting-text">
-
-                <div class="mdl-stepper-horizontal-alternative">
-                  <div class="mdl-stepper-step active-step step-done">
-                    <div class="mdl-stepper-circle"><span>1</span></div>
-                    <div class="mdl-stepper-title">Candidatura Visualizada</div>
-                    <div class="mdl-stepper-optional">Seu perfil foi analisado.</div>
-                    <div class="mdl-stepper-bar-left"></div>
-                    <div class="mdl-stepper-bar-right"></div>
+      <mat-card-content>
+        <div class="d-flex justify-content-center">
+          <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__supporting-text">
+              <div class="mdl-stepper-horizontal-alternative">
+                <div class="mdl-stepper-step active-step step-done">
+                  <div class="mdl-stepper-circle"><span>1</span></div>
+                  @if(vaga.Progresso.Visualizacao){
+                  <div class="mdl-stepper-title">Candidatura Visualizada</div>
+                  <div class="mdl-stepper-optional">
+                    Seu perfil foi analisado.
                   </div>
-                  <div class="mdl-stepper-step active-step editable-step">
-                    <div class="mdl-stepper-circle"><span>2</span></div>
-                    <div class="mdl-stepper-title">Aceitação ou Rejeição</div>
-                    <div class="mdl-stepper-optional">Sua candidatura foi avaliada: você foi aceito(a) ou rejeitado(a).</div>
-                    <div class="mdl-stepper-bar-left"></div>
-                    <div class="mdl-stepper-bar-right"></div>
+                  } @else {
+                  <div class="mdl-stepper-title">Candidatura em aguardo</div>
+                  <div class="mdl-stepper-optional">
+                    Aguardando seu perfil ser analisado.
                   </div>
-                  <div class="mdl-stepper-step active-step">
-                    <div class="mdl-stepper-circle"><span>3</span></div>
-                    <div class="mdl-stepper-title">Contato Estabelecido</div>
-                    <div class="mdl-stepper-optional">O empregador entrara em contato para mais detalhes.</div>
-                    <div class="mdl-stepper-bar-left"></div>
-                    <div class="mdl-stepper-bar-right"></div>
-                  </div>
+                  }
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
                 </div>
-
+                <div class="mdl-stepper-step active-step editable-step">
+                  <div class="mdl-stepper-circle"><span>2</span></div>
+                  <div class="mdl-stepper-title">Aceitação ou Rejeição</div>
+                  <div class="mdl-stepper-optional">
+                    Sua candidatura foi avaliada: você foi aceito(a) ou
+                    rejeitado(a).
+                  </div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div class="mdl-stepper-step active-step">
+                  <div class="mdl-stepper-circle"><span>3</span></div>
+                  <div class="mdl-stepper-title">Contato Estabelecido</div>
+                  <div class="mdl-stepper-optional">
+                    O empregador entrara em contato para mais detalhes.
+                  </div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
               </div>
-
             </div>
           </div>
-        </mat-card-content>
-
-      </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
     }
-
+  </mat-card-content>
+</mat-card>
