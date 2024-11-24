@@ -1,11 +1,6 @@
-using talent.DOMAIN.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using talent.DOMAIN.Models;
 
 namespace talent.CORE.Mapping
 {
@@ -15,7 +10,7 @@ namespace talent.CORE.Mapping
         {
             builder.ToTable("Vaga", "dbo");
 
-            builder.HasKey(x => new {x.Id});
+            builder.HasKey(x => new { x.Id });
 
             builder.Property(x => x.Cargo)
                .HasColumnName("Cargo")
@@ -51,16 +46,13 @@ namespace talent.CORE.Mapping
             builder.Property(x => x.Fechamento)
                .HasColumnName("Fechamento");
 
+            builder.HasOne(x => x.UsuarioContratante)
+                .WithMany(x => x.Vaga)
+                .HasForeignKey(x => x.IdUsuarioContratante);
 
-          builder.HasOne(x => x.UsuarioContratante)
-              .WithMany(x => x.Vaga)
-              .HasForeignKey(x => x.IdUsuarioContratante);
-
-
-          builder.HasMany(x => x.FormularioPrestador)
-              .WithOne(x => x.Vaga)
-              .HasForeignKey(x => x.IdVaga);
-
-                        }
+            builder.HasMany(x => x.FormularioPrestador)
+                .WithOne(x => x.Vaga)
+                .HasForeignKey(x => x.IdVaga);
+        }
     }
 }

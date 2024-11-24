@@ -8,20 +8,72 @@
 
   <div class="row">
     <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Nome do candidato</mat-panel-title>
-          <mat-panel-description>
-            Breve descricao do candidato
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
+    @for(candidato of candidatos; track candidato) { 
+        <mat-expansion-panel (opened)="visualizarVaga(candidato)">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{candidato.Usuario}}</mat-panel-title>
+            <mat-panel-description>
+              {{candidato.Descricao}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
+          <mat-card-content>
 
-      
+            <div class="d-flex justify-content-center">
+              <div class="mdl-card mdl-shadow--2dp">
+  
+                <div class="mdl-card__supporting-text">
+  
+                  <div class="mdl-stepper-horizontal-alternative">
+                    <div class="mdl-stepper-step active-step step-done">
+                      <div class="mdl-stepper-circle"><span>1</span></div>
+                      <div class="mdl-stepper-title">Candidatura Visualizada</div>
+                      <div class="mdl-stepper-optional">Perfil do candidato visualizado.</div>
+                      <div class="mdl-stepper-bar-left"></div>
+                      <div class="mdl-stepper-bar-right"></div>
+                    </div>
 
+                    <div class="mdl-stepper-step"
+                    [ngClass]=" 
+                    { 
+                      'step-done': candidato.Progresso.Aceito !== null,
+                      'active-step': !candidato.Progresso.Contato,
+                    }"
+                    style="cursor: pointer;" (click)="abrirDialogDeDecisao(candidato)">
+                      <div class="mdl-stepper-circle"><span>2</span></div>
+                      <div class="mdl-stepper-title">Aceitação ou Rejeição</div>
+                      @if(candidato.Progresso.Aceito === null) {
+                        <div class="mdl-stepper-optional">Pendente de análise.</div>
+                      } @else if(candidato.Progresso.Aceito === true) {
+                        <div class="mdl-stepper-optional">Candidato aceito, aguarde a confirmação para continuar o progresso.</div>
+                      } @else { 
+                        <div class="mdl-stepper-optional">Candidato rejeitado, você ainda pode aceitar caso desejado.</div>
+                      }
+                      <div class="mdl-stepper-bar-left"></div>
+                      <div class="mdl-stepper-bar-right"></div>
+                    </div>
+                    
+                    <div class="mdl-stepper-step" [ngClass]=" 
+                    { 
+                      'active-step': candidato.Progresso.Aceito === true,
+                    }" 
+                    style="cursor: pointer;">
+                      <div class="mdl-stepper-circle"><span>3</span></div>
+                      <div class="mdl-stepper-title">Estabelecer Contato</div>
+                      <div class="mdl-stepper-optional">Entre em contato com o candidato.</div>
+                      <div class="mdl-stepper-bar-left"></div>
+                      <div class="mdl-stepper-bar-right"></div>
+                    </div>
+                  </div>
+  
+                </div>
+  
+              </div>
+            </div>
+          </mat-card-content>
 
-
+        </mat-expansion-panel>
+      }
     </mat-accordion>
   </div>
 

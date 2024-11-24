@@ -83,9 +83,11 @@ export class VagaComponent implements OnInit {
     });
   }
 
-  abrirCandidatos(){
+  abrirCandidatos(idVaga: number){
     const dialogRef = this.dialog.open(CandidatosDialogComponent, {
     });
+
+    dialogRef.componentInstance.IdVaga = idVaga;
 
     dialogRef.afterClosed().subscribe(() => {
     });

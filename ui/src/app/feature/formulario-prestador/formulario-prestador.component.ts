@@ -12,6 +12,8 @@ import { FormularioPrestadorEndpoint } from '../../domain/formularioPrestador/fo
 import { FormularioPrestador } from '../../domain/formularioPrestador/formularioPrestador.models';
 import { Subject, takeUntil } from 'rxjs';
 import Swal from 'sweetalert2';
+import { ProgressoEndpoint } from '../../domain/progresso/progresso.endpoint';
+import { Progresso } from '../../domain/progresso/progresso.models';
 
 @Component({
   selector: 'app-formulario-prestador',
@@ -35,6 +37,7 @@ export class FormularioPrestadorComponent implements OnInit {
   private credentialsService: CredentialsService = inject(CredentialsService);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private formularioPrestadorEndpoint: FormularioPrestadorEndpoint = inject(FormularioPrestadorEndpoint);
+  private progressoEndpoint: ProgressoEndpoint = inject(ProgressoEndpoint);
   public router = inject(Router);
 
   public mainForm: FormGroup = new FormGroup({});
@@ -62,15 +65,24 @@ export class FormularioPrestadorComponent implements OnInit {
       if (resposta) {
         Swal.fire({
           title: 'Atenção!',
-          text: 'Candidatura realizada com sucesso',
+          text: 'Candidatura realizada com sucesso, acompanhe pela aba de progresso',
           icon: 'success',
           allowOutsideClick: false,
           allowEscapeKey: false,
         });
 
-        this.router.navigate([`home/vagas`])
+        this.criarProgresso(resposta);
+
+        this.router.navigate([`home/vagas`]);
       }
     })
+  }
+
+  public criarProgresso(formularioPrestador: FormularioPrestador) {
+    const progresso = new Progresso()
+    progresso.IdFormularioPrestador = formularioPrestador.Id;
+
+    this.progressoEndpoint.criarProgresso(progresso).pipe(takeUntil(this.destroy$));
   }
 
   updateErrorMessage() {

@@ -1,11 +1,6 @@
 using talent.DOMAIN.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace talent.CORE.Mapping
 {
@@ -23,7 +18,7 @@ namespace talent.CORE.Mapping
 
             builder.Property(x => x.Aceito)
                .HasColumnName("Aceito")
-               .IsRequired();
+               .IsRequired(false);
 
             builder.Property(x => x.Contato)
                .HasColumnName("Contato")
