@@ -11,11 +11,14 @@ import { UsuarioDto } from '../../domain/login/usuario.dto';
 import { Subject, takeUntil } from 'rxjs';
 import { Vaga, VagaDto } from '../../domain/vaga/vaga.models';
 import { FormularioPrestador } from '../../domain/formularioPrestador/formularioPrestador.models';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-progresso',
   standalone: true,
-  imports: [MatCardModule,
+  imports: [
+    CommonModule,
+    MatCardModule,
     MatMenuModule,
     SidebarComponent,
     MatDialogModule
@@ -24,21 +27,21 @@ import { FormularioPrestador } from '../../domain/formularioPrestador/formulario
   styleUrl: './progresso.component.scss'
 })
 export class ProgressoComponent implements OnInit {
-  
+
   private readonly destroy$ : Subject<any> = new Subject();
-  
+
   private dialog = inject(MatDialog);
   private credentialsService: CredentialsService = inject(CredentialsService);
   private formularioPrestadorEndpoint: FormularioPrestadorEndpoint = inject(FormularioPrestadorEndpoint);
-    
-  public usuario: UsuarioDto = new UsuarioDto(); 
+
+  public usuario: UsuarioDto = new UsuarioDto();
   public vagas: VagaDto[] = [];
 
   ngOnInit(): void {
     this.usuario = this.credentialsService.credentials!;
     this.pegarMinhasVagas();
   }
-  
+
   public pegarMinhasVagas(){
     this.formularioPrestadorEndpoint.pegarMinhasVagas(this.usuario.Id)
     .pipe(takeUntil(this.destroy$))
@@ -46,7 +49,7 @@ export class ProgressoComponent implements OnInit {
       const vaga = dados.value as FormularioPrestador[];
 
       this.vagas = vaga.map(x => {
-        return new VagaDto 
+        return new VagaDto
         ({
           Cargo: x.Vaga.Cargo,
           Localizacao: x.Vaga.Descricao,
@@ -61,9 +64,11 @@ export class ProgressoComponent implements OnInit {
     })
   }
 
-  abrirInformacoes(){
+  avaliacao(vaga: VagaDto){
     const dialogRef = this.dialog.open(AvaliacaoContratanteComponent, {
     });
+
+    dialogRef.componentInstance.vaga = vaga;
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');

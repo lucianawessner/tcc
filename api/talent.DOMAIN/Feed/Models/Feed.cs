@@ -9,6 +9,11 @@ namespace talent.DOMAIN.Models
 {
     public class Feed
     {
+      public Feed() 
+      {
+        DataCriacao = DateTime.Now;
+      }
+
       public int Id { get; set; }
       public string Texto { get; set; }
       public int? IdDocumento { get; set; }

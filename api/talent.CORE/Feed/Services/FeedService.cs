@@ -9,7 +9,7 @@ namespace talent.CORE.Services
 {
     public class FeedService : BaseService<Feed, IFeedRepository>, IFeedService
     {
-        private readonly string _diretorioFotos = Path.Combine(@"C:\Dev\pi\tcc\ui\src\assets");
+        private readonly string _diretorioFotos = Path.Combine(@"C:\Dev\pi\ui\src\assets");
         private readonly IUsuarioPrestadorService usuarioPrestadorService;
         private readonly IFeedRepository repository;
 

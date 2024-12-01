@@ -41,7 +41,7 @@ export class FormularioPrestadorComponent implements OnInit {
   public router = inject(Router);
 
   public mainForm: FormGroup = new FormGroup({});
-  public usuario: UsuarioDto = new UsuarioDto(); 
+  public usuario: UsuarioDto = new UsuarioDto();
   public id: number = 0;
 
   errorMessage = signal('');
@@ -63,15 +63,17 @@ export class FormularioPrestadorComponent implements OnInit {
     .pipe(takeUntil(this.destroy$))
     .subscribe(resposta => {
       if (resposta) {
-        Swal.fire({
-          title: 'Atenção!',
-          text: 'Candidatura realizada com sucesso, acompanhe pela aba de progresso',
-          icon: 'success',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-        });
-
-        this.criarProgresso(resposta);
+        const progresso = new Progresso()
+        progresso.IdFormularioPrestador = resposta.Id;
+        this.progressoEndpoint.criarProgresso(progresso).subscribe(res => {
+          Swal.fire({
+            title: 'Atenção!',
+            text: 'Candidatura realizada com sucesso, acompanhe pela aba de progresso',
+            icon: 'success',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+          });
+        })
 
         this.router.navigate([`home/vagas`]);
       }
@@ -81,7 +83,7 @@ export class FormularioPrestadorComponent implements OnInit {
   public criarProgresso(formularioPrestador: FormularioPrestador) {
     const progresso = new Progresso()
     progresso.IdFormularioPrestador = formularioPrestador.Id;
-
+    console.log(progresso)
     this.progressoEndpoint.criarProgresso(progresso).pipe(takeUntil(this.destroy$));
   }
 

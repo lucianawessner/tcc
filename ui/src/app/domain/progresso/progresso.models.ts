@@ -2,7 +2,7 @@ import { BaseEntity } from "../base-entity.models";
 import { FormularioPrestador } from "../formularioPrestador/formularioPrestador.models";
 
 export class Progresso extends BaseEntity {
-  Visualizacao: boolean = false;
+  Visualizado: boolean = false;
   Aceito: boolean | null = null;
   Contato: boolean = false;
   IdFormularioPrestador: number = 0;

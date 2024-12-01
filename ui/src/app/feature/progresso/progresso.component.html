@@ -8,8 +8,8 @@
           {{ vaga.Cargo }}
         </mat-card-title>
 
-        <div mat-cad class="col-7" tyle="background-color: antiquewhite;">
-          <button id="Entrar" (click)="abrirInformacoes()">Avaliação</button>
+        <div mat-cad class="col-7">
+          <button id="Entrar" (click)="avaliacao(vaga)">Avaliação</button>
         </div>
       </mat-card-header>
 
@@ -18,37 +18,66 @@
           <div class="mdl-card mdl-shadow--2dp">
             <div class="mdl-card__supporting-text">
               <div class="mdl-stepper-horizontal-alternative">
-                <div class="mdl-stepper-step active-step step-done">
-                  <div class="mdl-stepper-circle"><span>1</span></div>
-                  @if(vaga.Progresso.Visualizacao){
-                  <div class="mdl-stepper-title">Candidatura Visualizada</div>
-                  <div class="mdl-stepper-optional">
-                    Seu perfil foi analisado.
+                <div class="mdl-stepper-step"
+                [ngClass]="
+                {
+                  'step-done': vaga.Progresso.Visualizado,
+                  'active-step': !vaga.Progresso.Contato
+                }">
+                  <div class="mdl-stepper-circle">
+                    <span>1</span>
                   </div>
-                  } @else {
-                  <div class="mdl-stepper-title">Candidatura em aguardo</div>
-                  <div class="mdl-stepper-optional">
-                    Aguardando seu perfil ser analisado.
-                  </div>
+                  @if(vaga.Progresso.Visualizado){
+                    <div class="mdl-stepper-title">
+                      Candidatura Visualizada
+                    </div>
+                    <div class="mdl-stepper-optional">
+                      Seu perfil foi analisado.
+                    </div>
+                  }
+                  @else {
+                    <div class="mdl-stepper-title">
+                      Candidatura enviada
+                    </div>
+                    <div class="mdl-stepper-optional">
+                      Aguardando seu perfil ser analisado.
+                    </div>
                   }
                   <div class="mdl-stepper-bar-left"></div>
                   <div class="mdl-stepper-bar-right"></div>
                 </div>
-                <div class="mdl-stepper-step active-step editable-step">
+                <div class="mdl-stepper-step"
+                [ngClass]="
+                {
+                  'step-done': vaga.Progresso.Aceito !== null,
+                  'active-step': vaga.Progresso.Visualizado,
+                }">
                   <div class="mdl-stepper-circle"><span>2</span></div>
                   <div class="mdl-stepper-title">Aceitação ou Rejeição</div>
-                  <div class="mdl-stepper-optional">
-                    Sua candidatura foi avaliada: você foi aceito(a) ou
-                    rejeitado(a).
-                  </div>
+                  @if(vaga.Progresso === undefined || vaga.Progresso.Aceito === null) {
+                    <div class="mdl-stepper-optional">Pendente de análise.</div>
+                  }
+                  @else if(vaga.Progresso.Aceito === true) {
+                    <div class="mdl-stepper-optional">
+                      Candidatura aceita, agora o contratante entrara em contato com você.
+                    </div>
+                  }
+                  @else {
+                    <div class="mdl-stepper-optional">
+                      Candidatura rejeitada, aguarde mais alguns dias pois o contratante pode mudar de ideia.
+                    </div>
+                  }
                   <div class="mdl-stepper-bar-left"></div>
                   <div class="mdl-stepper-bar-right"></div>
                 </div>
-                <div class="mdl-stepper-step active-step">
+                <div class="mdl-stepper-step"  [ngClass]="
+                {
+                  'active-step': vaga.Progresso.Aceito === true,
+                }">
                   <div class="mdl-stepper-circle"><span>3</span></div>
                   <div class="mdl-stepper-title">Contato Estabelecido</div>
                   <div class="mdl-stepper-optional">
-                    O empregador entrara em contato para mais detalhes.
+                    Após o contato ser feito, você pode avaliar o contratante no botão acima.
                   </div>
                   <div class="mdl-stepper-bar-left"></div>
                   <div class="mdl-stepper-bar-right"></div>
