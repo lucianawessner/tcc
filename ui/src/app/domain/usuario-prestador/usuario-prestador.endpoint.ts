@@ -16,4 +16,12 @@ export class UsuarioPrestadorEndpoint {
   cadastrarPrestador(prestador: Prestador): Observable<Prestador>{
     return this.http.post<Prestador>(`${environment.apiUrl}${this.baseUrl}`, prestador);
   }
+
+  pegarUsuarioPorId(id: number): Observable<any>{
+    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=Id eq ${id}`)
+  }
+
+  atualizarPrestador(prestador: Prestador): Observable<Prestador>{
+    return this.http.put<Prestador>(`${environment.apiUrl}${this.baseUrl}`, prestador);
+  }
 }

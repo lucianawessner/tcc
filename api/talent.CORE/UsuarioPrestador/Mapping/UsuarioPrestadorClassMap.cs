@@ -20,6 +20,10 @@ namespace talent.CORE.Mapping
             builder.Property(x => x.Usuario)
                .HasColumnName("Usuario")
                .IsRequired();
+            
+            builder.Property(x => x.Nome)
+               .HasColumnName("Nome")
+               .IsRequired(false);
 
             builder.Property(x => x.Senha)
                .HasColumnName("Senha")

@@ -1,4 +1,4 @@
-import  {ChangeDetectionStrategy, Component, signal, ViewEncapsulation } from '@angular/core';
+import  {ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -6,11 +6,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { merge } from 'rxjs';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
+import { UsuarioDto } from '../../domain/login/usuario.dto';
+import { CredentialsService } from '../login/service/credentials.service';
+import { JsonPipe } from '@angular/common';
+import { UsuarioPrestadorEndpoint } from '../../domain/usuario-prestador/usuario-prestador.endpoint';
+import { Subject, takeUntil } from 'rxjs';
+import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usuario-contrante.endpoint';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -25,7 +30,8 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    JsonPipe
   ],
   templateUrl: './editar-perfil.component.html',
   styleUrl: './editar-perfil.component.scss',
@@ -34,24 +40,115 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
   providers: [provideNativeDateAdapter()],
 })
 export class EditarPerfilComponent {
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
 
-  errorMessage = signal('');
+  private readonly destroy$ : Subject<any> = new Subject();
 
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+  public mainForm: FormGroup = new FormGroup({});
+  public usuario: UsuarioDto = new UsuarioDto();
+
+  private credentialsService: CredentialsService = inject(CredentialsService);
+  private prestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
+  private contratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
+
+  public entidade: any;
+
+  public ngOnInit(): void {
+    this.criarFormulario();
+    this.usuario = this.credentialsService.credentials!;
+
+    if(this.usuario.TipoUsuario === 1) {
+      this.buscarPrestador(this.usuario.Id);
+    } else {
+      this.buscarContratante(this.usuario.Id);
+    }
   }
 
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage.set('You must enter a value');
-    } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Not a valid email');
+  buscarPrestador(id: number) {
+    this.prestadorEndpoint.pegarUsuarioPorId(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((dados) => {
+      this.preencherFormulario(dados.value[0])
+    })
+  }
+
+  buscarContratante(id: number) {
+    this.contratanteEndpoint.pegarUsuarioPorId(id)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe((dados) => {
+      this.preencherFormulario(dados.value[0])
+    })
+  }
+
+  public salvar() {
+    if(this.usuario.TipoUsuario === 1) {
+      this.atualizarPrestador();
     } else {
-      this.errorMessage.set('');
+      this.atualizarContratante();
     }
+  }
+
+  public atualizarPrestador(){
+    this.prestadorEndpoint.atualizarPrestador(this.bodyBuilder())
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(resposta => {
+      if(resposta) {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Cadastro atualizado com sucesso',
+          icon: 'success',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      }
+    })
+  }
+
+  public atualizarContratante(){
+    this.contratanteEndpoint.atualizarContratante(this.bodyBuilder())
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(resposta => {
+      if(resposta) {
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Cadastro atualizado com sucesso',
+          icon: 'success',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        });
+      }
+    })
+  }
+
+  bodyBuilder() {
+    return {...this.mainForm.value}
+  }
+
+  public preencherFormulario(entity: any) {
+    this.mainForm.patchValue({
+      "id": entity.Id,
+      "email": entity.Email,
+      "senha": entity.Senha,
+      "usuario": entity.Usuario,
+      "nome": entity.Nome,
+      "cargo": entity.Cargo,
+      "localizacao": entity.Localizacao,
+      "dataNascimento": entity.DataNascimento,
+      "descricao": entity.Descricao,
+      "experiencia": entity.Experiencia
+    });
+  }
+
+  public criarFormulario() {
+    this.mainForm.addControl("id", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("email", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("senha", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("usuario", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("nome", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("cargo", new FormControl(null, [Validators.required]));
+    this.mainForm.addControl("localizacao", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("dataNascimento", new FormControl(null, []));
+    this.mainForm.addControl("descricao", new FormControl(null, []));
+    this.mainForm.addControl("experiencia", new FormControl(null, []));
   }
 
   hide = signal(true);

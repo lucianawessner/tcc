@@ -20,4 +20,12 @@ export class UsuarioContratanteEndpoint {
   cadastrarContratante(contratante: Contratante): Observable<Contratante>{
     return this.http.post<Contratante>(`${environment.apiUrl}${this.baseUrl}`, contratante);
   }
+
+  pegarUsuarioPorId(id: number): Observable<any>{
+    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=Id eq ${id}`)
+  }
+
+  atualizarContratante(contratante: Contratante): Observable<Contratante>{
+    return this.http.put<Contratante>(`${environment.apiUrl}${this.baseUrl}`, contratante);
+  }
 }
