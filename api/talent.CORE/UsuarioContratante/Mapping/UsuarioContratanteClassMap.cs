@@ -46,7 +46,12 @@ namespace talent.CORE.Mapping
 
             builder.Property(x => x.DataNascimento)
                .HasColumnName("DataNascimento");
-
+            
+            builder.Property(x => x.DataCriacao)
+               .HasColumnName("DataCriacao");
+            
+            builder.Property(x => x.Nome)
+               .HasColumnName("Nome");
 
           builder.HasOne(x => x.Documento)
               .WithMany(x => x.UsuarioContratante)

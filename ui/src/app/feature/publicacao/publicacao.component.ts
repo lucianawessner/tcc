@@ -4,7 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { FeedDto } from '../../domain/feed/feed.dto';
 import { FeedEndpoint } from '../../domain/feed/feed.endpoint';
 import { Subject, takeUntil } from 'rxjs';
-import { LoginService } from '../login/service/login.service';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { UsuarioDto } from '../../domain/login/usuario.dto';
 

@@ -9,6 +9,11 @@ namespace talent.DOMAIN.Models
 {
     public class UsuarioPrestador
     {
+      public UsuarioPrestador()
+      { 
+         DataCriacao = DateTime.Now;
+      }
+
       public int Id { get; set; }
       public string Usuario { get; set; }
       public string? Nome { get; set; }
@@ -20,6 +25,7 @@ namespace talent.DOMAIN.Models
       public int? IdDocumento { get; set; }
       public string Email { get; set; }
       public DateTime? DataNascimento { get; set; }
+      public DateTime? DataCriacao { get; set; }
       public Documento Documento { get; set; }
       public IList<FormularioPrestador> FormularioPrestador { get; set; }
       public IList<Feed> Feed { get; set; }
