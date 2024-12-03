@@ -18,7 +18,7 @@ namespace talent.API.Controllers.Base
         }
 
         [HttpGet]
-        [EnableQuery]
+        [EnableQuery(MaxExpansionDepth = 4)]
         public virtual IQueryable<T> Get()
         {
             return service.GetAllNoTracking();

@@ -79,6 +79,7 @@
                 <div class="mdl-stepper-step"  [ngClass]="
                 {
                   'active-step': vaga.Progresso.Aceito === true,
+                  'step-done': vaga.Avaliada && vaga.Progresso.Aceito === true
                 }">
                   <div class="mdl-stepper-circle"><span>3</span></div>
                   <div class="mdl-stepper-title">Contato Estabelecido</div>

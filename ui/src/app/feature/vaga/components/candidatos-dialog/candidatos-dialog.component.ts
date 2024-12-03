@@ -37,7 +37,7 @@ import { Progresso, ProgressoDto } from '../../../../domain/progresso/progresso.
 export class CandidatosDialogComponent implements OnInit {
 
   @Input() IdVaga: number = 0;
-  
+
   private readonly destroy$: Subject<any> = new Subject();
 
   private vagaEndpoint: VagaEndpoint = inject(VagaEndpoint);
@@ -45,7 +45,7 @@ export class CandidatosDialogComponent implements OnInit {
 
   public candidatos: PrestadorDto[] = [];
   public progresso: ProgressoDto = new ProgressoDto();
-  
+
   public ngOnInit(): void {
     this.pegarCandidatos();
   }
@@ -61,18 +61,19 @@ export class CandidatosDialogComponent implements OnInit {
           Descricao: x.UsuarioPrestador.Descricao,
           IdFormularioPrestador: x.Id,
           IdProgresso: x.Progresso[0].Id,
-          Progresso: x.Progresso[0]
+          Progresso: x.Progresso[0],
+          Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === dados.value[0].IdUsuarioContratante).length > 0
         });
-      });    
+      });
     });
   }
 
   public visualizarVaga(candidato: PrestadorDto) {
     this.progresso.Id = candidato.IdProgresso;
-    
+
     this.progressoEndpoint.atualizarVisualizacao(this.bodyBuilder())
     .pipe(takeUntil(this.destroy$))
-    .subscribe(dados => { 
+    .subscribe(dados => {
       console.log(dados)
     });
   }
@@ -82,7 +83,7 @@ export class CandidatosDialogComponent implements OnInit {
 
     this.progressoEndpoint.aceitar(this.bodyBuilder())
     .pipe(takeUntil(this.destroy$))
-    .subscribe(dados => { 
+    .subscribe(dados => {
       if(dados.Data !== null) {
         Swal.fire({
           title: 'Atenção',
@@ -102,7 +103,7 @@ export class CandidatosDialogComponent implements OnInit {
 
     this.progressoEndpoint.rejeitar(this.bodyBuilder())
     .pipe(takeUntil(this.destroy$))
-    .subscribe(dados => { 
+    .subscribe(dados => {
       if(dados.Data !== null) {
         Swal.fire({
           title: 'Atenção',

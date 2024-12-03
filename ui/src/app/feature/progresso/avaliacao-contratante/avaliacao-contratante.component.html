@@ -24,44 +24,14 @@
 
       <div class="col-12 d-flex justify-content-center">
         <div class="rating" [formGroup]="mainForm">
+
           <input
             type="radio"
-            id="estrela-1"
-            name="estrela-radio"
-            value="estrela-1"
-            formControlName="estrela1"
+            id="estrela-5"
+            value="true"
+            formControlName="estrela5"
           />
-          <label for="estrela-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                pathLength="360"
-                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-              ></path>
-            </svg>
-          </label>
-          <input
-            type="radio"
-            id="estrela-2"
-            name="estrela-radio"
-            value="estrela-1"
-            formControlName="estrela2"
-          />
-          <label for="estrela-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                pathLength="360"
-                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-              ></path>
-            </svg>
-          </label>
-          <input
-            type="radio"
-            id="estrela-3"
-            name="estrela-radio"
-            value="estrela-1"
-            formControlName="estrela3"
-          />
-          <label for="estrela-3">
+          <label for="estrela-5" (click)="avaliar(5)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 pathLength="360"
@@ -72,11 +42,10 @@
           <input
             type="radio"
             id="estrela-4"
-            name="estrela-radio"
-            value="estrela-1"
+            value="true"
             formControlName="estrela4"
           />
-          <label for="estrela-4">
+          <label for="estrela-4" (click)="avaliar(4)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 pathLength="360"
@@ -86,12 +55,39 @@
           </label>
           <input
             type="radio"
-            id="estrela-5"
-            name="estrela-radio"
-            value="estrela-1"
-            formControlName="estrela5"
+            id="estrela-3"
+            value="true"
+            formControlName="estrela3"
           />
-          <label for="estrela-5">
+          <label for="estrela-3" (click)="avaliar(3)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                pathLength="360"
+                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+              ></path>
+            </svg>
+          </label>
+          <input
+            type="radio"
+            id="estrela-2"
+            value="true"
+            formControlName="estrela2"
+          />
+          <label for="estrela-2" (click)="avaliar(2)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                pathLength="360"
+                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+              ></path>
+            </svg>
+          </label>
+          <input
+            type="radio"
+            id="estrela-1"
+            value="true"
+            formControlName="estrela1"
+          />
+          <label for="estrela-1" (click)="avaliar(1)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 pathLength="360"
@@ -100,13 +96,14 @@
             </svg>
           </label>
         </div>
+
       </div>
 
       <div
         class="col-12 d-flex justify-content-center"
         style="margin-top: 1vh; margin-block-end: 3vh; left: 2vh"
       >
-        <button id="Enviar">Enviar</button>
+        <button id="Enviar" (click)="enviar()">Enviar</button>
       </div>
     </div>
   </mat-card>

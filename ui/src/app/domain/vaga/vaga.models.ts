@@ -25,7 +25,9 @@ export class VagaDto {
   Requisitos: string | null = null;
   Prazo: Date = new Date();
   Fechamento: Date | null = null;
+  IdUsuarioContratante: number  = 0;
   Progresso: Progresso = new Progresso();
+  Avaliada: boolean = false;
 
   constructor(init?: Partial<VagaDto>) {
     Object.assign(this, init);

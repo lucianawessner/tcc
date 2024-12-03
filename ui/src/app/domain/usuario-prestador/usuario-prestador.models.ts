@@ -1,6 +1,7 @@
 import { Documento } from './../documento/documento.models';
 import { BaseEntity } from "../base-entity.models";
 import { Progresso } from '../progresso/progresso.models';
+import { Avaliacao } from '../avaliacao/avaliacao.models';
 
 export class Prestador extends BaseEntity {
     Usuario: string = '';
@@ -12,6 +13,7 @@ export class Prestador extends BaseEntity {
     Experiencia: string | null = null;
     IdDocumento: number | null = null;
     Documento: Documento | null = null;
+    Avaliacao: Avaliacao[] = [];
 }
 
 export class PrestadorDto {
@@ -20,6 +22,7 @@ export class PrestadorDto {
     IdFormularioPrestador: number = 0;
     IdProgresso: number = 0;
     Progresso: Progresso = new Progresso();
+    Avaliada: boolean = false;
 
     constructor(init?: Partial<PrestadorDto>) {
         Object.assign(this, init);

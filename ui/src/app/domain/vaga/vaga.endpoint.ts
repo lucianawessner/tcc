@@ -26,6 +26,6 @@ export class VagaEndpoint {
   }
 
   pegarCandidatoPorVaga(idVaga: number): Observable<any>{
-    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=Id eq ${idVaga}&$expand=FormularioPrestador($expand=UsuarioPrestador, Progresso)`)
+    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=Id eq ${idVaga}&$expand=FormularioPrestador($expand=UsuarioPrestador($expand=Avaliacao), Progresso)`)
   }
 }

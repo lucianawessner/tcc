@@ -61,6 +61,7 @@
 
                     <div class="mdl-stepper-step" [ngClass]="
                     {
+                      'step-done': candidato.Avaliada,
                       'active-step': candidato.Progresso.Aceito === true,
                     }"
                     style="cursor: pointer;">

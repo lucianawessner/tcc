@@ -67,6 +67,12 @@
 
 <mat-card style="height: 81vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
+    @if(filteredVagas.length === 0) {
+      <div class="d-flex justify-content-center">
+        <span>Nenhuma vaga encontrada.</span>
+      </div>
+    }
+
     @for(vaga of filteredVagas; track vaga) {
     <div class="row job-card">
       <div class="col-9">

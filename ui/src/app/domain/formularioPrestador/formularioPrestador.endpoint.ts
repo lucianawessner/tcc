@@ -12,7 +12,7 @@ export class FormularioPrestadorEndpoint {
   baseUrl: string = '/FormularioPrestador';
 
   constructor(private http: HttpClient) { }
-  
+
   candidatarParaVaga(formularioPrestador: FormularioPrestador): Observable<FormularioPrestador>{
     return this.http.post<FormularioPrestador>(`${environment.apiUrl}${this.baseUrl}`, formularioPrestador);
   }
@@ -22,6 +22,6 @@ export class FormularioPrestadorEndpoint {
   }
 
   pegarMinhasVagas(idUsuarioPrestador: number): Observable<any>{
-    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=IdUsuarioPrestador eq ${idUsuarioPrestador}&$expand=Vaga, Progresso`)
+    return this.http.get<any>(`http://localhost:5001/odata${this.baseUrl}?$filter=IdUsuarioPrestador eq ${idUsuarioPrestador}&$expand=Vaga, Progresso, UsuarioPrestador($expand=Avaliacao)`)
   }
 }

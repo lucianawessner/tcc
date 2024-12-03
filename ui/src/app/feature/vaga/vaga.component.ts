@@ -102,7 +102,7 @@ export class VagaComponent implements OnInit {
       .pegarPorContratante(this.usuario.Id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((dados) => {
-        this.vagas = dados;
+        this.filteredVagas = dados;
       });
   }
 
