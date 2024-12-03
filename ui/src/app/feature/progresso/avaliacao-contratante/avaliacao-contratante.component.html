@@ -1,28 +1,35 @@
-<mat-card-content style="width: 100vh;">
+<mat-card-content style="width: 100vh">
   <mat-card>
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <h4>Avalie a vaga de {{ vaga.Cargo }}</h4>
       </div>
 
-      <div class="col-12 d-flex justify-content-center" style="margin-top: 2vh;">
+      <div class="col-12 d-flex justify-content-center" style="margin-top: 2vh">
+        <h6>
+          <p id="Descricao"></p>
 
-        <h6><p id="Descricao">
+          <p id="Descricao">
+            De 1 a 5 estrelas <strong>(5 para muito bom e 1 para ruim).</strong>
+          </p>
 
-        <p id="Descricao">De 1 a 5 estrelas <strong>(5 para muito bom e 1 para ruim).</strong></p>
+          <p id="Descricao">
+            Sua opinião é importante para ajudar as próximas pessoas a terem uma
+            experiência ainda melhor.
+          </p>
 
-        <p id="Descricao">Sua opinião é importante para ajudar as próximas pessoas a terem uma experiência ainda melhor.</p>
-
-        <p id="Descricao">Obrigada!</p></h6>
+          <p id="Descricao">Obrigada!</p>
+        </h6>
       </div>
 
       <div class="col-12 d-flex justify-content-center">
-        <div class="rating">
+        <div class="rating" [formGroup]="mainForm">
           <input
             type="radio"
             id="estrela-1"
             name="estrela-radio"
             value="estrela-1"
+            formControlName="estrela1"
           />
           <label for="estrela-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -37,6 +44,7 @@
             id="estrela-2"
             name="estrela-radio"
             value="estrela-1"
+            formControlName="estrela2"
           />
           <label for="estrela-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -51,6 +59,7 @@
             id="estrela-3"
             name="estrela-radio"
             value="estrela-1"
+            formControlName="estrela3"
           />
           <label for="estrela-3">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -65,6 +74,7 @@
             id="estrela-4"
             name="estrela-radio"
             value="estrela-1"
+            formControlName="estrela4"
           />
           <label for="estrela-4">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -79,6 +89,7 @@
             id="estrela-5"
             name="estrela-radio"
             value="estrela-1"
+            formControlName="estrela5"
           />
           <label for="estrela-5">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -91,7 +102,10 @@
         </div>
       </div>
 
-      <div class="col-12  d-flex justify-content-center" style="margin-top: 1vh;margin-block-end: 3vh;left: 2vh;">
+      <div
+        class="col-12 d-flex justify-content-center"
+        style="margin-top: 1vh; margin-block-end: 3vh; left: 2vh"
+      >
         <button id="Enviar">Enviar</button>
       </div>
     </div>

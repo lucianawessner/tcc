@@ -1,5 +1,5 @@
 import { UsuarioContratanteEndpoint } from './../../../../domain/usuario-contratante/usuario-contrante.endpoint';
-import {ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal, ViewEncapsulation} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
@@ -7,15 +7,11 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { merge, Subject, takeUntil} from 'rxjs';
+import {  Subject, takeUntil} from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
-import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
 import { Contratante } from '../../../../domain/usuario-contratante/usuario-contratante.models';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-preencher-cadastro-contratante',
@@ -51,12 +47,6 @@ export class PreencherCadastroContratanteComponent implements OnInit {
   private readonly usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
   
   errorMessage = signal('');
-
-  constructor() {
-    // merge(this.email.statusChanges, this.email.valueChanges)
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe(() => this.updateErrorMessage());
-  }
 
   public ngOnInit(): void {
       this.criarFormulario();

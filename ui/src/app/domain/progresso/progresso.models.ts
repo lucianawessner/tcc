@@ -10,7 +10,7 @@ export class Progresso extends BaseEntity {
 }
 
 export class ProgressoDto extends BaseEntity {
-  Visualizacao: boolean = false;
+  Visualizado: boolean = false;
   Aceito: boolean = false;
   Contato: boolean = false;
   IdFormularioPrestador: number = 0;
