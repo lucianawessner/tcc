@@ -38,6 +38,7 @@ export class VagaComponent implements OnInit {
   public usuario: UsuarioDto = new UsuarioDto();
   public vagas: Vaga[] = [];
   public filteredVagas: Vaga[] = [];
+  public isLoading: boolean = true; // Variável para controlar o estado de carregamento
 
   public ngOnInit(): void {
     this.usuario = this.credentialsService.credentials!;
@@ -81,6 +82,7 @@ export class VagaComponent implements OnInit {
       )
       .subscribe((result) => {
         this.filteredVagas = result;
+        this.isLoading = false;
       });
   }
 
@@ -103,6 +105,7 @@ export class VagaComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((dados) => {
         this.filteredVagas = dados;
+        this.isLoading = false;
       });
   }
 

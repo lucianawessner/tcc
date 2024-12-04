@@ -30,4 +30,8 @@ export class FeedEndpoint {
 
     return this.http.post<Response<Feed>>(`${environment.apiUrl}${this.baseUrl}/Publicar`, formData);
   }
+
+  curtir(id: number): Observable<Response<Feed>>{
+    return this.http.put<Response<Feed>>(`${environment.apiUrl}${this.baseUrl}/Curtir/${id}`, null);
+  }
 }

@@ -8,7 +8,7 @@ import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { FormularioPrestadorEndpoint } from '../../domain/formularioPrestador/formularioPrestador.endpoint';
 import { CredentialsService } from '../login/service/credentials.service';
 import { UsuarioDto } from '../../domain/login/usuario.dto';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Vaga, VagaDto } from '../../domain/vaga/vaga.models';
 import { FormularioPrestador } from '../../domain/formularioPrestador/formularioPrestador.models';
 import { CommonModule } from '@angular/common';
@@ -38,6 +38,8 @@ export class ProgressoComponent implements OnInit {
 
   public usuario: UsuarioDto = new UsuarioDto();
   public vagas: VagaDto[] = [];
+  public isLoading: boolean = true; // Variável para controlar o estado de carregamento
+
 
   ngOnInit(): void {
     this.usuario = this.credentialsService.credentials!;
@@ -65,6 +67,7 @@ export class ProgressoComponent implements OnInit {
           Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === x.Vaga.IdUsuarioContratante && a.QuemAvaliou === 1).length > 0
         })
       })
+      this.isLoading = false;
     })
   }
 

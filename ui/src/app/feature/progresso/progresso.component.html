@@ -1,6 +1,6 @@
 <mat-card style="height: 92.5vh; border-radius: 40px 40px 40px 40px">
   <mat-card-content class="Feed">
-    @if(vagas.length === 0) {
+    @if(!isLoading && vagas.length === 0) {
       <div class="d-flex justify-content-center">
         <span>Nenhum progresso econtrado, por favor se candidate em uma vaga para visualizar o progresso.</span>
       </div>

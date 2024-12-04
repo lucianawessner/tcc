@@ -1,11 +1,14 @@
-<app-publicacao [usuario]="usuario" (publicou)="atualizarFeed($event)"></app-publicacao>
+
+@if(usuario.TipoUsuario === 1) {
+  <app-publicacao [usuario]="usuario" (publicou)="atualizarFeed($event)"></app-publicacao>
+}
 
 <br>
 
 <mat-card appearance="outlined" class="FundoDoFeed">
   <mat-card-content class="Feed">
     @for(publicacao of publicacoes; track publicacao) {
-      <mat-card class="mt-1">
+      <mat-card class="mt-2">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(assets/pitoco.png)'}"></div>
           <mat-card-title>
@@ -20,7 +23,6 @@
 
           <div class="d-flex justify-content-center">
             @if(publicacao.Documento) {
-              <!-- {{pegarDiretorio(publicacao.Documento.Nome)}} -->
               <img [src]="pegarDiretorio(publicacao.Documento.Nome)" height="30%" width="50%" />
             }
           </div>
@@ -28,7 +30,7 @@
 
         <mat-card-footer>
           <div class="d-flex justify-content-between">
-            <button>
+            <button (click)="curtir(publicacao.Id)">
               <svg height="15" width="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H24V24H0z" fill="none"></path><path d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z" fill="#77ab59"></path></svg>
               Curtir
             </button>

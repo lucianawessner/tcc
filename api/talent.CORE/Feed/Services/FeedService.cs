@@ -26,6 +26,22 @@ namespace talent.CORE.Services
             this.repository = repository;
         }
 
+        public async Task<Response<Feed>> Curtir(int id) 
+        {
+            var feed = await GetAll().Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (feed == null) {
+                throw new ArgumentException("Feed não encontrado");
+            }
+
+            feed.QuantidadeCurtida = feed.QuantidadeCurtida + 1;
+
+            ////repository.Update(feed);
+            await repository.Context.SaveChangesAsync();
+
+            return new Response<Feed>(feed, 201, "Curtida realizada com sucesso");
+        }
+
         public async Task<Response<Feed>> Publicar(FeedDto publicacao)
         {
             if (string.IsNullOrEmpty(publicacao.Usuario) || string.IsNullOrEmpty(publicacao.Texto))

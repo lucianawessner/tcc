@@ -22,5 +22,12 @@ namespace talent.API.Controllers
         {
             return await _feedService.Publicar(dto);
         }
+        
+        [HttpPut]
+        [Route("Curtir/{id}")]
+        public virtual async Task<Response<Feed>> Curtir(int id)
+        {
+            return await _feedService.Curtir(id);
+        }
     }
 }
