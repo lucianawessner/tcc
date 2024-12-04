@@ -29,6 +29,7 @@ export class FeedComponent implements OnInit {
 
   private feedEndpoint: FeedEndpoint = inject(FeedEndpoint);
   private credentialsService: CredentialsService = inject(CredentialsService);
+  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
 
   public usuario: UsuarioDto = new UsuarioDto();
   public publicacoes: Feed[] = [];
@@ -43,6 +44,7 @@ export class FeedComponent implements OnInit {
     this.feedEndpoint.pegarTodos()
       .pipe(takeUntil(this.destroy$))
       .subscribe((dados) => {
+        console.log(dados)
         this.publicacoes = dados;
         this.isLoading = false;
       });

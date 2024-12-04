@@ -24,11 +24,13 @@ namespace talent.CORE.Services
         public async Task<Response<UsuarioDto>> Login(LoginDto dto) 
         {
             var contratante = await _usuarioContratanteService.GetAllNoTracking()
+                .Include(x => x.Documento)
                 .Where(dados => dados.Usuario == dto.Usuario)
                 .Where(dados => dados.Senha == dto.Senha)
                 .FirstOrDefaultAsync();
 
             var prestador = await _usuarioPrestadorService.GetAllNoTracking()
+                .Include(x => x.Documento)
                 .Where(dados => dados.Usuario == dto.Usuario)
                 .Where(dados => dados.Senha == dto.Senha)
                 .FirstOrDefaultAsync();
@@ -42,18 +44,18 @@ namespace talent.CORE.Services
 
             if (contratante is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Nome, contratante.Email, ETipoUsuario.Contratante);
+                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Nome, contratante.Documento.Nome, contratante.Email, ETipoUsuario.Contratante);
             }
             
             if (prestador is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Nome, prestador.Email, ETipoUsuario.Prestador);
+                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Nome, prestador.Documento.Nome, prestador.Email, ETipoUsuario.Prestador);
             }
 
             return new Response<UsuarioDto>(usuarioDto, 201, "Login realizado com sucesso");           
         }
 
-        private UsuarioDto PreencherDadosUsuario(int id, string usuario, string nome, string email, ETipoUsuario tipoUsuario)
+        private UsuarioDto PreencherDadosUsuario(int id, string usuario, string nome, string foto, string email, ETipoUsuario tipoUsuario)
         {
             return new UsuarioDto 
             {
@@ -61,6 +63,7 @@ namespace talent.CORE.Services
                 Usuario = usuario,
                 Nome = nome,
                 Email = email,
+                Foto = foto,
                 TipoUsuario = tipoUsuario
             };
         }

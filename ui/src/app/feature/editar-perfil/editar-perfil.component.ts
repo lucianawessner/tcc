@@ -49,6 +49,7 @@ export class EditarPerfilComponent {
   public usuario: UsuarioDto = new UsuarioDto();
   public mediaAvaliacao: number = 0;
   mediaAvaliacao$!: Observable<number>;
+  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
 
   private credentialsService: CredentialsService = inject(CredentialsService);
   private prestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
@@ -69,10 +70,28 @@ export class EditarPerfilComponent {
     }
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0] as File;
+    if (file) {
+      this.mainForm.patchValue({ "foto": file });
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  triggerFileInput(fileInput: HTMLInputElement): void {
+    fileInput.click();
+  }
+
   buscarPrestador(id: number) {
     this.prestadorEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
+      this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
       this.preencherFormulario(dados.value[0])
     })
   }
@@ -81,6 +100,7 @@ export class EditarPerfilComponent {
     this.contratanteEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
+      this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
       this.preencherFormulario(dados.value[0])
     })
   }
@@ -131,30 +151,29 @@ export class EditarPerfilComponent {
 
   public preencherFormulario(entity: any) {
     this.mainForm.patchValue({
-      "id": entity.Id,
-      "email": entity.Email,
-      "senha": entity.Senha,
-      "usuario": entity.Usuario,
-      "nome": entity.Nome,
-      "cargo": entity.Cargo,
-      "localizacao": entity.Localizacao,
-      "dataNascimento": entity.DataNascimento,
-      "descricao": entity.Descricao,
-      "experiencia": entity.Experiencia
+      "Id": entity.Id,
+      "Email": entity.Email,
+      "Usuario": entity.Usuario,
+      "Nome": entity.Nome,
+      "Cargo": entity.Cargo,
+      "Localizacao": entity.Localizacao,
+      "DataNascimento": entity.DataNascimento,
+      "Descricao": entity.Descricao,
+      "Experiencia": entity.Experiencia
     });
   }
 
   public criarFormulario() {
-    this.mainForm.addControl("id", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("email", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("senha", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("usuario", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("nome", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("cargo", new FormControl(null, [Validators.required]));
-    this.mainForm.addControl("localizacao", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("dataNascimento", new FormControl(null, []));
-    this.mainForm.addControl("descricao", new FormControl(null, []));
-    this.mainForm.addControl("experiencia", new FormControl(null, []));
+    this.mainForm.addControl("Id", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("Email", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("Usuario", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("Nome", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("Cargo", new FormControl(null, [Validators.required]));
+    this.mainForm.addControl("Localizacao", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("DataNascimento", new FormControl(null, []));
+    this.mainForm.addControl("Descricao", new FormControl(null, []));
+    this.mainForm.addControl("Experiencia", new FormControl(null, []));
+    this.mainForm.addControl("Foto", new FormControl(null, []));
   }
 
   hide = signal(true);

@@ -10,7 +10,8 @@
     @for(publicacao of publicacoes; track publicacao) {
       <mat-card class="mt-2">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': 'url(assets/pitoco.png)'}"></div>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{
+          'background-image': 'url(assets/'+ publicacao.UsuarioPrestador.Documento?.Nome  +')'}"></div>
           <mat-card-title>
             {{publicacao.UsuarioPrestador.Usuario}}
           </mat-card-title>
