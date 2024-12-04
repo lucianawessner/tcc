@@ -12,11 +12,14 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} f
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
 import { Contratante } from '../../../../domain/usuario-contratante/usuario-contratante.models';
+import { CommonModule } from '@angular/common';
+import { UsuarioDocumentoDto } from '../../../../domain/usuario-prestador/usuario-documento.dto';
 
 @Component({
   selector: 'app-preencher-cadastro-contratante',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -43,6 +46,8 @@ export class PreencherCadastroContratanteComponent implements OnInit {
   private readonly destroy$ : Subject<any> = new Subject();
   public mainForm: FormGroup = new FormGroup({});
 
+  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroContratanteComponent>);
   private readonly usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
   
@@ -50,6 +55,23 @@ export class PreencherCadastroContratanteComponent implements OnInit {
 
   public ngOnInit(): void {
       this.criarFormulario();
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0] as File;
+    if (file) {
+      this.mainForm.patchValue({ "Foto": file });
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  triggerFileInput(fileInput: HTMLInputElement): void {
+    fileInput.click();
   }
 
   public salvar() {
@@ -62,19 +84,20 @@ export class PreencherCadastroContratanteComponent implements OnInit {
     });
   }
 
-  bodyBuilder(): Contratante {
+  bodyBuilder(): UsuarioDocumentoDto {
     return {...this.mainForm.value}
   }
 
   public criarFormulario() {
-    this.mainForm.addControl("email", new FormControl(this.email, [Validators.required]));
-    this.mainForm.addControl("usuario", new FormControl(this.usuario, [Validators.required]));
-    this.mainForm.addControl("senha", new FormControl(this.senha, [Validators.required]));
-    this.mainForm.addControl("cargo", new FormControl(null, [Validators.required]));
-    this.mainForm.addControl("localizacao", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("dataNascimento", new FormControl(null, []));
-    this.mainForm.addControl("descricao", new FormControl(null, []));
-    this.mainForm.addControl("experiencia", new FormControl(null, []));
+    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required]));
+    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required]));
+    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required]));
+    this.mainForm.addControl("Cargo", new FormControl(null, [Validators.required]));
+    this.mainForm.addControl("Localizacao", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("DataNascimento", new FormControl(null, []));
+    this.mainForm.addControl("Descricao", new FormControl(null, []));
+    this.mainForm.addControl("Experiencia", new FormControl(null, []));
+    this.mainForm.addControl("Foto", new FormControl(null, []));
   }
 
   updateErrorMessage() {

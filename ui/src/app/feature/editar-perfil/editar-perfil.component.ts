@@ -91,7 +91,7 @@ export class EditarPerfilComponent {
     this.prestadorEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
-      if(dados.value[0].Documento !== undefined) {
+      if(dados.value[0].Documento) {
         this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
       }
       this.preencherFormulario(dados.value[0]);
@@ -102,8 +102,7 @@ export class EditarPerfilComponent {
     this.contratanteEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
-      console.log(dados.value[0].Documento)
-      if(dados.value[0].Documento !== undefined) {
+      if(dados.value[0].Documento) {
         this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
       }
       this.preencherFormulario(dados.value[0]);

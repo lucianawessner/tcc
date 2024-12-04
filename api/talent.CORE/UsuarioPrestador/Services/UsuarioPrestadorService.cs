@@ -63,6 +63,43 @@ namespace talent.CORE.Services
             return new Response<UsuarioPrestador>(usuario, 201, "Publicação feita com sucesso, sem foto");
         }
 
+        public async Task<Response<UsuarioPrestador>> Criar(UsuarioDocumentoDto dto)
+        {
+            var usuario = new UsuarioPrestador();
+            usuario.Usuario = dto.Usuario;
+            usuario.Cargo = dto.Cargo;
+            usuario.DataNascimento = dto.DataNascimento;
+            usuario.Email = dto.Email;
+            usuario.Experiencia = dto.Experiencia;
+            usuario.Localizacao = dto.Localizacao;
+            usuario.Nome = dto.Nome;
+            usuario.Senha = dto.Senha;
+
+            if (dto.Foto != null)
+            {
+                var documentoDto = await SalvarFoto(dto.Foto);
+
+                var documento = new Documento
+                {
+                    Nome = documentoDto.Nome,
+                    Tipo = documentoDto.Tipo,
+                    Caminho = documentoDto.Caminho
+                };
+
+                usuario.Documento = documento;
+
+                repository.Add(usuario);
+                await repository.Context.SaveChangesAsync();
+
+                return new Response<UsuarioPrestador>(usuario, 201, "Publicação feita com sucesso, com foto");
+            }
+
+            repository.Add(usuario);
+            await repository.Context.SaveChangesAsync();
+
+            return new Response<UsuarioPrestador>(usuario, 201, "Publicação feita com sucesso, sem foto");
+        }
+
         private async Task<DocumentoDto> SalvarFoto(IFormFile foto)
         {
             var nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(foto.FileName);

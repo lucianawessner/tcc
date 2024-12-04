@@ -33,10 +33,15 @@
         <div class="row">
           <div class="col-md-6">
             <div id="nav-header" style="margin-top: 1vh; margin-bottom: 1vh">
-              <img class="Perfil" src="assets/pitoco.png" />
-              <label for="nav-toggle">
-                <span id="nav-toggle-burger"></span>
-              </label>
+              <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+              <div class="Perfil" 
+                [ngStyle]="{
+                  'background-image': 'url(' + imagePreview + ')', 
+                  'background-size': 'cover', 'background-position': 'center', 'width': '200px', 'height': '200px'
+                }" 
+                (click)="triggerFileInput(fileInput)"
+                >
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -47,14 +52,14 @@
               >
                 <mat-form-field style="width: 77%; margin-left: 0vh">
                   <mat-label>Usuario</mat-label>
-                  <input matInput formControlName="usuario"/>
+                  <input matInput formControlName="Usuario"/>
                 </mat-form-field>
               </div>
 
               <div class="col-md-12 d-flex justify-content-center">
                 <mat-form-field style="width: 77%;" >
                   <mat-label >Nome Completo</mat-label>
-                  <input matInput formControlName="nome" />
+                  <input matInput formControlName="Nome" />
                 </mat-form-field>
               </div>
 
@@ -67,7 +72,7 @@
                   <input
                     matInput
                     [type]="hide() ? 'password' : 'text'"
-                    formControlName="senha"
+                    formControlName="Senha"
                   />
                   <button
                     mat-icon-button
@@ -95,7 +100,7 @@
             <div>
               <mat-form-field style="width: 140%; margin-left: -3vh">
                 <mat-label>Localização</mat-label>
-                <input matInput formControlName="localizacao" />
+                <input matInput formControlName="Localizacao" />
               </mat-form-field>
             </div>
           </div>
@@ -111,7 +116,7 @@
               <input
                 matInput
                 [matDatepicker]="picker"
-                formControlName="dataNascimento"
+                formControlName="DataNascimento"
               />
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle
@@ -133,8 +138,7 @@
               <input
                 matInput
                 placeholder="pat@example.com"
-                formControlName="email"
-                (blur)="updateErrorMessage()"
+                formControlName="Email"
                 required
               />
               @if (mainForm.get('email')?.invalid) {
@@ -149,7 +153,7 @@
           >
             <mat-form-field style="width: 75%; margin-top: 2vh; height: 11vh">
               <mat-label>Cargo</mat-label>
-              <input matInput formControlName="cargo"/>
+              <input matInput formControlName="Cargo"/>
             </mat-form-field>
           </div>
 
@@ -159,7 +163,7 @@
           >
             <mat-form-field style="width: 82%">
               <mat-label>Fale sobre você</mat-label>
-              <textarea matInput style="max-height: 20vh" formControlName="qualificacao"></textarea>
+              <textarea matInput style="max-height: 20vh" formControlName="Descricao"></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -171,7 +175,7 @@
           >
             <mat-form-field style="width: 90%">
               <mat-label>Experiência de trabalho</mat-label>
-              <textarea matInput style="max-height: 20vh" formControlName="descricao"></textarea>
+              <textarea matInput style="max-height: 20vh" formControlName="Experiencia"></textarea>
             </mat-form-field>
           </div>
 

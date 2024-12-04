@@ -7,6 +7,7 @@ export class UsuarioDocumentoDto {
     Localizacao: string = '';
     Cargo: string = '';
     Experiencia: string = '';
+    Senha: string = '';
     DataNascimento?: Date | null;
     DataCriacao?: Date | null;
     Foto?: File | null; 

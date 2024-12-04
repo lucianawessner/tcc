@@ -15,8 +15,22 @@ export class UsuarioPrestadorEndpoint {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarPrestador(prestador: Prestador): Observable<Prestador>{
-    return this.http.post<Prestador>(`${environment.apiUrl}${this.baseUrl}`, prestador);
+  cadastrarPrestador(dto: UsuarioDocumentoDto): Observable<Response<Prestador>>{
+    const formData = new FormData();
+    formData.append('Nome', dto.Nome);
+    formData.append('Email', dto.Email);
+    formData.append('Usuario', dto.Usuario);
+    formData.append('Senha', dto.Senha);
+    formData.append('Cargo', dto.Cargo);
+    formData.append('Localizacao', dto.Localizacao);
+    formData.append('Descricao', dto.Descricao);
+    formData.append('Experiencia', dto.Experiencia);
+
+    if (dto.Foto) {
+      formData.append('Foto', dto.Foto);
+    }
+
+    return this.http.post<Response<Prestador>>(`${environment.apiUrl}${this.baseUrl}/Criar`, formData);
   }
 
   pegarUsuarioPorId(id: number): Observable<any>{

@@ -14,11 +14,14 @@ import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/mate
 import { Router } from '@angular/router';
 import { UsuarioPrestadorEndpoint } from '../../../../domain/usuario-prestador/usuario-prestador.endpoint';
 import { Prestador } from '../../../../domain/usuario-prestador/usuario-prestador.models';
+import { CommonModule } from '@angular/common';
+import { UsuarioDocumentoDto } from '../../../../domain/usuario-prestador/usuario-documento.dto';
 
 @Component({
   selector: 'app-preencher-cadastro',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -50,6 +53,8 @@ export class PreencherCadastroComponent implements OnInit {
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroComponent>);
   private readonly usuarioPrestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
 
+  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+
   errorMessage = signal('');
 
   hide = signal(true);
@@ -58,24 +63,25 @@ export class PreencherCadastroComponent implements OnInit {
     event.stopPropagation();
   }
 
-  constructor() {
-    // merge(this.email.statusChanges, this.email.valueChanges)
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe(() => this.updateErrorMessage());
-  }
-
   public ngOnInit(): void {
     this.criarFormulario();
   }
 
-  updateErrorMessage() {
-    // if (this.email.hasError('required')) {
-    //   this.errorMessage.set('You must enter a value');
-    // } else if (this.email.hasError('email')) {
-    //   this.errorMessage.set('Not a valid email');
-    // } else {
-    //   this.errorMessage.set('');
-    // }
+  onFileSelected(event: any): void {
+    const file = event.target.files[0] as File;
+    if (file) {
+      this.mainForm.patchValue({ "Foto": file });
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  triggerFileInput(fileInput: HTMLInputElement): void {
+    fileInput.click();
   }
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
@@ -100,20 +106,20 @@ export class PreencherCadastroComponent implements OnInit {
     })
   }
 
-  bodyBuilder(): Prestador {
+  bodyBuilder(): UsuarioDocumentoDto {
     return {...this.mainForm.value}
   }
 
   public criarFormulario() {
-    this.mainForm.addControl("email", new FormControl(this.email, [Validators.required]));
-    this.mainForm.addControl("usuario", new FormControl(this.usuario, [Validators.required]));
-    this.mainForm.addControl("senha", new FormControl(this.senha, [Validators.required]));
-    this.mainForm.addControl("cargo", new FormControl(null, [Validators.required]));
-    this.mainForm.addControl("localizacao", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("dataNascimento", new FormControl(null, []));
-    this.mainForm.addControl("descricao", new FormControl(null, []));
-    this.mainForm.addControl("qualificacao", new FormControl(null, []));
-    this.mainForm.addControl("qualificacao", new FormControl(null, []));
-    this.mainForm.addControl("nome", new FormControl(null, []));
+    this.mainForm.addControl("Nome", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required]));
+    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required]));
+    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required]));
+    this.mainForm.addControl("Cargo", new FormControl(null, [Validators.required]));
+    this.mainForm.addControl("Localizacao", new FormControl('', [Validators.required]));
+    this.mainForm.addControl("DataNascimento", new FormControl(null, []));
+    this.mainForm.addControl("Descricao", new FormControl(null, []));
+    this.mainForm.addControl("Experiencia", new FormControl(null, []));
+    this.mainForm.addControl("Foto", new FormControl(null, []));
   }
 }

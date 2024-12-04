@@ -23,5 +23,12 @@ namespace talent.API.Controllers
         {
             return await _service.Atualizar(id, dto);
         }
+        
+        [HttpPost]
+        [Route("Criar")]
+        public virtual async Task<Response<UsuarioPrestador>> Criar([FromForm] UsuarioDocumentoDto dto)
+        {
+            return await _service.Criar(dto);
+        }
     }
 }

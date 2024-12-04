@@ -50,6 +50,7 @@ export class PaginaInicialComponent implements OnInit {
 
   public ngOnInit(): void {
     this.usuario = this.credentialsService.credentials!;
+    console.log(this.usuario)
     if(this.usuario.Foto){
       this.imagePreview = `assets/${this.usuario.Foto}`;
     }

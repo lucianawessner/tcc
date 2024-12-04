@@ -12,5 +12,6 @@ namespace talent.DOMAIN.Services
     public interface IUsuarioContratanteService : IBaseService<UsuarioContratante>
     {
         Task<Response<UsuarioContratante>> Atualizar(int id, UsuarioDocumentoDto dto);
+        Task<Response<UsuarioContratante>> Criar(UsuarioDocumentoDto dto);
     }
 }
