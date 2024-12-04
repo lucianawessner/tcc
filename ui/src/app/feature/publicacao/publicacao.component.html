@@ -3,10 +3,10 @@
     <mat-card-content>
       <div class="inputGroup">
         <input type="text" required="" autocomplete="off" formControlName="Texto" />
-        <label for="name">Escreva aqui</label>
+        <label for="name">Compartilhe seus trabalhos</label>
         <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
       </div>
-      
+
       <!-- Preview da Imagem -->
       <div class="image-preview" *ngIf="imagePreview">
         <img [src]="imagePreview" alt="Preview da imagem carregada" />
