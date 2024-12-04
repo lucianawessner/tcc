@@ -73,7 +73,7 @@ export class EditarPerfilComponent {
   onFileSelected(event: any): void {
     const file = event.target.files[0] as File;
     if (file) {
-      this.mainForm.patchValue({ "foto": file });
+      this.mainForm.patchValue({ "Foto": file });
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -91,8 +91,10 @@ export class EditarPerfilComponent {
     this.prestadorEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
-      this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
-      this.preencherFormulario(dados.value[0])
+      if(dados.value[0].Documento !== undefined) {
+        this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
+      }
+      this.preencherFormulario(dados.value[0]);
     })
   }
 
@@ -100,8 +102,11 @@ export class EditarPerfilComponent {
     this.contratanteEndpoint.pegarUsuarioPorId(id)
     .pipe(takeUntil(this.destroy$))
     .subscribe((dados) => {
-      this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
-      this.preencherFormulario(dados.value[0])
+      console.log(dados.value[0].Documento)
+      if(dados.value[0].Documento !== undefined) {
+        this.imagePreview = `assets/${dados.value[0].Documento.Nome}`;
+      }
+      this.preencherFormulario(dados.value[0]);
     })
   }
 

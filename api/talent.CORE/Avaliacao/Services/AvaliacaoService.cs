@@ -58,6 +58,12 @@ namespace talent.CORE.Services
 
                 var quantidadeAvaliacoes = avaliacoes.Count();
                 var soma = avaliacoes.Sum(x => x.Estrelas);
+
+                if (quantidadeAvaliacoes == 0)
+                {
+                    return 5;
+                }
+
                 var media = soma / quantidadeAvaliacoes;
 
                 return media;

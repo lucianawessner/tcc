@@ -44,7 +44,6 @@ export class FeedComponent implements OnInit {
     this.feedEndpoint.pegarTodos()
       .pipe(takeUntil(this.destroy$))
       .subscribe((dados) => {
-        console.log(dados)
         this.publicacoes = dados;
         this.isLoading = false;
       });

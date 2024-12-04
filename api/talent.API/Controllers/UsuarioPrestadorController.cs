@@ -23,6 +23,5 @@ namespace talent.API.Controllers
         {
             return await _service.Atualizar(id, dto);
         }
-
     }
 }

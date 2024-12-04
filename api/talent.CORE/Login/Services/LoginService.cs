@@ -44,12 +44,14 @@ namespace talent.CORE.Services
 
             if (contratante is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Nome, contratante.Documento.Nome, contratante.Email, ETipoUsuario.Contratante);
+                var foto = contratante.Documento != null ? contratante.Documento.Nome : string.Empty;
+                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Nome, foto, contratante.Email, ETipoUsuario.Contratante);
             }
             
             if (prestador is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Nome, prestador.Documento.Nome, prestador.Email, ETipoUsuario.Prestador);
+                var foto = prestador.Documento != null ? prestador.Documento.Nome : string.Empty;
+                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Nome, foto, prestador.Email, ETipoUsuario.Prestador);
             }
 
             return new Response<UsuarioDto>(usuarioDto, 201, "Login realizado com sucesso");           

@@ -43,7 +43,7 @@ export class PublicacaoComponent {
     .subscribe(resposta => {
       if(resposta){
         this.imagePreview = null;
-        this.mainForm.reset();
+        this.mainForm.reset({'Usuario': this.mainForm.get('Usuario')?.value});
         this.publicou.emit(true);
       }
     });
