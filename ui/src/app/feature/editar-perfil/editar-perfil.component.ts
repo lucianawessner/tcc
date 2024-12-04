@@ -11,16 +11,18 @@ import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
 import { UsuarioDto } from '../../domain/login/usuario.dto';
 import { CredentialsService } from '../login/service/credentials.service';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { UsuarioPrestadorEndpoint } from '../../domain/usuario-prestador/usuario-prestador.endpoint';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { UsuarioContratanteEndpoint } from '../../domain/usuario-contratante/usuario-contrante.endpoint';
 import Swal from 'sweetalert2';
+import { AvaliacaoEndpoint } from '../../domain/avaliacao/avaliacao.endpoint';
 
 @Component({
   selector: 'app-editar-perfil',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -45,16 +47,20 @@ export class EditarPerfilComponent {
 
   public mainForm: FormGroup = new FormGroup({});
   public usuario: UsuarioDto = new UsuarioDto();
+  public mediaAvaliacao: number = 0;
+  mediaAvaliacao$!: Observable<number>;
 
   private credentialsService: CredentialsService = inject(CredentialsService);
   private prestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
   private contratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
-
-  public entidade: any;
+  private avaliacaoEndpoint: AvaliacaoEndpoint = inject(AvaliacaoEndpoint);
 
   public ngOnInit(): void {
-    this.criarFormulario();
     this.usuario = this.credentialsService.credentials!;
+
+    this.mediaAvaliacao$ = this.avaliacaoEndpoint.buscarMedia(this.usuario.Usuario);
+
+    this.criarFormulario();
 
     if(this.usuario.TipoUsuario === 1) {
       this.buscarPrestador(this.usuario.Id);

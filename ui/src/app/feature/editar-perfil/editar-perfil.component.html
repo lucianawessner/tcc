@@ -39,16 +39,16 @@
           </div>
           <div class="col-md-6">
             <div class="row">
-              <div class="estrela">
-                <input value="5" name="estrela" id="star5" type="radio" />
+              <div class="estrela" *ngIf="mediaAvaliacao$ | async as mediaAvaliacao">
+                <input value="5" name="estrela" id="star5" type="radio" [checked]="mediaAvaliacao >= 5"/>
                 <label for="star5"></label>
-                <input value="4" name="estrela" id="star4" type="radio" />
+                <input value="4" name="estrela" id="star4" type="radio" [checked]="mediaAvaliacao > 3 && mediaAvaliacao <= 4"/>
                 <label for="star4"></label>
-                <input value="3" name="estrela" id="star3" type="radio" />
+                <input value="3" name="estrela" id="star3" type="radio" [checked]="mediaAvaliacao > 2 && mediaAvaliacao <= 3"/>
                 <label for="star3"></label>
-                <input value="2" name="estrela" id="star2" type="radio" />
+                <input value="2" name="estrela" id="star2" type="radio" [checked]="mediaAvaliacao > 1 && mediaAvaliacao <= 2"/>
                 <label for="star2"></label>
-                <input value="1" name="estrela" id="star1" type="radio" />
+                <input value="1" name="estrela" id="star1" type="radio" [checked]="mediaAvaliacao <= 1"/>
                 <label for="star1"></label>
               </div>
 

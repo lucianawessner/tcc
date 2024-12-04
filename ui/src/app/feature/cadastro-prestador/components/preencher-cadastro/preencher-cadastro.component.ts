@@ -51,7 +51,7 @@ export class PreencherCadastroComponent implements OnInit {
   private readonly usuarioPrestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
 
   errorMessage = signal('');
-  
+
   hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
@@ -66,7 +66,7 @@ export class PreencherCadastroComponent implements OnInit {
 
   public ngOnInit(): void {
     this.criarFormulario();
-  } 
+  }
 
   updateErrorMessage() {
     // if (this.email.hasError('required')) {
@@ -113,5 +113,7 @@ export class PreencherCadastroComponent implements OnInit {
     this.mainForm.addControl("dataNascimento", new FormControl(null, []));
     this.mainForm.addControl("descricao", new FormControl(null, []));
     this.mainForm.addControl("qualificacao", new FormControl(null, []));
+    this.mainForm.addControl("qualificacao", new FormControl(null, []));
+    this.mainForm.addControl("nome", new FormControl(null, []));
   }
 }

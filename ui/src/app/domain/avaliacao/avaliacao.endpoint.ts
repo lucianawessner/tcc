@@ -21,4 +21,8 @@ export class AvaliacaoEndpoint {
   salvar(avaliacao: Avaliacao): Observable<Avaliacao>{
     return this.http.post<Avaliacao>(`${environment.apiUrl}${this.baseUrl}`, avaliacao);
   }
+
+  buscarMedia(usuario: string): Observable<any>{
+    return this.http.get<any>(`${environment.apiUrl}${this.baseUrl}/Media(${usuario})`)
+  }
 }

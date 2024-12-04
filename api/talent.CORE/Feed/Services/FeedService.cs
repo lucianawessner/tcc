@@ -36,7 +36,6 @@ namespace talent.CORE.Services
 
             feed.QuantidadeCurtida = feed.QuantidadeCurtida + 1;
 
-            ////repository.Update(feed);
             await repository.Context.SaveChangesAsync();
 
             return new Response<Feed>(feed, 201, "Curtida realizada com sucesso");
