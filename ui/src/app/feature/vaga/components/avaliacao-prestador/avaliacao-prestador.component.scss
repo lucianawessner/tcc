@@ -1,0 +1,119 @@
+.rating {
+  direction: rtl;
+  display: flex;
+  gap: 0.6rem;
+  --stroke: black;
+  --fill: #ffc73a;
+  margin: 3vh;
+}
+
+.rating input {
+  appearance: unset;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 1.8rem;
+  height: 2rem;
+  overflow: visible;
+  fill: transparent;
+  stroke: var(--stroke);
+  stroke-linejoin: bevel;
+  stroke-dasharray: 12;
+  animation: idle 4s linear infinite;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+@keyframes idle {
+  from {
+    stroke-dashoffset: 24;
+  }
+}
+
+.rating label:hover svg {
+  stroke: var(--fill);
+}
+
+.rating input:checked ~ label svg {
+  transition: 0s;
+  animation: idle 4s linear infinite, yippee 0.75s backwards;
+  fill: var(--fill);
+  stroke: var(--fill);
+  stroke-opacity: 0;
+  stroke-dasharray: 0;
+  stroke-linejoin: miter;
+  stroke-width: 8px;
+}
+
+@keyframes yippee {
+  0% {
+    transform: scale(1);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30% {
+    transform: scale(0);
+    fill: var(--fill);
+    fill-opacity: 0;
+    stroke-opacity: 1;
+    stroke: var(--stroke);
+    stroke-dasharray: 10;
+    stroke-width: 1px;
+    stroke-linejoin: bevel;
+  }
+
+  30.1% {
+    stroke: var(--fill);
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+
+  60% {
+    transform: scale(1.2);
+    fill: var(--fill);
+  }
+}
+
+#Descricao{
+  display: grid;
+  justify-items: center;
+  font-size: 2vh;
+  color: rgb(193, 193, 193);
+}
+
+#Enviar{
+  left: 72%;
+  padding: 0.9em 2em;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.0px;
+  font-weight: 500;
+  color: #fcf4f4;
+  background-color: #000000;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  outline: none;
+}
+
+#Enviar:hover {
+  background-color: #77ab59;
+  box-shadow: 0px 15px 20px rgb(201, 223, 138, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#Enviar:active {
+  transform: translateY(-1px);
+}

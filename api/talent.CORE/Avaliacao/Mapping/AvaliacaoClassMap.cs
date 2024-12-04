@@ -26,7 +26,10 @@ namespace talent.CORE.Mapping
 
             builder.Property(x => x.IdContratante)
                .HasColumnName("IdContratante");
-
+            
+            builder.Property(x => x.QuemAvaliou)
+               .HasColumnName("QuemAvaliou")
+               .IsRequired(false);
 
           builder.HasOne(x => x.UsuarioPrestador)
               .WithMany(x => x.Avaliacao)

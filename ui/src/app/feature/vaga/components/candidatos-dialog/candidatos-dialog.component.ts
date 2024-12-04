@@ -3,7 +3,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -15,6 +15,8 @@ import { FormularioPrestador } from '../../../../domain/formularioPrestador/form
 import Swal from 'sweetalert2';
 import { ProgressoEndpoint } from '../../../../domain/progresso/progresso.endpoint';
 import { Progresso, ProgressoDto } from '../../../../domain/progresso/progresso.models';
+import { AvaliacaoPrestadorComponent } from '../avaliacao-prestador/avaliacao-prestador.component';
+import { UsuarioDto } from '../../../../domain/login/usuario.dto';
 
 
 @Component({
@@ -37,11 +39,13 @@ import { Progresso, ProgressoDto } from '../../../../domain/progresso/progresso.
 export class CandidatosDialogComponent implements OnInit {
 
   @Input() IdVaga: number = 0;
+  @Input() usuario!: UsuarioDto;
 
   private readonly destroy$: Subject<any> = new Subject();
 
   private vagaEndpoint: VagaEndpoint = inject(VagaEndpoint);
   private progressoEndpoint: ProgressoEndpoint = inject(ProgressoEndpoint);
+  private dialog = inject(MatDialog);
 
   public candidatos: PrestadorDto[] = [];
   public progresso: ProgressoDto = new ProgressoDto();
@@ -57,12 +61,13 @@ export class CandidatosDialogComponent implements OnInit {
       const formularioPrestador = dados.value[0].FormularioPrestador as FormularioPrestador[];
       this.candidatos = formularioPrestador.map(x => {
         return new PrestadorDto({
+          IdPrestador: x.UsuarioPrestador.Id,
           Usuario: x.UsuarioPrestador.Usuario,
           Descricao: x.UsuarioPrestador.Descricao,
           IdFormularioPrestador: x.Id,
           IdProgresso: x.Progresso[0].Id,
           Progresso: x.Progresso[0],
-          Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === dados.value[0].IdUsuarioContratante).length > 0
+          Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === dados.value[0].IdUsuarioContratante && a.QuemAvaliou === 2).length > 0
         });
       });
     });
@@ -115,6 +120,45 @@ export class CandidatosDialogComponent implements OnInit {
       }
 
       this.pegarCandidatos();
+    });
+  }
+
+  avaliacao(prestador: PrestadorDto) {
+
+    // if(vaga.Progresso.Aceito === null) {
+    //   Swal.fire({
+    //     title: 'Atenção!',
+    //     text: 'Você precisa estar na 3° etapa antes de realizar a avaliação.',
+    //     icon: 'warning',
+    //     allowOutsideClick: false,
+    //     allowEscapeKey: false,
+    //   });
+
+    //   return;
+    // }
+
+    // if(vaga.Avaliada){
+    //   Swal.fire({
+    //     title: 'Atenção!',
+    //     text: 'Você já avaliou esse contratante.',
+    //     icon: 'warning',
+    //     allowOutsideClick: false,
+    //     allowEscapeKey: false,
+    //   });
+
+    //   return;
+    // }
+
+    const dialogRef = this.dialog.open(AvaliacaoPrestadorComponent, {
+    });
+
+    dialogRef.componentInstance.prestador = prestador;
+    dialogRef.componentInstance.usuario = this.usuario;
+
+    dialogRef.afterClosed().subscribe((response) => {
+      if(response) {
+        this.pegarCandidatos();
+      }
     });
   }
 

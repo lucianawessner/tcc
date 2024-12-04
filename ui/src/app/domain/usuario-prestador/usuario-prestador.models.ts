@@ -17,6 +17,7 @@ export class Prestador extends BaseEntity {
 }
 
 export class PrestadorDto {
+    IdPrestador: number = 0;
     Usuario: string = '';
     Descricao: string | null = null;
     IdFormularioPrestador: number = 0;

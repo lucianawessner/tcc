@@ -38,6 +38,7 @@ export class FormularioPrestadorComponent implements OnInit {
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   private formularioPrestadorEndpoint: FormularioPrestadorEndpoint = inject(FormularioPrestadorEndpoint);
   private progressoEndpoint: ProgressoEndpoint = inject(ProgressoEndpoint);
+  private location: Location = inject(Location);
   public router = inject(Router);
 
   public mainForm: FormGroup = new FormGroup({});
@@ -46,16 +47,11 @@ export class FormularioPrestadorComponent implements OnInit {
 
   errorMessage = signal('');
 
-  constructor(private location: Location) {
-    // merge(this.email.statusChanges, this.email.valueChanges)
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe(() => this.updateErrorMessage());
-  }
-
   public ngOnInit(): void {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get("id")!);
     this.usuario = this.credentialsService.credentials!;
     this.criarFormulario();
+    this.popularFormulario();
   }
 
   public candidatar() {
@@ -83,7 +79,6 @@ export class FormularioPrestadorComponent implements OnInit {
   public criarProgresso(formularioPrestador: FormularioPrestador) {
     const progresso = new Progresso()
     progresso.IdFormularioPrestador = formularioPrestador.Id;
-    console.log(progresso)
     this.progressoEndpoint.criarProgresso(progresso).pipe(takeUntil(this.destroy$));
   }
 
@@ -103,6 +98,13 @@ export class FormularioPrestadorComponent implements OnInit {
 
   bodyBuilder(): FormularioPrestador {
     return {...this.mainForm.value}
+  }
+
+  public popularFormulario() {
+    this.mainForm.patchValue({
+      "nome": this.usuario.Nome,
+      "email": this.usuario.Email
+    })
   }
 
   public criarFormulario() {

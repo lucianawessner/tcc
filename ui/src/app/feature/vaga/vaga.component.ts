@@ -131,6 +131,7 @@ export class VagaComponent implements OnInit {
     const dialogRef = this.dialog.open(CandidatosDialogComponent, {});
 
     dialogRef.componentInstance.IdVaga = idVaga;
+    dialogRef.componentInstance.usuario = this.usuario;
 
     dialogRef.afterClosed().subscribe(() => {});
   }

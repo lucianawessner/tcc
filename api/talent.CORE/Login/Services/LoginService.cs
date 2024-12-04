@@ -42,23 +42,24 @@ namespace talent.CORE.Services
 
             if (contratante is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Email, ETipoUsuario.Contratante);
+                usuarioDto = PreencherDadosUsuario(contratante.Id, contratante.Usuario, contratante.Nome, contratante.Email, ETipoUsuario.Contratante);
             }
             
             if (prestador is not null) 
             {
-                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Email, ETipoUsuario.Prestador);
+                usuarioDto = PreencherDadosUsuario(prestador.Id, prestador.Usuario, prestador.Nome, prestador.Email, ETipoUsuario.Prestador);
             }
 
             return new Response<UsuarioDto>(usuarioDto, 201, "Login realizado com sucesso");           
         }
 
-        private UsuarioDto PreencherDadosUsuario(int id, string usuario, string email, ETipoUsuario tipoUsuario)
+        private UsuarioDto PreencherDadosUsuario(int id, string usuario, string nome, string email, ETipoUsuario tipoUsuario)
         {
             return new UsuarioDto 
             {
                 Id = id,
                 Usuario = usuario,
+                Nome = nome,
                 Email = email,
                 TipoUsuario = tipoUsuario
             };

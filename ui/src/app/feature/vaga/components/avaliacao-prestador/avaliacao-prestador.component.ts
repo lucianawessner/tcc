@@ -2,17 +2,17 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { VagaDto } from '../../../domain/vaga/vaga.models';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { UsuarioDto } from '../../../domain/login/usuario.dto';
-import { Avaliacao } from '../../../domain/avaliacao/avaliacao.models';
-import { AvaliacaoEndpoint } from '../../../domain/avaliacao/avaliacao.endpoint';
 import { Subject, takeUntil } from 'rxjs';
 import Swal from 'sweetalert2';
+import { UsuarioDto } from '../../../../domain/login/usuario.dto';
+import { AvaliacaoEndpoint } from '../../../../domain/avaliacao/avaliacao.endpoint';
+import { Avaliacao } from '../../../../domain/avaliacao/avaliacao.models';
+import { PrestadorDto } from '../../../../domain/usuario-prestador/usuario-prestador.models';
 
 @Component({
-  selector: 'app-avaliacao-contratante',
+  selector: 'app-avaliacao-prestador',
   standalone: true,
   imports: [
     CommonModule,
@@ -22,18 +22,18 @@ import Swal from 'sweetalert2';
     MatFormFieldModule,
     JsonPipe
   ],
-  templateUrl: './avaliacao-contratante.component.html',
-  styleUrl: './avaliacao-contratante.component.scss'
+  templateUrl: './avaliacao-prestador.component.html',
+  styleUrl: './avaliacao-prestador.component.scss'
 })
-export class AvaliacaoContratanteComponent implements OnInit {
+export class AvaliacaoPrestadorComponent implements OnInit {
 
   private readonly destroy$ : Subject<any> = new Subject();
 
-  @Input() vaga!: VagaDto;
+  @Input() prestador!: PrestadorDto;
   @Input() usuario!: UsuarioDto;
 
   public mainForm: FormGroup = new FormGroup({});
-  private dialogRef = inject(MatDialogRef<AvaliacaoContratanteComponent>);
+  private dialogRef = inject(MatDialogRef<AvaliacaoPrestadorComponent>);
   private avaliacaoEndpoint: AvaliacaoEndpoint = inject(AvaliacaoEndpoint);
 
   public ngOnInit(): void {
@@ -78,10 +78,10 @@ export class AvaliacaoContratanteComponent implements OnInit {
 
   private bodyBuilder(): Avaliacao {
     const avaliacao = new Avaliacao();
-    avaliacao.IdContratante = this.vaga.IdUsuarioContratante;
-    avaliacao.IdPrestador = this.usuario.Id
+    avaliacao.IdContratante = this.usuario.Id;
+    avaliacao.IdPrestador = this.prestador.IdPrestador;
     avaliacao.Estrelas = this.calcularAvaliação();
-    avaliacao.QuemAvaliou = 1;
+    avaliacao.QuemAvaliou = 2;
 
     return avaliacao;
   }

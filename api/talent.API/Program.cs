@@ -23,6 +23,7 @@ builder.Services.AddScoped<IProgressoService, ProgressoService>(); builder.Servi
 builder.Services.AddScoped<IAvaliacaoService, AvaliacaoService>(); builder.Services.AddScoped<IUsuarioPrestadorRepository, UsuarioPrestadorRepository>();
 builder.Services.AddScoped<IUsuarioPrestadorService, UsuarioPrestadorService>(); builder.Services.AddScoped<IUsuarioContratanteRepository, UsuarioContratanteRepository>();
 builder.Services.AddScoped<ILoginService, LoginService>(); builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+builder.Services.AddScoped<IChartService, ChartService>(); builder.Services.AddScoped<IChartRepository, ChartRepository>();
 
 builder.Services.AddScoped<IUsuarioContratanteService, UsuarioContratanteService>();
 builder.Services.AddDbContext<TalentTrialDbContext>(options => {

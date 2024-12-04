@@ -11,6 +11,7 @@ namespace talent.DOMAIN.Models
     {
       public int Id { get; set; }
       public int Estrelas { get; set; }
+      public int? QuemAvaliou { get; set; }
       public int? IdPrestador { get; set; }
       public int? IdContratante { get; set; }
       public UsuarioPrestador UsuarioPrestador { get; set; }

@@ -62,7 +62,7 @@ export class ProgressoComponent implements OnInit {
           Fechamento: x.Vaga.Fechamento,
           Progresso: x.Progresso[0],
           IdUsuarioContratante: x.Vaga.IdUsuarioContratante,
-          Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === x.Vaga.IdUsuarioContratante).length > 0
+          Avaliada: x.UsuarioPrestador.Avaliacao.filter(a => a.IdContratante === x.Vaga.IdUsuarioContratante && a.QuemAvaliou === 1).length > 0
         })
       })
     })
