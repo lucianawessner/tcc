@@ -46,11 +46,11 @@ export class PreencherCadastroContratanteComponent implements OnInit {
   private readonly destroy$ : Subject<any> = new Subject();
   public mainForm: FormGroup = new FormGroup({});
 
-  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+  imagePreview: string = 'assets/default-user.jpg';
 
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroContratanteComponent>);
   private readonly usuarioContratanteEndpoint: UsuarioContratanteEndpoint = inject(UsuarioContratanteEndpoint);
-  
+
   errorMessage = signal('');
 
   public ngOnInit(): void {

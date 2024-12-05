@@ -49,7 +49,7 @@ export class EditarPerfilComponent {
   public usuario: UsuarioDto = new UsuarioDto();
   public mediaAvaliacao: number = 0;
   mediaAvaliacao$!: Observable<number>;
-  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+  imagePreview: string = 'assets/default-user.jpg';
 
   private credentialsService: CredentialsService = inject(CredentialsService);
   private prestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);

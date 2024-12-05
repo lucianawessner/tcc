@@ -2,14 +2,13 @@
   <nav class="main-header navbar navbar-expand text-sm">
     <div class="container-fluid flex-row-reverse header">
       <button mat-icon-button [matMenuTriggerFor]="menu">
-        <div class="Perfil" 
+        <div class="Perfil"
         [ngStyle]="{
-          'background-image': 'url(' + imagePreview + ')', 
+          'background-image': 'url(' + imagePreview + ')',
           'background-size': 'cover', 'background-position': 'center'
-        }" 
+        }"
         >
       </div>
-
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="entrar()">Editar perfil</button>
@@ -30,7 +29,7 @@
         <router-outlet></router-outlet>
       </div>
       <div class="col-md-3" style="height: 50vh">
-        
+
       </div>
     </div>
   </div>

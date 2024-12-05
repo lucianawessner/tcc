@@ -10,6 +10,7 @@ import { FeedEndpoint } from '../../domain/feed/feed.endpoint';
 import { Subject, takeUntil } from 'rxjs';
 import { Feed } from '../../domain/feed/feed.models';
 import { CredentialsService } from '../login/service/credentials.service';
+import { AddFileDownloadPipe } from '../shared/pipes/add-file-download.pipe';
 
 @Component({
   selector: 'app-feed',
@@ -18,7 +19,8 @@ import { CredentialsService } from '../login/service/credentials.service';
     MatCardModule,
     CommonModule,
     MatButton,
-    PublicacaoComponent
+    PublicacaoComponent,
+    AddFileDownloadPipe
   ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
@@ -29,7 +31,7 @@ export class FeedComponent implements OnInit {
 
   private feedEndpoint: FeedEndpoint = inject(FeedEndpoint);
   private credentialsService: CredentialsService = inject(CredentialsService);
-  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+  imagePreview: string = 'assets/default-user.jpg';
 
   public usuario: UsuarioDto = new UsuarioDto();
   public publicacoes: Feed[] = [];
@@ -51,10 +53,6 @@ export class FeedComponent implements OnInit {
 
   atualizarFeed(event: any) {
     this.pegarTodos();
-  }
-
-  pegarDiretorio(nome: string): string {
-    return `assets/${nome}`
   }
 
   public curtir(id: number) {

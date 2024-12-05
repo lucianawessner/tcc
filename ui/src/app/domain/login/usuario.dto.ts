@@ -3,6 +3,6 @@ export class UsuarioDto {
     Usuario: string = '';
     Nome: string = '';
     Email: string = '';
-    Foto: string = '';
+    Foto: string | null = null;
     TipoUsuario: number = 0;
 }

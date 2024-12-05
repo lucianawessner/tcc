@@ -33,12 +33,12 @@
         <div class="row">
           <div class="col-md-6">
             <div id="nav-header" style="margin-top: 1vh; margin-bottom: 1vh">
-              <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
-              <div class="Perfil" 
+              <input type="file" #fileInput accept="image/png, image/jpeg, image/jpg" hidden (change)="onFileSelected($event)" />
+              <div class="Perfil"
                 [ngStyle]="{
-                  'background-image': 'url(' + imagePreview + ')', 
+                  'background-image': 'url(' + imagePreview + ')',
                   'background-size': 'cover', 'background-position': 'center', 'width': '200px', 'height': '200px'
-                }" 
+                }"
                 (click)="triggerFileInput(fileInput)"
                 >
               </div>

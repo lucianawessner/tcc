@@ -4,7 +4,7 @@
       <div class="inputGroup">
         <input type="text" required="" autocomplete="off" formControlName="Texto" />
         <label for="name">Compartilhe seus trabalhos</label>
-        <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
+        <input type="file" #fileInput accept="image/png, image/jpeg, image/jpg" hidden (change)="onFileSelected($event)" />
       </div>
 
       <!-- Preview da Imagem -->

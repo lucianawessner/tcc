@@ -15,7 +15,7 @@ namespace talent.CORE.Services
 {
     public class UsuarioContratanteService : BaseService<UsuarioContratante, IUsuarioContratanteRepository>, IUsuarioContratanteService
     {
-        private readonly string _diretorioFotos = Path.Combine(@"C:\Dev\pi\tcc\ui\src\assets");
+        private readonly string _diretorioFotos = Path.Combine(@"C:\Dev\pi\ui\src\assets");
 
         private readonly IUsuarioContratanteRepository repository;
 

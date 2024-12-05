@@ -12,6 +12,7 @@ import { LoginService } from '../login/service/login.service';
 import { CredentialsService } from '../login/service/credentials.service';
 import { UsuarioDto } from '../../domain/login/usuario.dto';
 import { CommonModule } from '@angular/common';
+import { AddFileDownloadPipe } from '../shared/pipes/add-file-download.pipe';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     FeedComponent,
     SidebarComponent,
-    RouterOutlet
+    RouterOutlet,
+    AddFileDownloadPipe
   ],
   templateUrl: './pagina-inicial.component.html',
   styleUrl: './pagina-inicial.component.scss'
@@ -39,7 +41,7 @@ export class PaginaInicialComponent implements OnInit {
   private loginService: LoginService = inject(LoginService);
   private credentialsService: CredentialsService = inject(CredentialsService);
 
-  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+  imagePreview: string = 'assets/default-user.jpg';
   public usuario: UsuarioDto = new UsuarioDto();
 
   @ViewChild('contentWrapper', { static: false }) contentWrapper: any;
@@ -50,7 +52,6 @@ export class PaginaInicialComponent implements OnInit {
 
   public ngOnInit(): void {
     this.usuario = this.credentialsService.credentials!;
-    console.log(this.usuario)
     if(this.usuario.Foto){
       this.imagePreview = `assets/${this.usuario.Foto}`;
     }

@@ -53,7 +53,7 @@ export class PreencherCadastroComponent implements OnInit {
   public readonly dialogRef = inject(MatDialogRef<PreencherCadastroComponent>);
   private readonly usuarioPrestadorEndpoint: UsuarioPrestadorEndpoint = inject(UsuarioPrestadorEndpoint);
 
-  imagePreview: string = 'assets/4ca1ad0b-51d3-462d-a4d1-c90730312587.jpg';
+  imagePreview: string = 'assets/default-user.jpg';
 
   errorMessage = signal('');
 

@@ -10,6 +10,7 @@ namespace talent.API.Controllers
     public class FeedController : BaseController<Feed, IFeedService>
     {
         private readonly IFeedService _feedService;
+        private readonly string _diretorioFotos = Path.Combine(@"C:\Dev\pi\ui\src\assets");
 
         public FeedController(IFeedService service) : base(service)
         {

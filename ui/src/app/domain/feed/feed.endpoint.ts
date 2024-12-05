@@ -34,4 +34,8 @@ export class FeedEndpoint {
   curtir(id: number): Observable<Response<Feed>>{
     return this.http.put<Response<Feed>>(`${environment.apiUrl}${this.baseUrl}/Curtir/${id}`, null);
   }
+
+  pegarFoto(fileName: string): Observable<Blob> {
+    return this.http.get(`${environment.apiUrl}${this.baseUrl}/get/${fileName}`, { responseType: 'blob' });
+  }
 }

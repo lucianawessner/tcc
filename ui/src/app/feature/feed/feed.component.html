@@ -10,8 +10,11 @@
     @for(publicacao of publicacoes; track publicacao) {
       <mat-card class="mt-2">
         <mat-card-header>
-        <div mat-card-avatar class="example-header-image" [ngStyle]="{
-          'background-image': 'url(assets/'+ publicacao.UsuarioPrestador.Documento?.Nome  +')'}"></div>
+          <img
+            mat-card-avatar
+            class="example-header-image"
+            [src]="(publicacao.UsuarioPrestador.Documento?.Nome!) | addFile"
+          >
           <mat-card-title>
             {{publicacao.UsuarioPrestador.Usuario}}
           </mat-card-title>
@@ -24,7 +27,7 @@
 
           <div class="d-flex justify-content-center">
             @if(publicacao.Documento) {
-              <img [src]="pegarDiretorio(publicacao.Documento.Nome)" height="30%" width="50%" />
+              <img [src]="(publicacao.Documento.Nome) | addFile" height="30%" width="50%" />
             }
           </div>
         </mat-card-content>
