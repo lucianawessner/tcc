@@ -30,13 +30,14 @@ namespace talent.CORE.Services
                 throw new ArgumentException("Usuário não encontrado na base de dados.");
             }
 
-            usuario.Usuario = dto.Usuario ?? usuario.Usuario;
-            usuario.Cargo = dto.Cargo ?? usuario.Cargo;
+            usuario.Usuario = string.IsNullOrEmpty(dto.Usuario) ? usuario.Usuario : dto.Usuario;
+            usuario.Cargo = string.IsNullOrEmpty(dto.Cargo) ? usuario.Cargo : dto.Cargo;
             usuario.DataNascimento = dto.DataNascimento ?? usuario.DataNascimento;
-            usuario.Email = dto.Email ?? usuario.Email;
-            usuario.Experiencia = dto.Experiencia ?? usuario.Experiencia;
-            usuario.Localizacao = dto.Localizacao ?? usuario.Localizacao;
-            usuario.Nome = dto.Nome ?? usuario.Nome;
+            usuario.Email = string.IsNullOrEmpty(dto.Email) ? usuario.Email : dto.Email;
+            usuario.Experiencia = dto.Experiencia == string.Empty ? usuario.Experiencia : dto.Experiencia;
+            usuario.Descricao = dto.Descricao == string.Empty ? usuario.Descricao : dto.Descricao;
+            usuario.Localizacao = string.IsNullOrEmpty(dto.Localizacao) ? usuario.Localizacao : dto.Localizacao;
+            usuario.Nome = string.IsNullOrEmpty(dto.Nome) ? usuario.Nome : dto.Nome;
 
             if (dto.Foto != null)
             {

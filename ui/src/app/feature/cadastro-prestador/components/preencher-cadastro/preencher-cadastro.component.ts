@@ -6,16 +6,14 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { merge, Subject, takeUntil} from 'rxjs';
+import { Subject, takeUntil} from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
-import { Router } from '@angular/router';
 import { UsuarioPrestadorEndpoint } from '../../../../domain/usuario-prestador/usuario-prestador.endpoint';
-import { Prestador } from '../../../../domain/usuario-prestador/usuario-prestador.models';
 import { CommonModule } from '@angular/common';
 import { UsuarioDocumentoDto } from '../../../../domain/usuario-prestador/usuario-documento.dto';
+import { MainValidator } from '../../../shared/custom-email-validator';
 
 @Component({
   selector: 'app-preencher-cadastro',
@@ -112,9 +110,9 @@ export class PreencherCadastroComponent implements OnInit {
 
   public criarFormulario() {
     this.mainForm.addControl("Nome", new FormControl('', [Validators.required]));
-    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required]));
-    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required]));
-    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required]));
+    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required, MainValidator.emailValidator]));
+    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required, Validators.minLength(5), Validators.maxLength(30)]));
+    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required, Validators.minLength(5), Validators.maxLength(20)]));
     this.mainForm.addControl("Cargo", new FormControl(null, [Validators.required]));
     this.mainForm.addControl("Localizacao", new FormControl('', [Validators.required]));
     this.mainForm.addControl("DataNascimento", new FormControl(null, []));

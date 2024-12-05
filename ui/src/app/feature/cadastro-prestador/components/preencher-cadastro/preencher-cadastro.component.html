@@ -53,6 +53,9 @@
                 <mat-form-field style="width: 77%; margin-left: 0vh">
                   <mat-label>Usuario</mat-label>
                   <input matInput formControlName="Usuario"/>
+                  @if (mainForm.get('Usuario')?.touched && mainForm.get('Usuario')?.hasError('required')) {
+                    <mat-error>Campo obrigatório</mat-error>
+                  }
                 </mat-form-field>
               </div>
 
@@ -60,6 +63,9 @@
                 <mat-form-field style="width: 77%;" >
                   <mat-label >Nome Completo</mat-label>
                   <input matInput formControlName="Nome" />
+                  @if (mainForm.get('Nome')?.touched && mainForm.get('Nome')?.hasError('required')) {
+                    <mat-error>Campo obrigatório</mat-error>
+                  }
                 </mat-form-field>
               </div>
 
@@ -86,6 +92,16 @@
                       hide() ? "visibility_off" : "visibility"
                     }}</mat-icon>
                   </button>
+
+                  @if (mainForm.get('Senha')?.touched && mainForm.get('Senha')?.hasError('required')) {
+                    <mat-error>Campo obrigatório</mat-error>
+                  }
+                  @if (mainForm.get('Senha')?.touched && mainForm.get('Senha')?.hasError('minLength')) {
+                    <mat-error>Minimo de 5 caracteres</mat-error>
+                  }
+                  @if (mainForm.get('Senha')?.touched && mainForm.get('Senha')?.hasError('maxLength')) {
+                    <mat-error>Máximo de 20 caracteres</mat-error>
+                  }
                 </mat-form-field>
               </div>
             </div>
@@ -101,6 +117,9 @@
               <mat-form-field style="width: 140%; margin-left: -3vh">
                 <mat-label>Localização</mat-label>
                 <input matInput formControlName="Localizacao" />
+                @if (mainForm.get('Localizacao')?.touched && mainForm.get('Localizacao')?.hasError('required')) {
+                  <mat-error>Campo obrigatório</mat-error>
+                }
               </mat-form-field>
             </div>
           </div>
@@ -141,9 +160,9 @@
                 formControlName="Email"
                 required
               />
-              @if (mainForm.get('email')?.invalid) {
-              <mat-error>{{ errorMessage() }}</mat-error>
-              }
+              <mat-error *ngIf="mainForm.get('Email')?.hasError('invalidEmail') && mainForm.get('Email')?.dirty">
+                Email inválido. Por favor, insira um email válido.
+              </mat-error>
             </mat-form-field>
           </div>
 
@@ -154,6 +173,9 @@
             <mat-form-field style="width: 75%; margin-top: 2vh; height: 11vh">
               <mat-label>Cargo</mat-label>
               <input matInput formControlName="Cargo"/>
+              @if (mainForm.get('Cargo')?.touched && mainForm.get('Cargo')?.hasError('required')) {
+                <mat-error>Campo obrigatório</mat-error>
+              }
             </mat-form-field>
           </div>
 
@@ -175,12 +197,13 @@
           >
             <mat-form-field style="width: 90%">
               <mat-label>Experiência de trabalho</mat-label>
-              <textarea matInput style="max-height: 20vh" formControlName="Experiencia"></textarea>
+              <textarea matInput style="max-height: 20vh" formControlName="Experiencia" maxlength="300"></textarea>
+              <mat-hint align="end">{{ mainForm.get('Experiencia')?.value?.length || 0 }}/300</mat-hint>
             </mat-form-field>
           </div>
 
           <div class="col-md-12">
-            <button id="Entrar" (click)="salvar()">Salvar</button>
+            <button id="Entrar" [disabled]="mainForm.invalid" (click)="salvar()">Salvar</button>
           </div>
         </div>
 

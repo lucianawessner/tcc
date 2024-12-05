@@ -7,13 +7,13 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from  '@angular/material/input' ;
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import {  Subject, takeUntil} from 'rxjs';
+import { Subject, takeUntil} from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { provideNativeDateAdapter} from '@angular/material/core';
 import { MatCalendarCellClassFunction, MatDatepickerModule } from '@angular/material/datepicker';
-import { Contratante } from '../../../../domain/usuario-contratante/usuario-contratante.models';
 import { CommonModule } from '@angular/common';
 import { UsuarioDocumentoDto } from '../../../../domain/usuario-prestador/usuario-documento.dto';
+import { MainValidator } from '../../../shared/custom-email-validator';
 
 @Component({
   selector: 'app-preencher-cadastro-contratante',
@@ -89,9 +89,9 @@ export class PreencherCadastroContratanteComponent implements OnInit {
   }
 
   public criarFormulario() {
-    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required]));
-    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required]));
-    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required]));
+    this.mainForm.addControl("Email", new FormControl(this.email, [Validators.required, MainValidator.emailValidator]));
+    this.mainForm.addControl("Usuario", new FormControl(this.usuario, [Validators.required, Validators.minLength(5), Validators.maxLength(30)]));
+    this.mainForm.addControl("Senha", new FormControl(this.senha, [Validators.required, Validators.minLength(5), Validators.maxLength(20)]));
     this.mainForm.addControl("Cargo", new FormControl(null, [Validators.required]));
     this.mainForm.addControl("Localizacao", new FormControl('', [Validators.required]));
     this.mainForm.addControl("DataNascimento", new FormControl(null, []));
@@ -100,15 +100,6 @@ export class PreencherCadastroContratanteComponent implements OnInit {
     this.mainForm.addControl("Foto", new FormControl(null, []));
   }
 
-  updateErrorMessage() {
-    // if (this.email.hasError('required')) {
-    //   this.errorMessage.set('You must enter a value');
-    // } else if (this.email.hasError('email')) {
-    //   this.errorMessage.set('Not a valid email');
-    // } else {
-    //   this.errorMessage.set('');
-    // }
-  }
 
   hide = signal(true);
   clickEvent(event: MouseEvent) {

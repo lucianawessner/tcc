@@ -30,7 +30,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CadastroPrestadorComponent {
   @Input() habilitarBotaoCadastrar: boolean = false;
-  
+
   readonly dialog = inject(MatDialog);
   errorMessage = signal('');
 
