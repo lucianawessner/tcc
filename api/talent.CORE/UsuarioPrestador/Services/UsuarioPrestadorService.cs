@@ -73,6 +73,7 @@ namespace talent.CORE.Services
             usuario.Email = dto.Email;
             usuario.Experiencia = dto.Experiencia;
             usuario.Localizacao = dto.Localizacao;
+            usuario.Descricao = dto.Descricao;
             usuario.Nome = dto.Nome;
             usuario.Senha = dto.Senha;
 

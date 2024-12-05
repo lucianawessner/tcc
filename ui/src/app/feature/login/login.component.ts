@@ -27,6 +27,8 @@ import Swal from 'sweetalert2';
 import { Subject, takeUntil } from 'rxjs';
 import { LoginService } from './service/login.service';
 import { CredentialsService } from './service/credentials.service';
+import { AlterarSenhaComponent } from '../alterar-senha/alterar-senha/alterar-senha.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +42,7 @@ import { CredentialsService } from './service/credentials.service';
     MatButtonModule,
     CadastroPrestadorComponent,
     CadastroContratanteComponent,
+    AlterarSenhaComponent,
     MatIconModule,
     FormsModule,
     ReactiveFormsModule
@@ -83,9 +86,15 @@ export class LoginComponent implements OnInit{
   private readonly router: Router = inject(Router);
   private loginEndpoint: LoginEndpoint = inject(LoginEndpoint);
   private credentialsService: CredentialsService = inject(CredentialsService);
+  readonly dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.criarFormulario();
+  }
+
+  alterarSenha() {
+    const dialogRef = this.dialog.open(AlterarSenhaComponent);
+
   }
 
   fazerAnimacao() {
@@ -140,7 +149,7 @@ export class LoginComponent implements OnInit{
           allowEscapeKey: false,
         });
       } else {
-        this.credentialsService.setCredentials(resposta.Data);        
+        this.credentialsService.setCredentials(resposta.Data);
         this.router.navigate(['']);
       }
     });

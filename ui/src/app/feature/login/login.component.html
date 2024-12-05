@@ -23,13 +23,13 @@
               <mat-label>Usuario</mat-label>
               <input matInput formControlName="usuario" />
             </mat-form-field>
-  
+
             <mat-form-field appearance="outline" class="col-12">
               <mat-label>Senha</mat-label>
-              <input 
-                matInput 
+              <input
+                matInput
                 [type]="hide() ? 'password' : 'text'"
-                formControlName="senha" 
+                formControlName="senha"
               />
                 <button
                   mat-icon-button
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="reset">
+        <div class="reset" (click)="alterarSenha()">
           <span>Esqueceu sua senha?</span>
         </div>
 

@@ -51,7 +51,6 @@ export class CadastroContratanteComponent {
     return true;
   }
 
-
   public cadastroContratante() {
     const dialogRef = this.dialog.open(PreencherCadastroContratanteComponent);
 

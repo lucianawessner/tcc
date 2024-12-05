@@ -1,0 +1,25 @@
+<mat-card
+  style="height: 30vh; width: 70vh"
+>
+  <mat-card-header class="d-flex justify-content-center Titulo">
+    <h5><strong>Esquece a senha</strong></h5>
+  </mat-card-header>
+
+  <mat-card-content>
+      <div [formGroup]="mainForm">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="Email" />
+            <mat-error *ngIf="mainForm.get('Email')?.hasError('invalidEmail') && mainForm.get('Email')?.dirty">
+              Email inválido. Por favor, insira um email válido.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button id="Entrar" [disabled]="mainForm.invalid" (click)="enviar()">Enviar</button>
+        </div>
+      </div>
+  </mat-card-content>
+</mat-card>
