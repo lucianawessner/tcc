@@ -94,6 +94,10 @@
   background-color: #77ab59;
 }
 
+.mdl-stepper-horizontal-alternative .mdl-stepper-step.reject .mdl-stepper-circle {
+  background-color: #ec0808;
+}
+
 .mdl-stepper-horizontal-alternative .mdl-stepper-step.step-done .mdl-stepper-circle:before {
   content: "\2714";
 }

@@ -19,7 +19,7 @@
           <mat-expansion-panel-header>
             <mat-panel-title>{{candidato.Usuario}}</mat-panel-title>
             <mat-panel-description>
-              {{candidato.Descricao}}
+              {{candidato.Cargo}}
             </mat-panel-description>
           </mat-expansion-panel-header>
 
@@ -48,6 +48,7 @@
                   {
                     'step-done': candidato.Progresso.Aceito !== null,
                     'active-step': !candidato.Progresso.Contato,
+                    'reject': !candidato.Progresso.Aceito && candidato.Progresso.Aceito !== null
                   }"
                   style="cursor: pointer;" (click)="abrirDialogDeDecisao(candidato)">
                     <div class="mdl-stepper-circle"><span>2</span></div>
@@ -76,11 +77,15 @@
                     <div class="mdl-stepper-bar-right"></div>
                   </div>
                 </div>
-
               </div>
-
             </div>
           </div>
+
+          @if(candidato.Progresso.Aceito) {
+            <div class="d-flex justify-content-center">
+              <span>Estabeleça o contato com o candidato pelo email <strong>{{candidato.Email}}</strong></span>
+            </div>
+          }
 
         </mat-expansion-panel>
       }

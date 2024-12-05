@@ -20,6 +20,8 @@ export class PrestadorDto {
     IdPrestador: number = 0;
     Usuario: string = '';
     Descricao: string | null = null;
+    Cargo: string | null = null;
+    Email: string | null = null;
     IdFormularioPrestador: number = 0;
     IdProgresso: number = 0;
     Progresso: Progresso = new Progresso();

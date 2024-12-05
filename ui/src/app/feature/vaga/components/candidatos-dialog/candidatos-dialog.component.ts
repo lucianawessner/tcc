@@ -63,7 +63,9 @@ export class CandidatosDialogComponent implements OnInit {
         return new PrestadorDto({
           IdPrestador: x.UsuarioPrestador.Id,
           Usuario: x.UsuarioPrestador.Usuario,
+          Cargo: x.UsuarioPrestador.Cargo,
           Descricao: x.UsuarioPrestador.Descricao,
+          Email: x.UsuarioPrestador.Email,
           IdFormularioPrestador: x.Id,
           IdProgresso: x.Progresso[0].Id,
           Progresso: x.Progresso[0],
@@ -125,29 +127,29 @@ export class CandidatosDialogComponent implements OnInit {
 
   avaliacao(prestador: PrestadorDto) {
 
-    // if(vaga.Progresso.Aceito === null) {
-    //   Swal.fire({
-    //     title: 'Atenção!',
-    //     text: 'Você precisa estar na 3° etapa antes de realizar a avaliação.',
-    //     icon: 'warning',
-    //     allowOutsideClick: false,
-    //     allowEscapeKey: false,
-    //   });
+    if(prestador.Progresso.Aceito === null) {
+      Swal.fire({
+        title: 'Atenção!',
+        text: 'Você precisa aceitar ou rejeitar o prestador antes da avaliação.',
+        icon: 'warning',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
 
-    //   return;
-    // }
+      return;
+    }
 
-    // if(vaga.Avaliada){
-    //   Swal.fire({
-    //     title: 'Atenção!',
-    //     text: 'Você já avaliou esse contratante.',
-    //     icon: 'warning',
-    //     allowOutsideClick: false,
-    //     allowEscapeKey: false,
-    //   });
+    if(prestador.Avaliada){
+      Swal.fire({
+        title: 'Atenção!',
+        text: 'Você já avaliou esse prestador.',
+        icon: 'warning',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
 
-    //   return;
-    // }
+      return;
+    }
 
     const dialogRef = this.dialog.open(AvaliacaoPrestadorComponent, {
     });

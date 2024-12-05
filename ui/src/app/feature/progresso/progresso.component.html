@@ -9,7 +9,7 @@
     @for(vaga of vagas; track vaga) {
     <mat-card class="mt-1">
       <mat-card-header>
-        
+
         <mat-card-title>
           {{ vaga.Cargo }}
         </mat-card-title>
@@ -57,6 +57,7 @@
                 {
                   'step-done': vaga.Progresso.Aceito !== null,
                   'active-step': vaga.Progresso.Visualizado,
+                  'reject': !vaga.Progresso.Aceito && vaga.Progresso.Aceito !== null
                 }">
                   <div class="mdl-stepper-circle"><span>2</span></div>
                   <div class="mdl-stepper-title">Aceitação ou Rejeição</div>
